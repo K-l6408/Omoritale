@@ -1,0 +1,340 @@
+[gd_scene load_steps=21 format=3 uid="uid://ccfws37akrqy5"]
+
+[ext_resource type="Script" path="res://Battles/Watermelon/Watermelon1.gd" id="1_gf0fs"]
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_l72tg"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_ghdwj"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_i6lxs"]
+[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="4_fsu6q"]
+[ext_resource type="Script" path="res://Battles/Name.gd" id="5_q57lr"]
+[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="6_1m7w8"]
+[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="7_v7vx1"]
+[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="8_r0y2f"]
+[ext_resource type="FontFile" uid="uid://bbmrecgjn14pg" path="res://Assets/Fonts/HP.ttf" id="9_j4jvs"]
+[ext_resource type="Texture2D" uid="uid://dq66nstt22343" path="res://Assets/Sprites/evil basil/Battle1.png" id="10_bnexr"]
+[ext_resource type="Texture2D" uid="uid://cehjsl4qsxr33" path="res://Assets/Sprites/evil basil/Battle2.png" id="11_uvuro"]
+[ext_resource type="Texture2D" uid="uid://dd0gawjfce42v" path="res://Assets/Sprites/evil basil/Battle3.png" id="12_ljwed"]
+[ext_resource type="Texture2D" uid="uid://b4a735tqhgpwp" path="res://Assets/Sprites/evil basil/Battle4.png" id="13_ac8rl"]
+[ext_resource type="PackedScene" uid="uid://bn40joste774d" path="res://Dialogue/textballoon.tscn" id="14_eyaf8"]
+[ext_resource type="Script" path="res://Battles/Watermelon/bullet.gd" id="16_24jhu"]
+[ext_resource type="Texture2D" uid="uid://bt5wuun2bh41r" path="res://Assets/Sprites/evil basil/bullet.png" id="16_0181s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l6c4"]
+size = Vector2(24, 12)
+
+[sub_resource type="Resource" id="Resource_h00du"]
+script = ExtResource("3_i6lxs")
+Red = true
+Orange = false
+Yellow = false
+Green = false
+Mint = false
+Cyan = false
+Blue = false
+Purple = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bmat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_bnexr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_uvuro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ljwed")
+}],
+"loop": false,
+"name": &"shock",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ac8rl")
+}],
+"loop": true,
+"name": &"troll",
+"speed": 5.0
+}]
+
+[node name="Watermelon Fight 1" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_gf0fs")
+
+[node name="BulletTemplate" type="Area2D" parent="."]
+visible = false
+position = Vector2(480, 205)
+script = ExtResource("16_24jhu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTemplate"]
+shape = SubResource("RectangleShape2D_2l6c4")
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
+scale = Vector2(2, 2)
+texture = ExtResource("16_0181s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -360.0
+offset_right = 1440.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Box" parent="." instance=ExtResource("1_l72tg")]
+position = Vector2(480, 420)
+CollisionLayer = null
+
+[node name="Soul" parent="." instance=ExtResource("2_ghdwj")]
+position = Vector2(480, 420)
+State = SubResource("Resource_h00du")
+
+[node name="Name" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.0135417
+anchor_top = 0.790278
+anchor_right = 0.121875
+anchor_bottom = 0.872222
+offset_left = 13.0
+offset_top = 553.0
+offset_right = 128.0
+offset_bottom = 621.0
+theme_override_fonts/font = ExtResource("4_fsu6q")
+theme_override_font_sizes/font_size = 50
+text = "SUNNY"
+uppercase = true
+script = ExtResource("5_q57lr")
+
+[node name="LV" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.790278
+anchor_right = 0.323958
+anchor_bottom = 0.872222
+offset_left = 177.0
+offset_top = 553.0
+offset_right = 269.0
+offset_bottom = 621.0
+theme_override_fonts/font = ExtResource("4_fsu6q")
+theme_override_font_sizes/font_size = 50
+text = "LV 1"
+
+[node name="HP" type="ColorRect" parent="."]
+offset_left = 369.0
+offset_top = 554.0
+offset_right = 400.2
+offset_bottom = 604.0
+color = Color(1, 0, 0, 1)
+
+[node name="Bar" type="ColorRect" parent="HP"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 31.1999
+grow_vertical = 2
+color = Color(1, 1, 0, 1)
+
+[node name="Control" type="Control" parent="HP"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.125
+anchor_right = 1.80833
+anchor_bottom = 0.76
+offset_left = -8.59998
+offset_right = 25.4
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 25
+text = "26"
+horizontal_alignment = 2
+script = ExtResource("7_v7vx1")
+
+[node name="Slash" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.38333
+anchor_top = 0.06
+anchor_right = 1.82083
+anchor_bottom = 1.24
+offset_left = 16.4
+offset_top = -3.0
+offset_right = 37.4
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 50
+text = "/"
+
+[node name="MLabel" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.63333
+anchor_top = 0.44
+anchor_right = 2.48333
+anchor_bottom = 1.2
+offset_left = 28.4
+offset_right = 62.4
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 25
+text = "26"
+script = ExtResource("8_r0y2f")
+
+[node name="Label" type="Label" parent="HP"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 14.0
+offset_right = -4.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("9_j4jvs")
+theme_override_font_sizes/font_size = 20
+text = "HP"
+
+[node name="JP" type="ColorRect" parent="."]
+layout_direction = 2
+offset_left = 886.8
+offset_top = 554.0
+offset_right = 906.0
+offset_bottom = 604.0
+color = Color(0.666667, 0, 1, 1)
+
+[node name="Bar" type="ColorRect" parent="JP"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.1999
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
+
+[node name="Control" type="Control" parent="JP"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="JP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.125
+anchor_right = 1.80833
+anchor_bottom = 0.76
+offset_left = -68.0
+offset_top = 3.0
+offset_right = -35.0
+offset_bottom = 8.2
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 25
+text = "16"
+horizontal_alignment = 2
+script = ExtResource("7_v7vx1")
+
+[node name="Slash" type="Label" parent="JP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.38333
+anchor_top = 0.06
+anchor_right = 1.82083
+anchor_bottom = 1.24
+offset_left = -41.0001
+offset_top = 1.2
+offset_right = -20.0
+offset_bottom = 8.8
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 50
+text = "/"
+
+[node name="MLabel" type="Label" parent="JP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.63333
+anchor_top = 0.44
+anchor_right = 2.48333
+anchor_bottom = 1.2
+offset_left = -25.0
+offset_top = 1.00001
+offset_right = 8.0
+offset_bottom = 6.20001
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_1m7w8")
+theme_override_font_sizes/font_size = 25
+text = "16"
+script = ExtResource("8_r0y2f")
+
+[node name="Label" type="Label" parent="JP"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.99994
+offset_top = -11.0
+offset_right = 49.9999
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_j4jvs")
+theme_override_font_sizes/font_size = 20
+text = "JP"
+
+[node name="Melon" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 200)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2bmat")
+
+[node name="TextBox" parent="." instance=ExtResource("14_eyaf8")]
+offset_left = -468.0
+offset_top = -74.0
+offset_right = -468.0
+offset_bottom = -74.0
+mode = 0
+
+[node name="Melony" type="Marker2D" parent="TextBox"]
+top_level = true
+position = Vector2(382, 205)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 360)
+
+[connection signal="hurt" from="Soul" to="." method="ouch"]

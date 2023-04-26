@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://jusk8r420yj3"]
+
+[ext_resource type="Script" path="res://Battles/Kel/Platform.gd" id="1_dc20t"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_txunf"]
+a = Vector2(-30, 0)
+b = Vector2(30, 0)
+
+[node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_dc20t")
+
+[node name="L1" type="Line2D" parent="."]
+position = Vector2(0, -2)
+points = PackedVector2Array(-30, 0, 30, 0)
+width = 5.0
+default_color = Color(0, 0.509804, 0.00784314, 1)
+
+[node name="L2" type="Line2D" parent="L1"]
+show_behind_parent = true
+position = Vector2(0, 3)
+points = PackedVector2Array(-28, 0, 28, 0)
+width = 3.0
+
+[node name="cS" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_txunf")
+one_way_collision = true
+one_way_collision_margin = 6.0

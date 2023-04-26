@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx81lqm4aibsw"]
+
+[ext_resource type="Texture2D" uid="uid://carwtl4obbbdf" path="res://Assets/Sprites/Null.png" id="1_56dqa"]
+[ext_resource type="Script" path="res://Battles/Kel/NullArea.gd" id="1_xdtpq"]
+
+[node name="NullArea" type="Area2D"]
+texture_filter = 1
+position = Vector2(471, 365)
+script = ExtResource("1_xdtpq")
+Polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+clip_children = 1
+color = Color(1, 1, 1, 0.75)
+polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Polygon2D"]
+texture_repeat = 2
+texture = ExtResource("1_56dqa")
+region_enabled = true
+region_rect = Rect2(0, 0, 999, 999)
+
+[connection signal="body_entered" from="." to="." method="remove_controls"]
+[connection signal="body_exited" from="." to="." method="return_controls"]

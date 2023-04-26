@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://d1cx6rvecl8tr"
+path="res://.godot/imported/flavortext.dialogue-79d1efaef64d55540bffc8605e5b75b5.tres"
+
+[deps]
+
+source_file="res://Dialogue/flavortext.dialogue"
+dest_files=["res://.godot/imported/flavortext.dialogue-79d1efaef64d55540bffc8605e5b75b5.tres"]
+
+[params]
+

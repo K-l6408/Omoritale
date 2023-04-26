@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0cb1nxesi0w1"]
+
+[ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="1_dmk8a"]
+[ext_resource type="Script" path="res://Battles/Kel/Final.gd" id="1_g5hin"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_c1mve"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_cijqh"]
+[ext_resource type="PackedScene" uid="uid://jusk8r420yj3" path="res://Battles/Kel/Platform.tscn" id="5_gp4w5"]
+
+[sub_resource type="Resource" id="Resource_2ullb"]
+script = ExtResource("3_cijqh")
+Red = false
+Orange = true
+Yellow = false
+Green = false
+Mint = false
+Cyan = false
+Blue = true
+Purple = false
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_g5hin")
+
+[node name="Pongon" parent="." instance=ExtResource("1_dmk8a")]
+Polygon = PackedVector2Array(-1200, -200, -101, -200, -100, 160, -99, -200, 400, -200, 400, -400, 600, -400, 600, -600, 800, -600, 800, 200, -1200, 200)
+
+[node name="Soul" parent="." instance=ExtResource("2_c1mve")]
+position = Vector2(-655, 498)
+wall_min_slide_angle = 0.0
+State = SubResource("Resource_2ullb")
+
+[node name="Camera2D" type="Camera2D" parent="Soul"]
+
+[node name="Platform" parent="." instance=ExtResource("5_gp4w5")]
+position = Vector2(-142, 364)
+length = 500.0

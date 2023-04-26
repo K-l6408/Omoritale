@@ -1,0 +1,19 @@
+~ cutscene
+
+Melony: > (oh shit is that a human)
+
+=> END
+~ battle
+
+Melony: See that little red heart over there?
+Melony: That's your [color=red]SOUL[/color], the very culmination of your being!
+Melony: [next=auto]and it… uh…
+Melony: Right now it's kind of weak, because…
+Melony: …you don't have enough [color=red]LOVE[/color]!
+Melony: [next=auto]that's uhh what LV stands for
+Melony: *ahem* So, now what if someone attacks you?
+Melony: Easy! You just dodge the white attacks!
+Melony: Here, see if you can avoid them all!
+set Globals.debugAttack = 1
+
+=> END

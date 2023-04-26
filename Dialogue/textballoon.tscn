@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn40joste774d"]
+
+[ext_resource type="Script" path="res://Dialogue/textballoon.gd" id="1_xqpkw"]
+[ext_resource type="Texture2D" uid="uid://b0ykj1xbvpe64" path="res://Assets/Sprites/Text.png" id="2_lnblg"]
+[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_lp1r1"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_iktlm"]
+
+[node name="TextBox" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xqpkw")
+mode = 1
+
+[node name="Balloon" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 390.0
+offset_bottom = 213.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lnblg")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="DialogueLabel" parent="Balloon" instance=ExtResource("3_iktlm")]
+texture_filter = 2
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 330.0
+offset_bottom = 45.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_lp1r1")
+theme_override_font_sizes/normal_font_size = 30
+text = "Dialogue"
+
+[node name="Polygon2D" type="Polygon2D" parent="Balloon"]
+position = Vector2(350, 108)
+polygon = PackedVector2Array(0, -30, 0, 30, 80, 0)
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="spoke" from="Balloon/DialogueLabel" to="." method="type"]

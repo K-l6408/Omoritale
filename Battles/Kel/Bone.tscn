@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://q88ir0qr3nas"]
+
+[ext_resource type="Script" path="res://Battles/Kel/Bone.gd" id="1_smf8w"]
+[ext_resource type="Texture2D" uid="uid://oan48gpc6tok" path="res://Assets/Sprites/KelBone.png" id="1_waifm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8al61"]
+size = Vector2(4, 48)
+
+[node name="Node2D" type="Area2D"]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_smf8w")
+
+[node name="Line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 25, 0, -25)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="Line"]
+position = Vector2(0, -23)
+texture = ExtResource("1_waifm")
+
+[node name="B" type="Sprite2D" parent="Line"]
+position = Vector2(0, 23)
+rotation = -3.14159
+texture = ExtResource("1_waifm")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8al61")
+debug_color = Color(1, 0.584314, 0, 0.501961)

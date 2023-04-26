@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhdoyeswhxsht"]
+
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_j4y0h"]
+[ext_resource type="PackedScene" uid="uid://3y31wmagh7ee" path="res://Battles/Kel/GravityArea.tscn" id="1_ua5i5"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_jcl3m"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_46ljk"]
+
+[sub_resource type="Resource" id="Resource_jsxfq"]
+script = ExtResource("3_46ljk")
+Red = false
+Orange = false
+Yellow = false
+Green = false
+Mint = false
+Cyan = false
+Blue = true
+Purple = false
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Box" parent="." instance=ExtResource("1_j4y0h")]
+position = Vector2(465, 350)
+Size = Vector2(310, 310)
+
+[node name="Gravity" parent="." instance=ExtResource("1_ua5i5")]
+position = Vector2(388, 273)
+Polygon = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+
+[node name="Gravity2" parent="." instance=ExtResource("1_ua5i5")]
+modulate = Color(0.585005, 0.9, 0.27, 1)
+position = Vector2(388, 426)
+rotation = 4.71238
+Polygon = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+
+[node name="Gravity3" parent="." instance=ExtResource("1_ua5i5")]
+modulate = Color(0.584996, 0.27, 0.9, 1)
+position = Vector2(542, 274)
+rotation = 1.57079
+Polygon = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+
+[node name="Gravity4" parent="." instance=ExtResource("1_ua5i5")]
+modulate = Color(0.9, 0.27, 0.270002, 1)
+position = Vector2(542, 427)
+rotation = 3.14159
+Polygon = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+
+[node name="Soul" parent="." instance=ExtResource("2_jcl3m")]
+position = Vector2(390, 275)
+motion_mode = 0
+State = SubResource("Resource_jsxfq")
+maximum_jumps = 1

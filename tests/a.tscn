@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqbubc77uynjq"]
+
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_ucep0"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_j724d"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_qa3cu"]
+
+[sub_resource type="Resource" id="Resource_f2x6g"]
+script = ExtResource("4_qa3cu")
+Red = false
+Orange = true
+Yellow = false
+Green = false
+Mint = false
+Cyan = false
+Blue = false
+Purple = false
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Box" parent="." instance=ExtResource("1_ucep0")]
+rotation = 0.174533
+
+[node name="Soul" parent="." instance=ExtResource("2_j724d")]
+position = Vector2(475, 327)
+State = SubResource("Resource_f2x6g")
+rotation_settings = 2
+first_shield = false
+second_shield = true
+line_spacing = 50
+line_rotation = -90
+line_extents = PackedVector2Array(-100, 0, -50, 50, 0, 100)
