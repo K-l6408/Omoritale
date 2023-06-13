@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://iwjd7u5a0i25"]
+
+[ext_resource type="Script" path="res://Battles/Kel/CircularGravityArea.gd" id="1_cy668"]
+[ext_resource type="Texture2D" uid="uid://drq03vpttu5x5" path="res://Assets/Sprites/GravityCircleCW.png" id="2_q4bxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r3li"]
+size = Vector2(200, 200)
+
+[node name="GravityArea" type="Area2D"]
+texture_filter = 1
+position = Vector2(478, 371)
+scale = Vector2(2, 2)
+script = ExtResource("1_cy668")
+Type = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5r3li")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.74902)
+show_behind_parent = true
+texture_repeat = 2
+texture = ExtResource("2_q4bxu")
+region_rect = Rect2(0, 0, 999, 999)

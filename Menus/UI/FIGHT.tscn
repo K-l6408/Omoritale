@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfwh0v7d5fwgk"]
+
+[ext_resource type="Script" path="res://Menus/UI/FIGHT.gd" id="1_hyu1h"]
+
+[node name="FIGHT" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hyu1h")
+
+[node name="Balloon" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(900, 200)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 320.0
+offset_right = 930.0
+offset_bottom = 520.0
+color = Color(0, 0, 0, 1)
+
+[node name="Rect" type="ColorRect" parent="Balloon"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.2, 0.2, 1)

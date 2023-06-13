@@ -5,7 +5,7 @@ extends AnimatableBody2D
 @export var CollisionLayer : int = 1
 
 func _ready():
-	pass
+	$cS.shape = SegmentShape2D.new()
 
 func _process(_delta):
 	$L1.points = [Vector2(-length / 2, 0), Vector2(length / 2, 0)]
@@ -14,9 +14,11 @@ func _process(_delta):
 	$cS.shape.b = Vector2(length / 2, 0)
 	set_collision_layer(CollisionLayer)
 	set_collision_mask(CollisionLayer)
-	if CollisionLayer == 1:
-		$L1.default_color = Color("008202")
-	elif CollisionLayer == 2:
-		$L1.default_color = Color("611fb0")
-	else:
-		$L1.default_color = Color("000000")
+	if not Engine.is_editor_hint():
+		match CollisionLayer:
+			1:
+				$L1.default_color = Globals.Colors["DarkGreen"]
+			2:
+				$L1.default_color = Globals.Colors["DarkOrange"]
+			3:
+				$L1.default_color = Globals.Colors["LightTeal"]

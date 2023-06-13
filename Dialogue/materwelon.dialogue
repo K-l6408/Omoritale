@@ -1,19 +1,68 @@
 ~ cutscene
-
-Melony: > (oh shit is that a human)
-
+Melony: > Heya, [color=ffdf80]human[/color]! I'm [color=d19292]Melony[/color]!
+Melony: > You're new here, aren't you?
+- Yes
+- No
+Melony: > That uh... wasn't a question
+Melony: > No matter, I'll show you how we do things around here.
 => END
-~ battle
 
-Melony: See that little red heart over there?
-Melony: That's your [color=red]SOUL[/color], the very culmination of your being!
-Melony: [next=auto]and it… uh…
-Melony: Right now it's kind of weak, because…
+~ battle
+set Globals.debugAnimation = "default"
+Melony: See that little heart over there?
+Melony: That's your [color=red]SOUL[/color], the source of your [color=ffdf80]DETERMINATION[/color]!
+set Globals.debugAnimation = "uhh"
+Melony: [next=auto][speed=2]and it… uh…
+Melony: [next=auto][speed=2]Right now it's kind of weak, because…
+set Globals.debugAnimation = "default"
 Melony: …you don't have enough [color=red]LOVE[/color]!
-Melony: [next=auto]that's uhh what LV stands for
+set Globals.debugAnimation = "uhh"
+Melony: [next=auto][speed=2]that's uhh what LV stands for
+set Globals.debugAnimation = "default"
 Melony: *ahem* So, now what if someone attacks you?
-Melony: Easy! You just dodge the white attacks!
+Melony: Easy! Just dodge the white attacks!
 Melony: Here, see if you can avoid them all!
 set Globals.debugAttack = 1
+=> END
 
+~ dodged
+set Globals.debugAnimation = "default"
+Melony: Ok, since you know your stuff, here's your prize!
+Melony: These [color=green]green[/color] attacks would restore HP, if you had taken damage…
+set Globals.debugAttack = 3
+=> END
+
+~ hurt
+set Globals.debugAnimation = "shock"
+Melony: Oh no! Are you hurt?
+set Globals.debugAnimation = "nervous"
+Melony: ok. it's ok. no problem.
+Melony: because now i'm going to teach you about [color=green]green[/color] attacks!
+Melony: just run into them and you'll be fine, i promise
+set Globals.debugAnimation = "default"
+set Globals.debugAttack = 2
+=> END
+
+~ greend
+set Globals.debugAnimation = "uhh"
+Melony: Huh, looks like that wasn't enough…
+Melony: It's alright, I have more
+set Globals.debugAnimation = "default"
+set Globals.debugAttack = 3
+=> END
+
+~ troll
+set Globals.debugAnimation = "troll"
+Melony: lmao
+Melony: You really think no one would take the opportunity…
+Melony: to take a SOUL as powerful as yours?
+Melony: You fucking idiot.\n\n\n\nHas no one told you yet?\n\n\n[color=white]in this world, it's kill or be killed.
+set Globals.debugAttack = 4
+set Globals.skiptext = false
+Melony: [font_size=100]DIE.[wait=2]..
+set Globals.skiptext = true
+set Globals.debugAnimation = "uhh"
+set Globals.debugAttack = 5
+Melony: wait, why did they stop?
+set Globals.debugAttack = 6
 => END

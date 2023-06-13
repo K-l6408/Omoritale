@@ -1,12 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://db6ql6m4mhs6o"]
+[gd_scene load_steps=6 format=3 uid="uid://db6ql6m4mhs6o"]
 
-[ext_resource type="Script" path="res://Menus/Main.gd" id="1_iwlbt"]
-[ext_resource type="Texture2D" uid="uid://cj861nyk8aewv" path="res://Assets/Sprites/Logo.png" id="1_oojd2"]
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="3_oowhq"]
+[ext_resource type="Texture2D" uid="uid://cj861nyk8aewv" path="res://Assets/Sprites/Logo.png" id="1_alirh"]
+[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_n4ojn"]
+[ext_resource type="PackedScene" uid="uid://oxh36k1en2vm" path="res://Menus/FILE.tscn" id="3_4kys8"]
 
-[node name="StartMenu" type="CanvasGroup"]
+[sub_resource type="Animation" id="Animation_o12dl"]
+resource_name = "Fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 7, 50),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-30, 200), Vector2(-80, -700), Vector2(-100, -1500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Logo/Line2D:width")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 200.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avjkw"]
+_data = {
+"Fall": SubResource("Animation_o12dl")
+}
+
+[node name="StartMenu" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_iwlbt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(480, 360)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -21,7 +56,7 @@ color = Color(0, 0, 0, 1)
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(480, 128)
 scale = Vector2(8, 8)
-texture = ExtResource("1_oojd2")
+texture = ExtResource("1_alirh")
 
 [node name="Line2D" type="Line2D" parent="Logo"]
 position = Vector2(-13, -4.5)
@@ -29,25 +64,43 @@ points = PackedVector2Array(0, 0, 0, -999)
 width = 1.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = -25.0
-offset_top = 218.0
-offset_right = 983.0
-offset_bottom = 358.0
-theme_override_fonts/font = ExtResource("3_oowhq")
+offset_left = 282.0
+offset_top = 259.0
+offset_right = 700.0
+offset_bottom = 323.0
+theme_override_fonts/font = ExtResource("2_n4ojn")
 theme_override_font_sizes/font_size = 48
-text = "[Wait! Before you start…]"
+text = "Choose a Save File:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-offset_left = 158.0
-offset_top = 358.0
-offset_right = 782.0
-offset_bottom = 438.0
-theme_override_colors/font_color = Color(1, 0.75, 0, 1)
-theme_override_fonts/font = ExtResource("3_oowhq")
-theme_override_font_sizes/font_size = 32
-text = "Configure keyboard layout
-(i have no idea what keys you have to press)"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_avjkw")
+}
 
-[connection signal="pressed" from="Button" to="." method="configure_inputs"]
+[node name="F1" parent="." instance=ExtResource("3_4kys8")]
+
+[node name="F2" parent="." instance=ExtResource("3_4kys8")]
+offset_left = 230.0
+offset_top = 512.0
+offset_right = 630.0
+offset_bottom = 812.0
+filenum = 2
+
+[node name="F3" parent="." instance=ExtResource("3_4kys8")]
+offset_left = 368.0
+offset_right = 768.0
+filenum = 3
+
+[node name="F4" parent="." instance=ExtResource("3_4kys8")]
+offset_left = 524.0
+offset_top = 512.0
+offset_right = 924.0
+offset_bottom = 812.0
+filenum = 4
+
+[node name="F5" parent="." instance=ExtResource("3_4kys8")]
+offset_left = 675.0
+offset_right = 1075.0
+filenum = 5

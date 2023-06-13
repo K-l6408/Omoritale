@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://duihuuflrwhfd"]
+
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="1_hqhan"]
+[ext_resource type="Texture2D" uid="uid://bvq30ato6er42" path="res://Assets/Sprites/Light.png" id="2_1corm"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_l16vf"]
+[ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="4_0j6xu"]
+
+[sub_resource type="Resource" id="Resource_dw6kg"]
+script = ExtResource("2_l16vf")
+Red = false
+Orange = true
+Yellow = false
+Green = false
+Mint = false
+Teal = false
+Blue = false
+Purple = false
+Value = 2
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nxm4b"]
+polygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tcboh"]
+polygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="Soul" parent="." instance=ExtResource("1_hqhan")]
+position = Vector2(482, 325)
+State = SubResource("Resource_dw6kg")
+maximum_jumps = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Soul"]
+shadow_enabled = true
+texture = ExtResource("2_1corm")
+texture_scale = 1.5
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Pongon" parent="." instance=ExtResource("4_0j6xu")]
+position = Vector2(482, 324)
+StartingPolygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89)
+TargetPolygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89)
+BGColor = Color(0.16, 0.16, 0.16, 1)
+
+[node name="CollisionPolygon2D" parent="Pongon" index="0"]
+polygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89)
+
+[node name="Polygon2D" parent="Pongon" index="1"]
+self_modulate = Color(0.16, 0.16, 0.16, 1)
+clip_children = 2
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89)
+
+[node name="Pongon2" parent="Pongon/Polygon2D" index="0" instance=ExtResource("4_0j6xu")]
+position = Vector2(0, 0)
+collision_layer = 2
+collision_mask = 2
+StartingPolygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
+TargetPolygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
+BGColor = Color(0.160784, 0.160784, 0.160784, 0)
+CollisionLayer = 2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Pongon/Polygon2D/Pongon2"]
+occluder = SubResource("OccluderPolygon2D_nxm4b")
+
+[node name="Line2D" parent="Pongon" index="2"]
+points = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -77, 163, -45, 187, -24, 185, -7, 154, -9, 92, 43, 90, 45, 154, 71, 187, 91, 186, 111, 158, 100, 62, 144, 58, 132, -81, 80, -85, 53, -118, -17, -138, -55, -121, -73, -89, -71, -35)
+default_color = Color(1, 0, 1, 1)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Pongon"]
+occluder = SubResource("OccluderPolygon2D_tcboh")
+
+[editable path="Pongon"]

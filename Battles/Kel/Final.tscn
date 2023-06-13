@@ -1,35 +1,184 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0cb1nxesi0w1"]
+[gd_scene load_steps=11 format=3 uid="uid://d0cb1nxesi0w1"]
 
 [ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="1_dmk8a"]
 [ext_resource type="Script" path="res://Battles/Kel/Final.gd" id="1_g5hin"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_c1mve"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_cijqh"]
 [ext_resource type="PackedScene" uid="uid://jusk8r420yj3" path="res://Battles/Kel/Platform.tscn" id="5_gp4w5"]
+[ext_resource type="PackedScene" uid="uid://bjrh304ge3gkf" path="res://Battles/Kel/Bounce.tscn" id="6_mocyc"]
+[ext_resource type="PackedScene" uid="uid://3y31wmagh7ee" path="res://Battles/Kel/GravityArea.tscn" id="7_ldbay"]
+[ext_resource type="PackedScene" uid="uid://bx81lqm4aibsw" path="res://Battles/Kel/NullArea.tscn" id="8_5udvc"]
+[ext_resource type="PackedScene" uid="uid://q88ir0qr3nas" path="res://Battles/Kel/Bone.tscn" id="9_ab34q"]
 
 [sub_resource type="Resource" id="Resource_2ullb"]
 script = ExtResource("3_cijqh")
 Red = false
-Orange = true
+Orange = false
 Yellow = false
 Green = false
 Mint = false
-Cyan = false
+Teal = false
 Blue = true
 Purple = false
+Value = 64
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_g5hin")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -988.0
+offset_top = -644.0
+offset_right = 1993.0
+offset_bottom = 804.0
+color = Color(0, 0.0627451, 0.203922, 1)
+
 [node name="Pongon" parent="." instance=ExtResource("1_dmk8a")]
-Polygon = PackedVector2Array(-1200, -200, -101, -200, -100, 160, -99, -200, 400, -200, 400, -400, 600, -400, 600, -600, 800, -600, 800, 200, -1200, 200)
+StartingPolygon = PackedVector2Array(-1200, -200, -100, -200, -100, 160, -100, -200, 900, -200, 900, -400, 1000, -400, 1000, -700, 1200, -700, 1200, 200, -1200, 200)
+
+[node name="Section 1" type="Node2D" parent="."]
+
+[node name="NullArea" parent="Section 1" instance=ExtResource("8_5udvc")]
+position = Vector2(279, 362)
+Polygon = PackedVector2Array(-30, -200, 98, -200, 98, 100, -30, 100)
+
+[node name="GravityArea2" parent="Section 1/NullArea" instance=ExtResource("7_ldbay")]
+visible = false
+position = Vector2(-5, -14)
+Polygon = PackedVector2Array(-75, -250, 98, -250, 98, 50, -75, 50)
+
+[node name="Platform" parent="Section 1" instance=ExtResource("5_gp4w5")]
+position = Vector2(-47, 367)
+length = 500.0
+
+[node name="GravityArea" parent="Section 1/Platform" instance=ExtResource("7_ldbay")]
+modulate = Color(0.585, 0.9, 0.27, 0.75)
+position = Vector2(-95, -105)
+rotation = -1.5708
+Polygon = PackedVector2Array(-100, -150, 100, -150, 100, 340, -100, 340)
+
+[node name="A" parent="Section 1/Platform" instance=ExtResource("5_gp4w5")]
+position = Vector2(-181, 96)
+rotation = -1.57079
+length = 180.0
+
+[node name="Bone" parent="Section 1/Platform/A" instance=ExtResource("9_ab34q")]
+position = Vector2(-1.00009, -52)
+rotation = 1.57079
+length = 115
+
+[node name="Bone2" parent="Section 1/Platform/A" instance=ExtResource("9_ab34q")]
+position = Vector2(-1.00003, -20)
+rotation = 1.57079
+length = 115
+
+[node name="Bone3" parent="Section 1/Platform/A" instance=ExtResource("9_ab34q")]
+position = Vector2(-0.999969, 12)
+rotation = 1.57079
+length = 115
+
+[node name="B" parent="Section 1/Platform" instance=ExtResource("5_gp4w5")]
+position = Vector2(179, 98)
+rotation = -4.71238
+collision_layer = 2
+collision_mask = 2
+length = 180.0
+CollisionLayer = 2
+
+[node name="Bone" parent="Section 1/Platform/B" instance=ExtResource("9_ab34q")]
+position = Vector2(-1.00009, -52)
+rotation = 1.57079
+length = 115
+
+[node name="Bone2" parent="Section 1/Platform/B" instance=ExtResource("9_ab34q")]
+position = Vector2(-1.00003, -20)
+rotation = 1.57079
+length = 115
+
+[node name="Bone3" parent="Section 1/Platform/B" instance=ExtResource("9_ab34q")]
+position = Vector2(-0.999969, 12)
+rotation = 1.57079
+length = 115
+
+[node name="Platform2" parent="Section 1" instance=ExtResource("5_gp4w5")]
+position = Vector2(-413, 466)
+length = 100.0
+
+[node name="Bounce2" parent="Section 1/Platform2" instance=ExtResource("6_mocyc")]
+position = Vector2(23, -4)
+
+[node name="Bounce" parent="Section 1" instance=ExtResource("6_mocyc")]
+position = Vector2(-491, 560)
+
+[node name="Bone" parent="Section 1" instance=ExtResource("9_ab34q")]
+position = Vector2(-533, 514)
+
+[node name="Section 2" type="Node2D" parent="."]
+
+[node name="Platforms" type="Node2D" parent="Section 2"]
+
+[node name="Bones" type="Node2D" parent="Section 2"]
+
+[node name="Bones_above" type="Node2D" parent="Section 2"]
+
+[node name="Bounce" parent="Section 2" instance=ExtResource("6_mocyc")]
+position = Vector2(448, 559)
+
+[node name="ColorRect2" type="ColorRect" parent="Section 2"]
+offset_left = 487.0
+offset_top = 163.0
+offset_right = 566.0
+offset_bottom = 558.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Section 2"]
+offset_left = 1194.0
+offset_top = 165.0
+offset_right = 1273.0
+offset_bottom = 557.0
+color = Color(0, 0, 0, 1)
+
+[node name="Section 3" type="Node2D" parent="."]
+
+[node name="Big bone" parent="Section 3" instance=ExtResource("9_ab34q")]
+position = Vector2(1628, 178)
+scale = Vector2(5, 5)
+length = 145
+
+[node name="Bounce" parent="Section 3" instance=ExtResource("6_mocyc")]
+position = Vector2(1400, 559)
+
+[node name="Platform 1" parent="Section 3" instance=ExtResource("5_gp4w5")]
+position = Vector2(1527, -68)
+length = 100.0
+
+[node name="Bounce" parent="Section 3/Platform 1" instance=ExtResource("6_mocyc")]
+position = Vector2(23, -4)
+
+[node name="Platform 2" parent="Section 3" instance=ExtResource("5_gp4w5")]
+position = Vector2(1524, 201)
+length = 100.0
+
+[node name="Bounce" parent="Section 3/Platform 2" instance=ExtResource("6_mocyc")]
+position = Vector2(23, -4)
+
+[node name="Platform 3" parent="Section 3" instance=ExtResource("5_gp4w5")]
+position = Vector2(1478, 365)
+length = 100.0
+
+[node name="Bounce" parent="Section 3/Platform 3" instance=ExtResource("6_mocyc")]
+position = Vector2(23, -4)
+
+[node name="Platform 4" parent="Section 3" instance=ExtResource("5_gp4w5")]
+position = Vector2(1580, -209)
+length = 190.0
 
 [node name="Soul" parent="." instance=ExtResource("2_c1mve")]
-position = Vector2(-655, 498)
+position = Vector2(-708, 548)
 wall_min_slide_angle = 0.0
 State = SubResource("Resource_2ullb")
+show_Trans = true
 
 [node name="Camera2D" type="Camera2D" parent="Soul"]
+zoom = Vector2(2, 2)
 
-[node name="Platform" parent="." instance=ExtResource("5_gp4w5")]
-position = Vector2(-142, 364)
-length = 500.0
+[connection signal="body_entered" from="Section 1/NullArea/GravityArea2" to="." method="orange"]

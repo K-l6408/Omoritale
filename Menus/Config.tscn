@@ -1,41 +1,293 @@
-[gd_scene load_steps=2 format=3 uid="uid://csfcxogobo53r"]
+[gd_scene load_steps=3 format=3 uid="uid://csfcxogobo53r"]
 
 [ext_resource type="Script" path="res://Menus/Config.gd" id="1_pfnrb"]
+[ext_resource type="Texture2D" uid="uid://ouy62bnigw7w" path="res://Assets/Sprites/KEY_filled.png" id="2_bvwrv"]
 
 [node name="Config" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_pfnrb")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 720.0
+color = Color(0, 0.04, 0.08, 1)
+
 [node name="Label" type="Label" parent="."]
 offset_left = 49.0
-offset_top = 34.0
+offset_top = -30.0
 offset_right = 923.0
-offset_bottom = 319.0
+offset_bottom = 255.0
 theme_override_font_sizes/font_size = 64
-text = " Press [confirm]…"
+text = " Select a keyboard layout..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="A" type="Label" parent="."]
-offset_left = 151.0
-offset_top = 319.0
-offset_right = 361.0
-offset_bottom = 367.0
-theme_override_font_sizes/font_size = 32
-text = "\"Accept\" key: "
+[node name="QWERTY" type="TextureButton" parent="."]
+offset_left = 57.0
+offset_top = 302.0
+offset_right = 237.0
+offset_bottom = 330.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_bvwrv")
+ignore_texture_size = true
+stretch_mode = 1
 
-[node name="C" type="Label" parent="."]
-offset_left = 361.0
-offset_top = 367.0
-offset_right = 571.0
-offset_bottom = 415.0
-theme_override_font_sizes/font_size = 32
-text = "\"Cancel\" key: "
+[node name="1" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 7.5
+offset_top = -2.0
+offset_right = 20.5
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Q"
 
-[node name="M" type="Label" parent="."]
-offset_left = 571.0
-offset_top = 415.0
-offset_right = 781.0
-offset_bottom = 463.0
-theme_override_font_sizes/font_size = 32
-text = "\"Menu\" key: "
+[node name="2" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 37.5
+offset_top = -1.5
+offset_right = 53.5
+offset_bottom = 24.5
+mouse_filter = 1
+text = "W"
+
+[node name="3" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -1.5
+offset_right = 79.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "E"
+
+[node name="4" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -2.0
+offset_right = 111.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "R"
+
+[node name="5" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = -1.5
+offset_right = 139.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "T"
+
+[node name="6" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -2.0
+offset_right = 171.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Y"
+
+[node name="Label2" type="Label" parent="QWERTY"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 28.0
+offset_right = 225.0
+offset_bottom = 54.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 1
+text = "(or QÜERTY)"
+
+[node name="QWERTZ" type="TextureButton" parent="."]
+offset_left = 548.0
+offset_top = 302.0
+offset_right = 728.0
+offset_bottom = 330.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_bvwrv")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="1" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 7.5
+offset_top = -2.0
+offset_right = 20.5
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Q"
+
+[node name="2" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 37.5
+offset_top = -1.5
+offset_right = 53.5
+offset_bottom = 24.5
+mouse_filter = 1
+text = "W"
+
+[node name="3" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -1.5
+offset_right = 79.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "E"
+
+[node name="4" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -2.0
+offset_right = 111.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "R"
+
+[node name="5" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = -1.5
+offset_right = 139.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "T"
+
+[node name="6" type="Label" parent="QWERTZ"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -2.0
+offset_right = 171.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Z"
+
+[node name="ÄWERTY" type="TextureButton" parent="."]
+offset_left = 57.0
+offset_top = 416.0
+offset_right = 237.0
+offset_bottom = 444.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_bvwrv")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="1" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 22.0
+offset_bottom = 26.0
+mouse_filter = 1
+text = "Ä"
+
+[node name="2" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 37.5
+offset_top = -1.0
+offset_right = 53.5
+offset_bottom = 25.0
+mouse_filter = 1
+text = "W"
+
+[node name="3" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -1.5
+offset_right = 79.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "E"
+
+[node name="4" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -2.0
+offset_right = 111.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "R"
+
+[node name="5" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = -1.5
+offset_right = 139.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "T"
+
+[node name="6" type="Label" parent="ÄWERTY"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -2.0
+offset_right = 171.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Y"
+
+[node name="AZERTY" type="TextureButton" parent="."]
+offset_left = 548.0
+offset_top = 416.0
+offset_right = 728.0
+offset_bottom = 444.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_bvwrv")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="1" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -1.0
+offset_right = 22.0
+offset_bottom = 25.0
+mouse_filter = 1
+text = "A"
+
+[node name="2" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 50.0
+offset_bottom = 25.0
+mouse_filter = 1
+text = "Z"
+
+[node name="3" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -1.5
+offset_right = 79.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "E"
+
+[node name="4" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = -2.0
+offset_right = 111.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "R"
+
+[node name="5" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = -1.5
+offset_right = 139.0
+offset_bottom = 24.5
+mouse_filter = 1
+text = "T"
+
+[node name="6" type="Label" parent="AZERTY"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -2.0
+offset_right = 171.0
+offset_bottom = 24.0
+mouse_filter = 1
+text = "Y"
+
+[connection signal="pressed" from="QWERTY" to="." method="set_layout" binds= ["QWERTY"]]
+[connection signal="pressed" from="QWERTZ" to="." method="set_layout" binds= ["QWERTZ"]]
+[connection signal="pressed" from="ÄWERTY" to="." method="set_layout" binds= ["ÄWERTY"]]
+[connection signal="pressed" from="AZERTY" to="." method="set_layout" binds= ["AZERTY"]]

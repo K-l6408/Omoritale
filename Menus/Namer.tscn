@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxl34w18wiogh"]
+
+[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="1_lff2w"]
+[ext_resource type="Script" path="res://Menus/Namer.gd" id="1_wl76j"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wl76j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -48.0
+offset_top = -43.0
+offset_right = 992.0
+offset_bottom = 758.0
+color = Color(0, 0, 0, 1)
+
+[node name="name them" type="RichTextLabel" parent="."]
+offset_left = 63.0
+offset_top = -21.0
+offset_right = 851.0
+offset_bottom = 104.0
+theme_override_fonts/normal_font = ExtResource("1_lff2w")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[shake rate=10 level=1]
+ Name the fallen human or something"
+fit_content = true
+scroll_active = false
+
+[node name="the uh name" type="RichTextLabel" parent="."]
+offset_left = 63.0
+offset_top = 122.0
+offset_right = 851.0
+offset_bottom = 247.0
+theme_override_fonts/normal_font = ExtResource("1_lff2w")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[shake rate=10 level=1][center]
+"
+fit_content = true
+scroll_active = false
+
+[node name="_" type="Button" parent="."]
+offset_left = -575.0
+offset_top = -276.0
+offset_right = -540.0
+offset_bottom = -188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_lff2w")
+theme_override_font_sizes/font_size = 60
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+flat = true
+
+[node name="kb" type="VBoxContainer" parent="."]
+offset_left = 63.0
+offset_top = 268.0
+offset_right = 887.0
+offset_bottom = 664.0
+
+[node name="r1" type="HBoxContainer" parent="kb"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="r2" type="HBoxContainer" parent="kb"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="r3" type="HBoxContainer" parent="kb"]
+layout_mode = 2
+size_flags_vertical = 3

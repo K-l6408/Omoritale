@@ -2,4 +2,4 @@
 extends Label
 
 func _process(_delta):
-	text = "%d" % round($"../..".size.x/1.2)
+	text = "%d" % ($"../..".size.x/1.2+.5)

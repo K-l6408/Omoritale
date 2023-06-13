@@ -7,25 +7,24 @@
 [sub_resource type="Resource" id="Resource_f2x6g"]
 script = ExtResource("4_qa3cu")
 Red = false
-Orange = true
+Orange = false
 Yellow = false
 Green = false
 Mint = false
 Cyan = false
 Blue = false
-Purple = false
+Purple = true
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Box" parent="." instance=ExtResource("1_ucep0")]
-rotation = 0.174533
+Size = Vector2(200, 500)
 
 [node name="Soul" parent="." instance=ExtResource("2_j724d")]
-position = Vector2(475, 327)
+position = Vector2(475, 324)
 State = SubResource("Resource_f2x6g")
-rotation_settings = 2
-first_shield = false
-second_shield = true
+line_number = 9
 line_spacing = 50
-line_rotation = -90
-line_extents = PackedVector2Array(-100, 0, -50, 50, 0, 100)
+line_rotation = -45
+current_line = 4
+line_extents = PackedVector2Array(60, 135, 12, 180, -35, 215, -80, 170, -125, 125, -170, 80, -215, 35)

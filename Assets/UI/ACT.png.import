@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/ACT.png-a218b0c74d7e441e93b86035a64b2be9.ctex
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

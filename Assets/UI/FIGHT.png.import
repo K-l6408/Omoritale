@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/FIGHT.png-2154b386c5f742c97af8f2c65d911556.ct
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

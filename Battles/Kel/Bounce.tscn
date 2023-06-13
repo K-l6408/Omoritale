@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjrh304ge3gkf"]
+
+[ext_resource type="Script" path="res://Battles/Kel/Bounce.gd" id="1_jarqy"]
+[ext_resource type="Texture2D" uid="uid://dnvfr4aiyv8qv" path="res://Assets/Sprites/Bouncy.png" id="2_rmk81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0vpc"]
+size = Vector2(50.5, 11)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7j8pt"]
+emission_shape = 3
+emission_box_extents = Vector3(26, 0, 0)
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0, 0.75, 1, 1)
+
+[node name="Bounce" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_jarqy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 3
+position = Vector2(0, 3)
+texture = ExtResource("2_rmk81")
+region_enabled = true
+region_rect = Rect2(2, 0, 52, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -5.5)
+shape = SubResource("RectangleShape2D_s0vpc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_7j8pt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

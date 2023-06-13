@@ -7,3 +7,4 @@ const White  = 3
 const Shoot  = 4
 const Block  = 8
 const Parry  = 16
+const Shock  = 32

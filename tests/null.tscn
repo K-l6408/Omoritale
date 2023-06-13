@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg3e1vbx6th17"]
+[gd_scene load_steps=6 format=3 uid="uid://bg3e1vbx6th17"]
 
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_d61hp"]
 [ext_resource type="PackedScene" uid="uid://bx81lqm4aibsw" path="res://Battles/Kel/NullArea.tscn" id="1_x025m"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_55vyp"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_i5n6a"]
@@ -17,8 +18,11 @@ Purple = false
 
 [node name="null" type="Node2D"]
 
+[node name="Box" parent="." instance=ExtResource("1_d61hp")]
+position = Vector2(471, 365)
+
 [node name="NullArea" parent="." instance=ExtResource("1_x025m")]
 
 [node name="Soul" parent="." instance=ExtResource("2_55vyp")]
-position = Vector2(310, 317)
+position = Vector2(471, 277)
 State = SubResource("Resource_l5pjq")

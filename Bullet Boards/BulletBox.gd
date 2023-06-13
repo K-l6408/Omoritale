@@ -1,6 +1,7 @@
 @tool
 extends CanvasGroup
 @export var Size: Vector2
+@export var BGColor := Color.BLACK
 @export var CollisionLayer = 1
 var size = Size
 
@@ -9,12 +10,19 @@ func _ready():
 	changeSize(Size, .1/6)
 
 func _process(delta):
-	$Walls.collision_layer = CollisionLayer
-	$Walls.collision_mask  = CollisionLayer
-	if CollisionLayer == 1:
-		$Green.color = Color("008202")
-	elif CollisionLayer == 2:
-		$Green.color = Color("611fb0")
+	$Walls.collision_layer = 1 << (CollisionLayer - 1)
+	$Walls.collision_mask  = 1 << (CollisionLayer - 1)
+	if Engine.is_editor_hint():
+		$Green.color = Color.MAGENTA
+	else:
+		match CollisionLayer:
+			1:
+				$Green.color = Globals.Colors["DarkGreen"]
+			2:
+				$Green.color = Globals.Colors["DarkOrange"]
+			3:
+				$Green.color = Globals.Colors["LightTeal"]
+	$Black.color = BGColor
 	if Size != size:
 		changeSize(Size, delta)
 		sizeChanged()

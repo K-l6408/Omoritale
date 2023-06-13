@@ -8,22 +8,18 @@ class_name Soul
 @export var inverted_controls = false
 @export var controls := true
 @export var rotation_settings : rSettings
-@export_group("Settings/Red")
-@export var slowdown_action := "cancel"
-@export_group("Settings/Orange")
-@export var dash_action := "accept"
-@export_group("Settings/Yellow")
-@export var shot_action := "accept"
+@export_group("Settings/Visual")
+@export var show_DT := true
+@export var show_Trans := false
+@export var show_BG := true
+@export var show_Shadow := true
 @export_group("Settings/Green")
 @export var first_shield := true
 @export var second_shield := false
 @export var third_shield := false
 @export var fourth_shield := false
 @export_group("Settings/Mint")
-@export var shrink_action := "cancel"
-@export var default_size := 1.
-@export_group("Settings/Cyan")
-@export var parry_action := "cancel"
+@export var default_size := 1.1
 @export_group("Settings/Blue")
 @export var maximum_jumps := 2
 @export_group("Settings/Purple")
@@ -31,14 +27,10 @@ class_name Soul
 @export var line_spacing = 100
 @export var line_rotation = 0
 @export var current_line = 0
-@export var line_extents : PackedVector2Array = [
-	Vector2(-150, 150),
-	Vector2(-150, 150),
-	Vector2(-150, 150)
-]
+@export var line_extents : PackedVector2Array
 @onready var purpleStartPnt = position
-@onready var purpleStartLin = Vector2(0, current_line * line_spacing)
-@onready var purpleStartPos
+@onready var purpleStartLin = Vector2(0, -current_line * line_spacing).rotated(deg_to_rad(line_rotation))
+@onready var purpleStartPos = purpleStartPnt + purpleStartLin
 
 enum rSettings {
 	DEFAULT, MOUSE, LAST_KEY_PRESSED, INVERSE_LAST_KEY_PRESSED
@@ -47,8 +39,8 @@ enum rSettings {
 const ow := preload("res://Assets/Audio/Ouch.wav")
 const thx = preload("res://Assets/Audio/Heal.wav")
 const sht = preload("res://Assets/Audio/Shot.wav")
-const prr = preload("res://Assets/Audio/Parry.mp3")
 const blt = preload("res://SOUL/Bullet.tscn")
+const swv = preload("res://SOUL/Shockwave.tscn")
 var arc       := 0
 var iframes   := 0.0
 var vel       : Vector2
@@ -58,19 +50,21 @@ var fall      := Vector2(0,0)
 var fallspd   := 0.0
 var jumps     := maximum_jumps
 var jumping   := false
+var bounced   := false
+var bounceArea : Area2D
+var dashcharg := 0.0
 var dash      := 0.0
 var mintshr   := 0.0
 var cyancldwn := 0.0
 var plc       : float
 var h = false
 var handle_rot = true
+var mouse = true
 
 func _ready():
 	plc = current_line
+	$Lines.position = purpleStartPos
 	jumps = maximum_jumps
-	var res = SoulState.new()
-	ResourceSaver.save(res, "SoulState.tscn")
-	setState(State)
 	floor_stop_on_slope = false
 	if not Engine.is_editor_hint():
 		$Trail   .texture = $Sprite.get_texture()
@@ -91,7 +85,7 @@ func setState(value):
 
 func _draw():
 	if not Engine.is_editor_hint():
-		if State.value() == SoulState.GREEN:
+		if State.Value == SoulState.GREEN:
 			draw_circle_arc(Vector2.ZERO, 42.5, 0, 0, arc, Color(0,.5,0))
 			draw_circle_arc(Vector2.ZERO, 39.5, 0, 0, arc, Color.BLACK)
 		elif State.Green:
@@ -115,23 +109,14 @@ func _process(_delta):
 		queue_redraw()
 	$Shields.position    = global_position
 	$Shields.setang(pvel.angle() + PI/2)
-	$"Shields/1".monitoring  = State.Green and first_shield
-	$"Shields/1".monitorable = State.Green and first_shield
-	$"Shields/1".visible     = State.Green and first_shield
-	$"Shields/2".monitoring  = State.Green and second_shield
-	$"Shields/2".monitorable = State.Green and second_shield
-	$"Shields/2".visible     = State.Green and second_shield
-	$"Shields/3".monitoring  = State.Green and third_shield
-	$"Shields/3".monitorable = State.Green and third_shield
-	$"Shields/3".visible     = State.Green and third_shield
-	$"Shields/4".monitoring  = State.Green and fourth_shield
-	$"Shields/4".monitorable = State.Green and fourth_shield
-	$"Shields/4".visible     = State.Green and fourth_shield
+	$Shields.scale       =  scale
 	$Trail.process_material.angle_min = -$Sprite2D.global_rotation_degrees
 	$Trail.process_material.angle_max = -$Sprite2D.global_rotation_degrees
 	$Trail.process_material.scale_min = min(global_scale.x, global_scale.y)
 	$Trail.process_material.scale_max = max(global_scale.x, global_scale.y)
 	$Trail.emitting = State.Orange
+	$Sprite/Bounce.visible = bounced and State.Blue
+	modulate.a = 1 if iframes <= 0 else (.33 if fmod(iframes, .5) > .25 else .66)
 
 func _physics_process(delta):
 	if State.Blue:
@@ -145,35 +130,39 @@ func _physics_process(delta):
 		$Sprite2D/Label.hide()
 	if not Engine.is_editor_hint():
 		process_texture()
-		purpleStartPos = purpleStartPnt + purpleStartLin.rotated(deg_to_rad(-line_rotation))
 		iframes -= delta
 		handle_hitbox()
 		var v = vel
+		if State.Orange:
+			v = pvel
 		handle_input()
 		if State.Red:
 			velocity = velocity.rotated(global_rotation)
 			vel = vel.rotated(global_rotation)
-			if Input.is_action_pressed(slowdown_action):
+			if Input.is_action_pressed("cancel"):
 				velocity /= 2
 		if State.Blue:
 			var j
-			fallspd = fall.project(Vector2(0,1).rotated(rotation)).rotated(-rotation).y
+			fallspd = fall.rotated(-rotation).y
 			if State.Orange:
 				jumps = int(is_on_floor())
 				j = -pvel.rotated(-global_rotation).y
 				var pj = -v.rotated(-global_rotation).y
 				if j < -10 and pj > -10:
-					slam(rotation_degrees, 300)
+					fallspd = 200
 				j = 100
 			else:
 				j = -vel.rotated(-global_rotation).y
 				if j < 0:
 					j = 0
 					jumping = false
-			if is_on_floor():
+			if is_on_floor() and (
+				bounceArea == null or not self in bounceArea.get_overlapping_bodies()
+				):
 				jumps = maximum_jumps
 				fallspd = 50
 				jumping = false
+				bounced = false
 				if State.Orange:
 					pvel = Vector2(pvel.rotated(-global_rotation).x, -100).rotated(global_rotation)
 			elif jumps == maximum_jumps:
@@ -192,7 +181,7 @@ func _physics_process(delta):
 				jumping = false
 			if fallspd > 500:
 				fallspd = 500
-			var lt = jumps + 1 - int(is_on_floor()) # Label Text
+			var lt = jumps + int(not is_on_floor()) # Label Text
 			if lt > 1:
 				$Sprite2D/Label.show()
 				$Sprite2D/Label.text = str(lt)
@@ -209,17 +198,25 @@ func _physics_process(delta):
 			else:
 				fallspd += 400 * delta
 				fall.y = fallspd
-			fall.x = lerp(fall.x, 0.0, delta * 3)
-			fall = fall.rotated( global_rotation)
-			velocity = p.rotated(global_rotation)
+			fall.x = lerp(fall.x, 0., delta * 3)
+			fall   = fall.rotated(global_rotation)
+			velocity  = p.rotated(global_rotation)
 			velocity += fall
 		if State.Orange:
 			set_collision_layer_value(2, dash < 0)
 			set_collision_mask_value(2, dash < 0)
+			if Input.is_action_pressed("accept") and dash < 0:
+				dashcharg += delta
+				$Aura.emitting = true
+				if dashcharg > 1.5:
+					iframes = dashcharg / 2
+					Input.action_release("accept")
+			if Input.is_action_just_released("accept"):
+				$Aura.emitting = false
+				dash = dashcharg / 2
+				dashcharg = 0
 			if dash > -1:
 				dash -= delta
-			elif Input.is_action_just_pressed(dash_action):
-				dash = .5
 			if dash > 0:
 				if State.Blue:
 					var p = velocity.rotated(-global_rotation)
@@ -228,48 +225,27 @@ func _physics_process(delta):
 				else:
 					velocity /= .375
 			if State.Purple:
-				if abs(pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x) <= 10:
+				if dashcharg > 0:
+					velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
+				elif abs(pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x) <= 10:
 					pvel += Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
 				else:
 					px = pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x
 			elif State.Blue:
-				if pvel.rotated(-global_rotation).x == 0:
+				if dashcharg > 0:
+					velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
+				elif pvel.rotated(-global_rotation).x == 0:
 					pvel += Vector2(px, 0).rotated(global_rotation)
 				else:
 					px = pvel.rotated(global_rotation).x
-		if State.Cyan:
-			if State.Blue:
-				var p = velocity.rotated(-global_rotation)
-				p.x *= .75
-				velocity = p.rotated(global_rotation)
-			else:
-				velocity *= .75
-			if cyancldwn < delta:
-				if Input.is_action_just_pressed(parry_action):
-					$Parry/Shape.disabled = false
-					$Parry/Sprite2D.show()
-					$Aud.stream = prr
-					$Aud.pitch_scale = randf_range(0.9, 1.1)
-					$Aud.play()
-					iframes += .7
-					cyancldwn = 1.5
-					$Sprite2D.scale = Vector2(1.5, 1.5)
-					var r = randf_range(-180, 180)
-					$Sprite2D.rotate(deg_to_rad(r))
-					handle_rot = false
-					await get_tree().create_timer(.7).timeout
-					handle_rot = true
-					$Aud.pitch_scale = 1
-					$Parry/Shape.disabled = true
-					$Parry/Sprite2D.hide()
-					$Sprite2D.scale = Vector2(1, 1)
-					$Sprite2D.rotate(deg_to_rad(-r))
-			else:
-				cyancldwn -= delta
+			elif dashcharg > 0:
+				velocity = Vector2(0, 0)
+		
 		if State.Purple:
 			if State.Blue:
 				line_rotation = rotation_degrees - 90
 			var temp = (position-purpleStartPos).rotated(deg_to_rad(-line_rotation))+purpleStartPos
+			line_extents.resize(line_number)
 			if State.Orange and temp.x != clamp(temp.x - purpleStartPos.x,\
 			line_extents[current_line].x, line_extents[current_line].y) + purpleStartPos.x:
 				pvel -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
@@ -295,17 +271,21 @@ func _physics_process(delta):
 		if State.Mint:
 			if mintshr > -2:
 				mintshr -= delta
-			elif Input.is_action_just_pressed(shrink_action):
+			elif Input.is_action_just_pressed("cancel"):
 				mintshr = 3
+				var s = swv.instantiate()
+				s.scale = Vector2(default_size, default_size)
+				s.position = position
+				add_sibling(s)
 			if mintshr > 0:
 				scale.x = lerp(scale.x, default_size / 2, delta)
 				scale.y = lerp(scale.y, default_size / 2, delta)
 				if State.Blue:
 					var p = velocity.rotated(-global_rotation)
-					p.x *= 3
+					p.x /= scale.x / default_size
 					velocity = p.rotated(global_rotation)
 				else:
-					velocity *= 3
+					velocity /= scale.x / default_size
 				if (mintshr + .5) - floor(mintshr + .5) < delta:
 					modulate.v = 0
 				elif modulate.v < 1:
@@ -314,7 +294,7 @@ func _physics_process(delta):
 				scale.x = lerp(scale.x, default_size, delta)
 				scale.y = lerp(scale.y, default_size, delta)
 		if State.Yellow:
-			if Input.is_action_just_pressed(shot_action):
+			if Input.is_action_just_released("accept"):
 				shoot()
 		move_and_slide()
 		if handle_rot:
@@ -325,8 +305,7 @@ func _physics_process(delta):
 	if State.Purple:
 		plc = lerp(plc, float(current_line), delta*5)
 		line_extents.resize(line_number)
-		$Lines.position = Vector2(0,0)
-		$Lines.rotation_degrees = line_rotation - rotation_degrees
+		$Lines.rotation_degrees = line_rotation
 		var lc = $Lines.get_child_count()
 		if lc < line_number:
 			var L = Line2D.new()
@@ -334,12 +313,11 @@ func _physics_process(delta):
 		if lc > line_number:
 			$Lines.get_child(0).queue_free()
 		for c in min($Lines.get_child_count(), line_number):
-			var temp = (position-purpleStartPos).rotated(deg_to_rad(-line_rotation))
 			var L = $Lines.get_child(c)
 			L.default_color = Color("9c279f")
 			L.width = 2
 			L.points = [Vector2(line_extents[c].x, 0), Vector2(line_extents[c].y, 0)]
-			L.position = Vector2(-temp.x, (c - plc) * line_spacing)
+			L.position = Vector2(0, c * line_spacing)
 			if line_extents[c] == Vector2(0,0):
 				line_extents[c] = Vector2(-150,150)
 	else:
@@ -353,7 +331,12 @@ func handle_rotation(delta):
 			if State.Blue or State.Red:
 				rotation_settings = rSettings.DEFAULT
 			else:
-				rotation = get_global_mouse_position().angle_to_point(global_position) + PI/2
+				if mouse:
+					rotation = get_global_mouse_position().angle_to_point(global_position) + PI/2
+				else:
+					var alt = Input.get_vector("leftAlt", "rightAlt", "upAlt", "downAlt")
+					if alt.length_squared() > 0.01:
+						rotation = alt.angle() - PI/2
 		rSettings.LAST_KEY_PRESSED:
 			if State.Blue or State.Red:
 				rotation_settings = rSettings.DEFAULT
@@ -364,14 +347,14 @@ func handle_rotation(delta):
 				rotation_settings = rSettings.DEFAULT
 			else:
 				rotation = pvel.angle() + PI / 2
-	if abs(r - global_rotation) <= 0.1:
+	if abs(wrapf(r - global_rotation, -TAU, TAU)) <= 0.0001 or abs($Sprite2D.rotation) >= 0.01:
 		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, 0, delta * 7)
 	else:
-		$Sprite2D.global_rotation = r
+		$Sprite2D.global_rotation += r - global_rotation
 
 func process_texture():
 	var total = int(State.Red) + int(State.Orange) + int(State.Yellow) + int(State.Green) + \
-	int(State.Mint) + int(State.Cyan) + int(State.Blue) + int(State.Purple)
+	int(State.Mint) + int(State.Teal) + int(State.Blue) + int(State.Purple)
 	var i = 0.0
 	for j in $Sprite/Colors.get_children():
 		if State.get(j.name):
@@ -379,13 +362,20 @@ func process_texture():
 			j.region_rect.position.x = i / total * 19.
 			i += 1
 			j.region_rect.size.x = 19. / total
+			j.modulate = Globals.Colors[j.name]
 		else:
 			j.hide()
 		j.region_rect.size.y = 20
 		j.region_rect.position.y = 0
 		j.position = j.region_rect.position
+	$Sprite2D/BG.visible = show_BG
+	$Sprite2D/DT.visible = show_DT
+	$Sprite2D/trans.visible = show_Trans
+	$Sprite2D/Shadow.visible = show_Shadow
 
 func shoot():
+	if dash > 0.1:
+		return
 	var bullet
 	bullet =   blt.instantiate()
 	$Aud.stream =   sht
@@ -394,6 +384,10 @@ func shoot():
 	get_parent().add_child(bullet)
 	bullet.start(position + Vector2(0,20).rotated(rotation),rotation,self)
 	bullet.global_scale = global_scale / 1.5
+	if State.Blue:
+		var f = fall.rotated(global_rotation)
+		f.y = -150
+		fall = f.rotated(-global_rotation)
 
 func slam(rot8ion, speed = 200):
 	State.Blue = true
@@ -401,61 +395,82 @@ func slam(rot8ion, speed = 200):
 	fallspd = speed
 
 func handle_input():
-	if $Parry/Shape.disabled and controls:
-		vel = Input.get_vector("left", "right", "up", "down") * global_scale * 100
+	if controls:
+		vel = Input.get_vector("left", "right", "up", "down").normalized() * global_scale * 100
 	else:
 		vel = Vector2(0, 0)
 	if inverted_controls:
 		vel *= -1
-	if vel != Vector2(0,0):
+	if vel != Vector2(0, 0):
 		if State.Red:
-			pvel = vel.rotated(global_rotation) * .75
+			pvel = vel.rotated(global_rotation)
 		else:
-			pvel = vel * .75
+			pvel = vel
 	if State.Orange:
 		velocity = pvel
 	else:
 		velocity = vel
 
+func _input(event):
+	if event is InputEventJoypadMotion:
+		if event.axis == 2 or event.axis == 3:
+			if event.axis_value > 0.01:
+				mouse = false
+	elif event is InputEventMouseMotion:
+		if event.velocity.length_squared() > 0.01:
+			mouse = true
+
 func handle_hitbox():
-	if iframes <= 0:
-		iframes = 0
-		for Obj in $HitBox.get_overlapping_areas():
+	for Obj in $HitBox.get_overlapping_areas():
+		if iframes <= 0:
+			iframes = 0
 			if (zero(Obj.get("atkType")) & Atk.Blue and not get_velocity() == Vector2.ZERO) or \
 			(zero(Obj.get("atkType"))    & Atk.Orange  and  get_velocity() == Vector2.ZERO):
 				emit_signal("hurt", zero(Obj.get("damage")))
 				$Aud.stop()
+				iframes = 1
 				if zero(Obj.damage) > 0:
-					iframes = 2
 					$Aud.stream = ow
-				else:
+					$Aud.play()
+				elif zero(Obj.damage) < 0:
 					$Aud.stream = thx
+					$Aud.play()
 				$Aud.volume_db = 0
-				$Aud.play()
-	else:
-		for Obj in $HitBox.get_overlapping_areas():
+		else:
 			if zero(Obj.get("delete")):
 				Obj.queue_free()
+	for s in $Shields.get_children():
+		s.monitoring  = false
+		s.monitorable = false
+		s.visible     = false
 	if State.Green and first_shield:
+		$"Shields/1".monitoring  = true
+		$"Shields/1".monitorable = true
+		$"Shields/1".visible     = true
 		for Obj in $"Shields/1".get_overlapping_areas():
 			if zero(Obj.get("atkType")) & Atk.Block:
 				Obj.Block(1)
 	if State.Green and second_shield:
+		$"Shields/2".monitoring  = true
+		$"Shields/2".monitorable = true
+		$"Shields/2".visible     = true
 		for Obj in $"Shields/2".get_overlapping_areas():
 			if zero(Obj.get("atkType")) & Atk.Block:
 				Obj.Block(2)
 	if State.Green and third_shield:
+		$"Shields/3".monitoring  = true
+		$"Shields/3".monitorable = true
+		$"Shields/3".visible     = true
 		for Obj in $"Shields/3".get_overlapping_areas():
 			if zero(Obj.get("atkType")) & Atk.Block:
 				Obj.Block(3)
 	if State.Green and fourth_shield:
+		$"Shields/4".monitoring  = true
+		$"Shields/4".monitorable = true
+		$"Shields/4".visible     = true
 		for Obj in $"Shields/4".get_overlapping_areas():
 			if zero(Obj.get("atkType")) & Atk.Block:
 				Obj.Block(4)
-	if State.Cyan:
-		for Obj in $Parry.get_overlapping_areas():
-			if zero(Obj.get("atkType")) & Atk.Parry:
-				Obj.Parry()
 
 func zero(arg):
 	if arg:

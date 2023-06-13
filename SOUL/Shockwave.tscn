@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1mcaka3g0oti"]
+
+[ext_resource type="Script" path="res://SOUL/Shockwave.gd" id="1_skdyh"]
+[ext_resource type="Texture2D" uid="uid://y08nseqslg3v" path="res://Assets/Sprites/Mintwave.png" id="2_2yiih"]
+
+[node name="Shockwave" type="Area2D"]
+texture_filter = 1
+position = Vector2(447, 359)
+scale = Vector2(1.1, 1.1)
+script = ExtResource("1_skdyh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2yiih")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, 9, -8, 1, -8, -7, -6, -9, -4, -9, 0, -5, 4, -9, 6, -9, 8, -7, 8, 1)

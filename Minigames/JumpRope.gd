@@ -11,7 +11,7 @@ func _ready():
 
 func _process(delta):
 	time += delta
-	$BG.color = Color.from_hsv(((time * Speed + phase) / 5), 1, .2)
+	$BG.color = Color.from_hsv(((time * Speed + phase) / TAU), 1, .2)
 	$Combo.play("%02d" % (Combo % 80 - Combo % 5))
 	$Combo.visible = (Combo > 0)
 	$Combo/Label.text = "%d in a row? That's" % Combo
@@ -25,7 +25,7 @@ func _process(delta):
 		$Combo.get_child($Combo.get_child_count() - 1).queue_free()
 	$Rope.scale.y = sin(time * Speed + phase) * 4
 	if cos(time * Speed + phase) > 0:
-		$Rope.z_index = 1
+		$Rope.z_index = 15
 	else:
 		$Rope.z_index = -1
 	$Rope/Area2D/CollisionShape2D.disabled = (abs(cos(time * Speed + phase)) > 0.25)
@@ -46,5 +46,6 @@ func ow(damage):
 	Combo = 0
 	Speed = 2
 	phase += time * Speed
+	phase = fmod(phase, TAU)
 	time = 0
 	HP -= damage

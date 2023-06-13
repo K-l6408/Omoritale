@@ -1,27 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://dq2l41xp266c7"]
+[gd_scene load_steps=19 format=3 uid="uid://dq2l41xp266c7"]
 
-[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_cmo2o"]
-[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_8etoh"]
-[ext_resource type="Texture2D" uid="uid://by55684glrro7" path="res://Assets/Sprites/Parry.png" id="4_ap6sl"]
-[ext_resource type="Texture2D" uid="uid://bko3qagitwb04" path="res://Assets/Sprites/SOUL.png" id="4_odib5"]
-[ext_resource type="Texture2D" uid="uid://d0kfgd8wdos0x" path="res://Assets/Sprites/SOUL_bg.png" id="6_afwn7"]
-[ext_resource type="Texture2D" uid="uid://bdyo4iowc5i30" path="res://Assets/Sprites/DETERMINATION.png" id="7_g4hty"]
-[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="10_4b6yx"]
-[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="10_udmxw"]
+[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_2rda8"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_kf65y"]
+[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_hg7dn"]
+[ext_resource type="Texture2D" uid="uid://bko3qagitwb04" path="res://Assets/Sprites/SOUL.png" id="4_3xhgm"]
+[ext_resource type="Texture2D" uid="uid://crl007y046hfi" path="res://Assets/Sprites/Bounced.png" id="5_j7d0k"]
+[ext_resource type="Texture2D" uid="uid://d0kfgd8wdos0x" path="res://Assets/Sprites/SOUL_bg.png" id="6_drcbu"]
+[ext_resource type="Texture2D" uid="uid://dkotmdqkvj07" path="res://Assets/Sprites/Transsoul.png" id="7_u8li4"]
+[ext_resource type="Texture2D" uid="uid://bdyo4iowc5i30" path="res://Assets/Sprites/DETERMINATION.png" id="8_d1kcl"]
+[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="9_f48sh"]
+[ext_resource type="Texture2D" uid="uid://dme8eddjwy10j" path="res://Assets/Sprites/Soulshadow.png" id="10_4nntn"]
 
 [sub_resource type="Resource" id="Resource_1pawt"]
-script = ExtResource("2_8etoh")
+script = ExtResource("2_kf65y")
 Red = false
 Orange = false
 Yellow = false
 Green = false
-Mint = true
-Cyan = false
+Mint = false
+Teal = false
 Blue = false
 Purple = false
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_khjwg"]
-radius = 40.0
+Value = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bhuf"]
 size = Vector2(36.6667, 5.33336)
@@ -37,7 +37,18 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+scale_max = 1.2
 color_ramp = SubResource("GradientTexture1D_hfhf3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mp8fl"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 1, 0.12549)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvcve"]
 size = Vector2(10, 10)
@@ -46,34 +57,30 @@ size = Vector2(10, 10)
 size = Vector2(12.7279, 12.7279)
 
 [node name="Soul" type="CharacterBody2D"]
+top_level = true
 texture_filter = 1
 position = Vector2(482, 324)
+scale = Vector2(1.1, 1.1)
 motion_mode = 1
 safe_margin = 2.0
-script = ExtResource("1_cmo2o")
+script = ExtResource("1_2rda8")
 State = SubResource("Resource_1pawt")
+rotation_settings = 1
 maximum_jumps = 1
+line_rotation = 44
+current_line = 1
 
 [node name="Lines" type="Node2D" parent="."]
-
-[node name="Parry" type="Area2D" parent="."]
-
-[node name="Shape" type="CollisionShape2D" parent="Parry"]
-shape = SubResource("CircleShape2D_khjwg")
-disabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Parry"]
-visible = false
-scale = Vector2(2, 2)
-texture = ExtResource("4_ap6sl")
+top_level = true
 
 [node name="Shields" type="Node2D" parent="."]
 top_level = true
 position = Vector2(482, 324)
-script = ExtResource("10_4b6yx")
+script = ExtResource("3_hg7dn")
 
 [node name="1" type="Area2D" parent="Shields"]
 visible = false
+scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
@@ -90,6 +97,7 @@ shape = SubResource("RectangleShape2D_2bhuf")
 [node name="2" type="Area2D" parent="Shields"]
 visible = false
 rotation = 3.14159
+scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
@@ -106,6 +114,7 @@ shape = SubResource("RectangleShape2D_2bhuf")
 [node name="3" type="Area2D" parent="Shields"]
 visible = false
 rotation = 1.5708
+scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
@@ -122,6 +131,7 @@ shape = SubResource("RectangleShape2D_2bhuf")
 [node name="4" type="Area2D" parent="Shields"]
 visible = false
 rotation = -1.5708
+scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
@@ -140,6 +150,14 @@ emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_ujc20")
 
+[node name="Aura" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.6, 0, 1)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_mp8fl")
+texture = ExtResource("4_3xhgm")
+local_coords = true
+
 [node name="Sprite" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(19, 20)
@@ -147,94 +165,100 @@ size = Vector2i(19, 20)
 [node name="Colors" type="Node2D" parent="Sprite"]
 
 [node name="Red" type="Sprite2D" parent="Sprite/Colors"]
-modulate = Color(1, 0, 0, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
 
 [node name="Orange" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(1, 0.583333, 0, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Yellow" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(1, 1, 0, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Green" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(0, 0.752941, 0, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
 
 [node name="Mint" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(0.0235294, 0.788235, 0.509804, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
 
-[node name="Cyan" type="Sprite2D" parent="Sprite/Colors"]
+[node name="Teal" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(0, 1, 1, 1)
 position = Vector2(6.33333, 0)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(6.33333, 0, 6.33333, 20)
 
 [node name="Blue" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(0, 0.235294, 1, 1)
 position = Vector2(9.5, 0)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(9.5, 0, 9.5, 20)
 
 [node name="Purple" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-modulate = Color(0.835294, 0.207843, 0.85098, 1)
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
 
-[node name="DT" type="Sprite2D" parent="Sprite"]
-position = Vector2(3, 4)
-texture = ExtResource("7_g4hty")
+[node name="Bounce" type="Sprite2D" parent="Sprite"]
+visible = false
+position = Vector2(2, 10)
+texture = ExtResource("5_j7d0k")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("4_odib5")
+texture = ExtResource("4_3xhgm")
 
 [node name="BG" type="Sprite2D" parent="Sprite2D"]
 show_behind_parent = true
-texture = ExtResource("6_afwn7")
+texture = ExtResource("6_drcbu")
+
+[node name="trans" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0, 1)
+texture = ExtResource("7_u8li4")
+
+[node name="DT" type="Sprite2D" parent="Sprite2D"]
+texture = ExtResource("8_d1kcl")
 
 [node name="Label" type="Label" parent="Sprite2D"]
 visible = false
-offset_left = -18.0
+offset_left = -17.9999
 offset_top = -7.0
-offset_right = 20.0
+offset_right = 20.0001
 offset_bottom = 15.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("10_udmxw")
+theme_override_fonts/font = ExtResource("9_f48sh")
 text = "SUS"
 horizontal_alignment = 1
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0.5)
+position = Vector2(2, 2.5)
+texture = ExtResource("10_4nntn")
 
 [node name="HitBox" type="Area2D" parent="."]
 

@@ -9,7 +9,7 @@
 => END
 ~ lario
 > holy shit is that lario from the hit indie wario-like platformer, 「pizza tower」
-if not ("lario" in Found):
+if not ("lario" in Found)
 	do Secrets += 1
 	do Found.append("lario")
 => END

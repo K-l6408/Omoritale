@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://6bho2f61e5x1"]
+[gd_scene load_steps=11 format=3 uid="uid://6bho2f61e5x1"]
 
-[ext_resource type="Script" path="res://Dialogue/textbox.gd" id="1_absi4"]
-[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_t1227"]
-[ext_resource type="AudioStream" uid="uid://0ujemyda71ne" path="res://Assets/Audio/Soundbytes/txt.wav" id="4_fr65r"]
+[ext_resource type="Script" path="res://Dialogue/textbox.gd" id="1_qrwv8"]
+[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_at02c"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_xwnt7"]
+[ext_resource type="Script" path="res://Dialogue/offset.gd" id="4_oyokb"]
+[ext_resource type="Script" path="res://Dialogue/ResponseTemplate.gd" id="5_u6tjv"]
+[ext_resource type="Texture2D" uid="uid://3dl42wf5aote" path="res://Assets/Sprites/DefaultSoul.png" id="6_ocoo5"]
+[ext_resource type="AudioStream" uid="uid://0ujemyda71ne" path="res://Assets/Audio/Soundbytes/txt.wav" id="7_gf4ex"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cvi33"]
+script = ExtResource("4_oyokb")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d24i"]
 content_margin_left = 40.0
@@ -21,7 +27,7 @@ draw_center = false
 
 [node name="TextBox" type="CanvasLayer"]
 layer = 100
-script = ExtResource("1_absi4")
+script = ExtResource("1_qrwv8")
 
 [node name="Balloon" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(900, 200)
@@ -51,31 +57,36 @@ modulate = Color(1, 1, 1, 0.501961)
 texture_filter = 2
 layout_mode = 2
 mouse_filter = 1
-theme_override_fonts/normal_font = ExtResource("2_t1227")
+theme_override_fonts/normal_font = ExtResource("2_at02c")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[right]Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Margin/VBox" instance=ExtResource("2_a8ve6")]
+[node name="DialogueLabel" parent="Balloon/Margin/VBox" instance=ExtResource("3_xwnt7")]
 texture_filter = 2
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_t1227")
+theme_override_fonts/normal_font = ExtResource("2_at02c")
 theme_override_font_sizes/normal_font_size = 30
 text = "Dialogue"
+custom_effects = [SubResource("RichTextEffect_cvi33")]
 
 [node name="Responses" type="HBoxContainer" parent="Balloon/Margin/VBox"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ResponseTemplate" type="RichTextLabel" parent="Balloon/Margin/VBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/Margin/VBox"]
+layout_mode = 2
+
+[node name="ResponseTemplate" type="RichTextLabel" parent="Balloon/Margin/VBox/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("2_t1227")
+theme_override_fonts/normal_font = ExtResource("2_at02c")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxFlat_5d24i")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oj3c8")
@@ -86,6 +97,13 @@ scroll_active = false
 shortcut_keys_enabled = false
 meta_underlined = false
 hint_underlined = false
+script = ExtResource("5_u6tjv")
+
+[node name="Soul" type="Sprite2D" parent="Balloon/Margin/VBox/HBoxContainer/ResponseTemplate"]
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_ocoo5")
 
 [node name="Rect" type="ColorRect" parent="Balloon"]
 show_behind_parent = true
@@ -101,7 +119,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_fr65r")
+stream = ExtResource("7_gf4ex")
 max_polyphony = 5
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]

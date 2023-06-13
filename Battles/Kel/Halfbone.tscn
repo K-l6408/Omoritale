@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8gh2n4hdiacv"]
+
+[ext_resource type="Script" path="res://Battles/Kel/Halfbone.gd" id="1_ibbt6"]
+[ext_resource type="Texture2D" uid="uid://oan48gpc6tok" path="res://Assets/Sprites/KelBone.png" id="1_xqh74"]
+[ext_resource type="Texture2D" uid="uid://bh0qucpkcgjjq" path="res://Assets/Sprites/Stripes.png" id="3_5sn1n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbesq"]
+size = Vector2(4, 48)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ndtq0"]
+viewport_path = NodePath("V")
+
+[node name="Area2D" type="Area2D"]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_ibbt6")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_gbesq")
+debug_color = Color(1, 0.584314, 0, 0.501961)
+
+[node name="V" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(20, 54)
+
+[node name="Line" type="Line2D" parent="V"]
+texture_filter = 1
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 50)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="V/Line"]
+position = Vector2(0, 48)
+rotation = 3.14159
+texture = ExtResource("1_xqh74")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+clip_children = 2
+rotation = -3.14159
+texture = SubResource("ViewportTexture_ndtq0")
+centered = false
+offset = Vector2(-10, 0)
+
+[node name="2" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 0, 1, 1)
+texture_repeat = 2
+texture = ExtResource("3_5sn1n")
+centered = false
+offset = Vector2(-10, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 54)

@@ -10,6 +10,11 @@ var prev : Vector2
 func _ready():
 	$Sprite.animation = "down"
 
+func _process(_delta):
+	$Pause.hide()
+	if Input.is_action_just_pressed("menu"):
+		get_tree().set_pause(true)
+
 func _physics_process(_delta):
 	if $Sprite.animation == "prebattle":
 		return
@@ -70,6 +75,6 @@ func BattleStart(gpos):
 	$AnimationPlayer.play("battle")
 	await get_tree().create_timer(.65).timeout
 	var Twn = create_tween()
-	$Camera2D/Soul.show()
-	Twn.tween_property($Camera2D/Soul, "position", (gpos - Vector2(480, 360)) / 2, .4)
+	$SOUL.show()
+	Twn.tween_property($SOUL/yeah, "position", (gpos), .4)
 	await Twn.finished

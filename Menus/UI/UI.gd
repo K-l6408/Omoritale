@@ -51,6 +51,7 @@ func _process(delta):
 		j += $JP/Bar.get_child(e).size.x
 	$Effect.text += "[/center]"
 	$LV.text = "LV " + str(LevelOfViolence)
+	$TextBox/Balloon/Rect.modulate = Color.WHITE
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
