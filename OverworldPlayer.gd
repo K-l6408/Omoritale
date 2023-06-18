@@ -12,7 +12,7 @@ func _ready():
 
 func _process(_delta):
 	$Pause.hide()
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("menu") and not $TextBox.visible:
 		get_tree().set_pause(true)
 
 func _physics_process(_delta):

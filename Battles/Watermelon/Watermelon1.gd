@@ -28,7 +28,9 @@ func _process(delta):
 	$JP    .size.x = lerpf($JP    .size.x, 16 * 1.2, delta * 5)
 	$JP    .position.x = 906 - $JP.size.x
 	$JP/Bar.position.x = $JP.size.x - $JP/Bar.size.x
-	JP += delta / 3
+	JP += delta 
+	if JP > 16:
+		JP = 16
 	if $Melon.animation != Globals.debugAnimation:
 		$Melon.play(Globals.debugAnimation)
 	if debug == 0 and Globals.debugAttack == 1:
@@ -88,10 +90,6 @@ func _process(delta):
 		time += delta
 		$Melon.position += debVelocity * delta
 		debVelocity.y += 500 * delta
-		if time < 1:
-			$ColorRect.color = lerp(Color("330a0a"), Color("291433"), time)
-		else:
-			$ColorRect.color = Color("291433")
 		while $Bullets.get_child_count() > 0:
 			$Bullets.get_child(0).queue_free()
 			await get_tree().create_timer(.25).timeout

@@ -1,18 +1,18 @@
 [gd_scene load_steps=19 format=3 uid="uid://dq2l41xp266c7"]
 
-[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_2rda8"]
-[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_kf65y"]
-[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_hg7dn"]
-[ext_resource type="Texture2D" uid="uid://bko3qagitwb04" path="res://Assets/Sprites/SOUL.png" id="4_3xhgm"]
-[ext_resource type="Texture2D" uid="uid://crl007y046hfi" path="res://Assets/Sprites/Bounced.png" id="5_j7d0k"]
-[ext_resource type="Texture2D" uid="uid://d0kfgd8wdos0x" path="res://Assets/Sprites/SOUL_bg.png" id="6_drcbu"]
-[ext_resource type="Texture2D" uid="uid://dkotmdqkvj07" path="res://Assets/Sprites/Transsoul.png" id="7_u8li4"]
-[ext_resource type="Texture2D" uid="uid://bdyo4iowc5i30" path="res://Assets/Sprites/DETERMINATION.png" id="8_d1kcl"]
-[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="9_f48sh"]
-[ext_resource type="Texture2D" uid="uid://dme8eddjwy10j" path="res://Assets/Sprites/Soulshadow.png" id="10_4nntn"]
+[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_d03cx"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_uo0xx"]
+[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_d4nq4"]
+[ext_resource type="Texture2D" uid="uid://bko3qagitwb04" path="res://Assets/Sprites/SOUL.png" id="4_6lpek"]
+[ext_resource type="Texture2D" uid="uid://crl007y046hfi" path="res://Assets/Sprites/Bounced.png" id="5_ng0vq"]
+[ext_resource type="Texture2D" uid="uid://d0kfgd8wdos0x" path="res://Assets/Sprites/SOUL_bg.png" id="6_u60dk"]
+[ext_resource type="Texture2D" uid="uid://dkotmdqkvj07" path="res://Assets/Sprites/Transsoul.png" id="7_r7gb4"]
+[ext_resource type="Texture2D" uid="uid://bdyo4iowc5i30" path="res://Assets/Sprites/DETERMINATION.png" id="8_02xhc"]
+[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="9_0lxqe"]
+[ext_resource type="Texture2D" uid="uid://dme8eddjwy10j" path="res://Assets/Sprites/Soulshadow.png" id="10_npab1"]
 
 [sub_resource type="Resource" id="Resource_1pawt"]
-script = ExtResource("2_kf65y")
+script = ExtResource("2_uo0xx")
 Red = false
 Orange = false
 Yellow = false
@@ -63,7 +63,7 @@ position = Vector2(482, 324)
 scale = Vector2(1.1, 1.1)
 motion_mode = 1
 safe_margin = 2.0
-script = ExtResource("1_2rda8")
+script = ExtResource("1_d03cx")
 State = SubResource("Resource_1pawt")
 rotation_settings = 1
 maximum_jumps = 1
@@ -76,7 +76,7 @@ top_level = true
 [node name="Shields" type="Node2D" parent="."]
 top_level = true
 position = Vector2(482, 324)
-script = ExtResource("3_hg7dn")
+script = ExtResource("3_d4nq4")
 
 [node name="1" type="Area2D" parent="Shields"]
 visible = false
@@ -155,7 +155,7 @@ modulate = Color(1, 0.6, 0, 1)
 emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_mp8fl")
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 local_coords = true
 
 [node name="Sprite" type="SubViewport" parent="."]
@@ -165,35 +165,35 @@ size = Vector2i(19, 20)
 [node name="Colors" type="Node2D" parent="Sprite"]
 
 [node name="Red" type="Sprite2D" parent="Sprite/Colors"]
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
 
 [node name="Orange" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Yellow" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Green" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
 
 [node name="Mint" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
@@ -201,7 +201,7 @@ region_rect = Rect2(0, 0, 9.5, 20)
 [node name="Teal" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
 position = Vector2(6.33333, 0)
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(6.33333, 0, 6.33333, 20)
@@ -209,14 +209,14 @@ region_rect = Rect2(6.33333, 0, 6.33333, 20)
 [node name="Blue" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
 position = Vector2(9.5, 0)
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(9.5, 0, 9.5, 20)
 
 [node name="Purple" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
@@ -224,24 +224,24 @@ region_rect = Rect2(0, 0, 19, 20)
 [node name="Bounce" type="Sprite2D" parent="Sprite"]
 visible = false
 position = Vector2(2, 10)
-texture = ExtResource("5_j7d0k")
+texture = ExtResource("5_ng0vq")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("4_3xhgm")
+texture = ExtResource("4_6lpek")
 
 [node name="BG" type="Sprite2D" parent="Sprite2D"]
 show_behind_parent = true
-texture = ExtResource("6_drcbu")
+texture = ExtResource("6_u60dk")
 
 [node name="trans" type="Sprite2D" parent="Sprite2D"]
 visible = false
 position = Vector2(0, 1)
-texture = ExtResource("7_u8li4")
+texture = ExtResource("7_r7gb4")
 
 [node name="DT" type="Sprite2D" parent="Sprite2D"]
-texture = ExtResource("8_d1kcl")
+texture = ExtResource("8_02xhc")
 
 [node name="Label" type="Label" parent="Sprite2D"]
 visible = false
@@ -251,14 +251,14 @@ offset_right = 20.0001
 offset_bottom = 15.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("9_f48sh")
+theme_override_fonts/font = ExtResource("9_0lxqe")
 text = "SUS"
 horizontal_alignment = 1
 
 [node name="Shadow" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(1, 1, 1, 0.5)
 position = Vector2(2, 2.5)
-texture = ExtResource("10_4nntn")
+texture = ExtResource("10_npab1")
 
 [node name="HitBox" type="Area2D" parent="."]
 
