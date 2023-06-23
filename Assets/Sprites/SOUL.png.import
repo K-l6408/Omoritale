@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bko3qagitwb04"
+uid="uid://bbmwkokpwc6vc"
 path="res://.godot/imported/SOUL.png-eff108510113ad272d6732ebe8d4f6ae.ctex"
 metadata={
 "vram_texture": false
@@ -17,10 +17,10 @@ dest_files=["res://.godot/imported/SOUL.png-eff108510113ad272d6732ebe8d4f6ae.cte
 
 compress/mode=0
 compress/high_quality=false
-compress/lossy_quality=1.0
+compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=1
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

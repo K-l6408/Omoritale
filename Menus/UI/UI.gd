@@ -5,6 +5,7 @@ extends Control
 @export var StatusEffects   : PackedStringArray = []
 @export var LevelOfViolence := 1
 var EffectNum : int
+var Fightscn = preload("res://Menus/UI/FIGHT.tscn")
 
 func _ready():
 	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
@@ -29,6 +30,7 @@ func _ready():
 
 func playerTurn():
 	$Buttons/FIGHT.grab_focus()
+	$TextBox.show()
 
 func _process(delta):
 	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
@@ -55,3 +57,6 @@ func _process(delta):
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
+	$TextBox.hide()
+	var F = Fightscn.instantiate()
+	add_child(F)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfwh0v7d5fwgk"]
 
-[ext_resource type="Script" path="res://Menus/UI/FIGHT.gd" id="1_hyu1h"]
+[ext_resource type="Script" path="res://Menus/UI/FIGHT.gd" id="1_rohaw"]
 
 [node name="FIGHT" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hyu1h")
+script = ExtResource("1_rohaw")
 
 [node name="Balloon" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(900, 200)

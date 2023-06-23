@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctoedkhvbppnl"
-path="res://.godot/imported/>:3.png-87886b440188953f94da66c862699b93.ctex"
+uid="uid://bltuker4ak530"
+path="res://.godot/imported/smug.png-e070446abbde6bebb624f21fee283f29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/mari :)/>:3.png"
-dest_files=["res://.godot/imported/>:3.png-87886b440188953f94da66c862699b93.ctex"]
+source_file="res://Assets/Sprites/mari :)/smug.png"
+dest_files=["res://.godot/imported/smug.png-e070446abbde6bebb624f21fee283f29.ctex"]
 
 [params]
 

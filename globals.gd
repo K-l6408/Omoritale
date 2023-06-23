@@ -1,5 +1,12 @@
 extends Node
 
+enum Weapon {
+	Stick, Rock, Sword, X, Knife, RedKnife
+}
+enum Armor {
+	Bandage, W, Eyepatch, X, Y, Z
+}
+
 var SaveSlot := -1
 var FileOVERRIDE := ""
 var KeyboardLayout = ""
@@ -14,9 +21,9 @@ var LV : int :
 		return LVfromXP(EXP)
 var TIME = 0
 var AREA = 0
-var wpn = 0
-var arm = 0
-var musynctime = 0.0
+var WEPN : Weapon = Weapon.Stick
+var ARMR : Armor = Armor.Bandage
+var musynctime = 0.0  
 var skiptext := true
 var Colors = {
 	"Red": Color("f00"),

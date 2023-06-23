@@ -2,13 +2,6 @@
 extends Resource
 class_name Stats
 
-enum Weapon {
-	Stick, Rock, Sword, X, Knife, Y
-}
-enum Armor {
-	Bandage, W, Eyepatch, X, Y, Z
-}
-
 @export var  HP = 26
 @export var MHP = 26
 @export var EHP : Array[int] = []
@@ -18,5 +11,3 @@ enum Armor {
 @export var ATK = 0
 @export var DEF = 0
 @export var MAG = 1
-@export var WPN : Weapon
-@export var ARM : Armor

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6cepqpvqs3da"
-path="res://.godot/imported/:D.png-23521afb7dd1a999e5984345c1f4fd4f.ctex"
+uid="uid://cj5be32f21ao4"
+path="res://.godot/imported/happ2.png-faccae1ee6af43f9283a85fb234ccde4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/mari :)/:D.png"
-dest_files=["res://.godot/imported/:D.png-23521afb7dd1a999e5984345c1f4fd4f.ctex"]
+source_file="res://Assets/Sprites/mari :)/happ2.png"
+dest_files=["res://.godot/imported/happ2.png-faccae1ee6af43f9283a85fb234ccde4.ctex"]
 
 [params]
 

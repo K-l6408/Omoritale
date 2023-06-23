@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://mcugocryrjga"
+uid="uid://o3rj32viie25"
 path="res://.godot/imported/TobyFox.ttf-b13e1a8e6f1c66ad05cbb73b4e19242c.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/TobyFox.ttf-b13e1a8e6f1c66ad05cbb73b4e19242c.
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8

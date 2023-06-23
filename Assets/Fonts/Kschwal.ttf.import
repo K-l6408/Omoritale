@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bglmstd4kgn5"
+uid="uid://bsq8kcmgts0yd"
 path="res://.godot/imported/Kschwal.ttf-8b1cd19b5f4b7064914137d4e557fb24.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Kschwal.ttf-8b1cd19b5f4b7064914137d4e557fb24.
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
@@ -24,7 +24,7 @@ hinting=1
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null
-fallbacks=[Resource("res://Assets/Fonts/TobyFox.ttf")]
+fallbacks=[]
 Compress=null
 compress=true
 preload=[]

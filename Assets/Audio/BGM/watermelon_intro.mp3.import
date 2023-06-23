@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://bx86uu6ntnm6g"
+uid="uid://dr8gpnwe1jxl2"
 path="res://.godot/imported/watermelon_intro.mp3-e252725b768d5e33c4b94c6a6335a46d.mp3str"
 
 [deps]
@@ -14,6 +14,6 @@ dest_files=["res://.godot/imported/watermelon_intro.mp3-e252725b768d5e33c4b94c6a
 
 loop=false
 loop_offset=0
-bpm=131.0
-beat_count=4
+bpm=0
+beat_count=0
 bar_beats=4

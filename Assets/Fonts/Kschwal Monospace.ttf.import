@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://vyib537i7v3x"
+uid="uid://cmwtnrtpsd3ls"
 path="res://.godot/imported/Kschwal Monospace.ttf-43f4831d1523a8d723c86818c46d4bdc.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Kschwal Monospace.ttf-43f4831d1523a8d723c8681
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
@@ -24,7 +24,7 @@ hinting=1
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null
-fallbacks=[Resource("res://Assets/Fonts/TobyFox.ttf")]
+fallbacks=[]
 Compress=null
 compress=true
 preload=[]

@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cgkiinslhyr0g"
+uid="uid://qtn63jronqjf"
 path="res://.godot/imported/Omori.ttf-d853e193254fec0f8445ead8e9e3fb57.fontdata"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Omori.ttf-d853e193254fec0f8445ead8e9e3fb57.fo
 [params]
 
 Rendering=null
-antialiasing=0
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
@@ -24,7 +24,7 @@ hinting=1
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null
-fallbacks=[Resource("res://Assets/Fonts/TobyFox.ttf")]
+fallbacks=[]
 Compress=null
 compress=true
 preload=[]

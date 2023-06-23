@@ -1,92 +1,92 @@
 [gd_scene load_steps=50 format=3 uid="uid://c5ubsilw2ag7g"]
 
-[ext_resource type="Script" path="res://OverworldPlayer.gd" id="1_iqtle"]
-[ext_resource type="Script" path="res://Menus/PauseMenu.gd" id="2_617ly"]
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="3_gcwlk"]
-[ext_resource type="Script" path="res://Battles/Name.gd" id="4_k6b8h"]
-[ext_resource type="Texture2D" uid="uid://drxoc0sn88tyh" path="res://Assets/UI/_menuITEM.png" id="5_0d7xt"]
-[ext_resource type="Texture2D" uid="uid://e4ytx3u7co3y" path="res://Assets/UI/_selectITEM.png" id="6_bk2qu"]
-[ext_resource type="Texture2D" uid="uid://1sshsqknui7s" path="res://Assets/UI/_menuSTAT.png" id="7_a7df1"]
-[ext_resource type="Texture2D" uid="uid://dxp40xslux2oo" path="res://Assets/UI/_selectSTAT.png" id="8_4ufee"]
-[ext_resource type="Texture2D" uid="uid://b04husff6dipp" path="res://Assets/UI/_menuCALL.png" id="9_428n5"]
-[ext_resource type="Texture2D" uid="uid://w82mfr1ngtsa" path="res://Assets/UI/_selectCALL.png" id="10_4tml5"]
-[ext_resource type="Texture2D" uid="uid://dhv46kobrkohy" path="res://Assets/UI/_menuHELP.png" id="11_4r421"]
-[ext_resource type="Texture2D" uid="uid://dj1rdmx6jg1jx" path="res://Assets/UI/_selectHELP.png" id="12_sbtt4"]
-[ext_resource type="FontFile" uid="uid://bglmstd4kgn5" path="res://Assets/Fonts/Kschwal.ttf" id="13_74dot"]
-[ext_resource type="Script" path="res://Menus/UI/Label C.gd" id="14_wc310"]
-[ext_resource type="Script" path="res://Menus/UI/Label D.gd" id="15_ig5mo"]
-[ext_resource type="FontFile" uid="uid://bbmrecgjn14pg" path="res://Assets/Fonts/HP.ttf" id="16_vr6kj"]
-[ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="17_wbebs"]
-[ext_resource type="Texture2D" uid="uid://bko3qagitwb04" path="res://Assets/Sprites/SOUL.png" id="18_vncex"]
-[ext_resource type="Texture2D" uid="uid://d0kfgd8wdos0x" path="res://Assets/Sprites/SOUL_bg.png" id="19_rq0gp"]
-[ext_resource type="Texture2D" uid="uid://bdyo4iowc5i30" path="res://Assets/Sprites/DETERMINATION.png" id="20_n8a8h"]
-[ext_resource type="Texture2D" uid="uid://dme8eddjwy10j" path="res://Assets/Sprites/Soulshadow.png" id="21_ov87o"]
-[ext_resource type="Texture2D" uid="uid://crax62nu51pmv" path="res://Assets/Sprites/Overworld.png" id="22_bd8y7"]
-[ext_resource type="AudioStream" uid="uid://dsrrbxmjwpjp0" path="res://Assets/Audio/FS1.wav" id="23_6r61n"]
-[ext_resource type="AudioStream" uid="uid://btyk4dxv26wro" path="res://Assets/Audio/FS2.wav" id="24_r6om0"]
+[ext_resource type="Script" path="res://OverworldPlayer.gd" id="1_uept5"]
+[ext_resource type="Script" path="res://Menus/PauseMenu.gd" id="2_bqwaj"]
+[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="3_3pq4n"]
+[ext_resource type="Script" path="res://Battles/Name.gd" id="4_75cj6"]
+[ext_resource type="Texture2D" uid="uid://chyyw753f3vit" path="res://Assets/UI/_menuITEM.png" id="5_28ta5"]
+[ext_resource type="Texture2D" uid="uid://crt0cgpde3fnr" path="res://Assets/UI/_selectITEM.png" id="6_vdrbb"]
+[ext_resource type="Texture2D" uid="uid://btwkemx3rm80v" path="res://Assets/UI/_menuSTAT.png" id="7_vr3hd"]
+[ext_resource type="Texture2D" uid="uid://duapyf7j51tes" path="res://Assets/UI/_selectSTAT.png" id="8_p7d1t"]
+[ext_resource type="Texture2D" uid="uid://bwa7gufx3k70n" path="res://Assets/UI/_menuCALL.png" id="9_oa2lp"]
+[ext_resource type="Texture2D" uid="uid://dr8fx16y6gvry" path="res://Assets/UI/_selectCALL.png" id="10_o3tbc"]
+[ext_resource type="Texture2D" uid="uid://dbht73y63wx04" path="res://Assets/UI/_menuHELP.png" id="11_h51bd"]
+[ext_resource type="Texture2D" uid="uid://3pdg8ttupwn5" path="res://Assets/UI/_selectHELP.png" id="12_5xyb3"]
+[ext_resource type="FontFile" uid="uid://bsq8kcmgts0yd" path="res://Assets/Fonts/Kschwal.ttf" id="13_brfbq"]
+[ext_resource type="Script" path="res://Menus/UI/Label C.gd" id="14_1taq7"]
+[ext_resource type="Script" path="res://Menus/UI/Label D.gd" id="15_0p4iv"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="16_qbi0d"]
+[ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="17_2yw4v"]
+[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL.png" id="18_ten8x"]
+[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL_bg.png" id="19_vj1uv"]
+[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/DETERMINATION.png" id="20_b0vpp"]
+[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/Soulshadow.png" id="21_8i2u0"]
+[ext_resource type="Texture2D" uid="uid://csg3u5155jydh" path="res://Assets/Sprites/Overworld.png" id="22_5s3ym"]
+[ext_resource type="AudioStream" uid="uid://dd0l4kykcb5dw" path="res://Assets/Audio/FS1.wav" id="23_bb5u6"]
+[ext_resource type="AudioStream" uid="uid://pebny2jw077h" path="res://Assets/Audio/FS2.wav" id="24_2msx3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46uc6"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(19, 0, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_osdun"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 0, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13uch"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(38, 0, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpy7l"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 0, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v6io"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(19, 70, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijksp"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 70, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsmhc"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(38, 70, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmh38"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 70, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57ls0"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(19, 105, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1qdr"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 105, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1rt4"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(38, 105, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psygb"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 105, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bnmh"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(19, 35, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a527"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 35, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7cne"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(38, 35, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a68ms"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(0, 35, 19, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yldwc"]
@@ -161,19 +161,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4ss7"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(57, 0, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wcb8d"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(57, 70, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wg3c"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(57, 105, 19, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s04p"]
-atlas = ExtResource("22_bd8y7")
+atlas = ExtResource("22_5s3ym")
 region = Rect2(57, 35, 19, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2mfuo"]
@@ -227,19 +227,19 @@ tracks/0/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("23_6r61n")
+"stream": ExtResource("23_bb5u6")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("23_6r61n")
+"stream": ExtResource("23_bb5u6")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("23_6r61n")
+"stream": ExtResource("23_bb5u6")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("24_r6om0")
+"stream": ExtResource("24_2msx3")
 }],
 "times": PackedFloat32Array(0.1, 0.275, 0.45, 0.65)
 }
@@ -267,14 +267,14 @@ process_mode = 1
 texture_filter = 1
 position = Vector2(480, 360)
 motion_mode = 1
-script = ExtResource("1_iqtle")
+script = ExtResource("1_uept5")
 limitTopLeft = Vector2(720, 180)
 limitBottomRight = Vector2(720, 180)
 
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
 visible = false
-script = ExtResource("2_617ly")
+script = ExtResource("2_bqwaj")
 
 [node name="BG" type="Polygon2D" parent="Pause"]
 polygon = PackedVector2Array(0, 0, 580, 0, 257, 240, 0, 240)
@@ -298,11 +298,11 @@ layout_mode = 1
 anchors_preset = -1
 offset_right = 206.0
 offset_bottom = 54.0
-theme_override_fonts/normal_font = ExtResource("3_gcwlk")
+theme_override_fonts/normal_font = ExtResource("3_3pq4n")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "AAAAAAA[font_size=25]  LV 20"
-script = ExtResource("4_k6b8h")
+script = ExtResource("4_75cj6")
 
 [node name="Buttons" type="Control" parent="Pause"]
 texture_filter = 1
@@ -319,8 +319,8 @@ offset_right = 340.0
 offset_bottom = 48.0
 focus_neighbor_top = NodePath("../CONFIG")
 focus_neighbor_bottom = NodePath("../STATS")
-texture_normal = ExtResource("5_0d7xt")
-texture_focused = ExtResource("6_bk2qu")
+texture_normal = ExtResource("5_28ta5")
+texture_focused = ExtResource("6_vdrbb")
 stretch_mode = 0
 
 [node name="STATS" type="TextureButton" parent="Pause/Buttons"]
@@ -330,8 +330,8 @@ offset_right = 276.0
 offset_bottom = 95.0
 focus_neighbor_top = NodePath("../ITEMS")
 focus_neighbor_bottom = NodePath("../PHONE")
-texture_normal = ExtResource("7_a7df1")
-texture_focused = ExtResource("8_4ufee")
+texture_normal = ExtResource("7_vr3hd")
+texture_focused = ExtResource("8_p7d1t")
 stretch_mode = 0
 
 [node name="PHONE" type="TextureButton" parent="Pause/Buttons"]
@@ -342,8 +342,8 @@ offset_right = 212.0
 offset_bottom = 144.0
 focus_neighbor_top = NodePath("../STATS")
 focus_neighbor_bottom = NodePath("../CONFIG")
-texture_normal = ExtResource("9_428n5")
-texture_focused = ExtResource("10_4tml5")
+texture_normal = ExtResource("9_oa2lp")
+texture_focused = ExtResource("10_o3tbc")
 stretch_mode = 0
 
 [node name="CONFIG" type="TextureButton" parent="Pause/Buttons"]
@@ -354,8 +354,8 @@ offset_right = 142.0
 offset_bottom = 229.0
 focus_neighbor_top = NodePath("../PHONE")
 focus_neighbor_bottom = NodePath("../ITEMS")
-texture_normal = ExtResource("11_4r421")
-texture_focused = ExtResource("12_sbtt4")
+texture_normal = ExtResource("11_h51bd")
+texture_focused = ExtResource("12_5xyb3")
 stretch_mode = 0
 
 [node name="HP" type="ColorRect" parent="Pause"]
@@ -396,11 +396,11 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("13_74dot")
+theme_override_fonts/font = ExtResource("13_brfbq")
 theme_override_font_sizes/font_size = 25
 text = "1.00"
 horizontal_alignment = 2
-script = ExtResource("14_wc310")
+script = ExtResource("14_1taq7")
 
 [node name="Slash" type="Label" parent="Pause/HP/Control"]
 layout_mode = 1
@@ -417,7 +417,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("13_74dot")
+theme_override_fonts/font = ExtResource("13_brfbq")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -436,10 +436,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("13_74dot")
+theme_override_fonts/font = ExtResource("13_brfbq")
 theme_override_font_sizes/font_size = 25
 text = "1.00"
-script = ExtResource("15_ig5mo")
+script = ExtResource("15_0p4iv")
 
 [node name="Label" type="Label" parent="Pause/HP"]
 layout_mode = 0
@@ -447,11 +447,11 @@ offset_left = -45.0
 offset_top = 3.0
 offset_right = -1.0
 offset_bottom = 30.0
-theme_override_fonts/font = ExtResource("16_vr6kj")
+theme_override_fonts/font = ExtResource("16_qbi0d")
 theme_override_font_sizes/font_size = 20
 text = "HP"
 
-[node name="TextBox" parent="." instance=ExtResource("17_wbebs")]
+[node name="TextBox" parent="." instance=ExtResource("17_2yw4v")]
 unique_name_in_owner = true
 visible = false
 
@@ -461,19 +461,19 @@ visible = false
 [node name="yeah" type="Sprite2D" parent="SOUL"]
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(480, 365)
-texture = ExtResource("18_vncex")
+texture = ExtResource("18_ten8x")
 
 [node name="uhh" type="Sprite2D" parent="SOUL/yeah"]
 show_behind_parent = true
-texture = ExtResource("19_rq0gp")
+texture = ExtResource("19_vj1uv")
 
 [node name="DT" type="Sprite2D" parent="SOUL/yeah"]
-texture = ExtResource("20_n8a8h")
+texture = ExtResource("20_b0vpp")
 
 [node name="Shadow" type="Sprite2D" parent="SOUL/yeah"]
 modulate = Color(1, 1, 1, 0.5)
 position = Vector2(2, 2.5)
-texture = ExtResource("21_ov87o")
+texture = ExtResource("21_8i2u0")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yldwc")
@@ -499,7 +499,7 @@ collide_with_areas = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(5, 5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
