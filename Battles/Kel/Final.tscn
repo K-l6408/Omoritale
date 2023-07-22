@@ -176,7 +176,6 @@ length = 190.0
 position = Vector2(-708, 548)
 wall_min_slide_angle = 0.0
 State = SubResource("Resource_2ullb")
-show_Trans = true
 
 [node name="Camera2D" type="Camera2D" parent="Soul"]
 zoom = Vector2(2, 2)

@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://bak3tvtxue5ms"]
+
+[ext_resource type="Script" path="res://Menus/UI/ACT.gd" id="1_f4r73"]
+[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_4va2e"]
+[ext_resource type="Script" path="res://Dialogue/ResponseTemplate.gd" id="3_y6n25"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/DefaultSoul.png" id="4_lxnxe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x148y"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bualh"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+
+[node name="ACT" type="ColorRect"]
+custom_minimum_size = Vector2(900, 200)
+offset_left = 30.0
+offset_top = 333.0
+offset_right = 930.0
+offset_bottom = 533.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_f4r73")
+
+[node name="Rect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.2, 1, 1)
+
+[node name="Person" type="RichTextLabel" parent="Rect"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture_filter = 2
+clip_contents = false
+layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 905.0
+offset_bottom = 155.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_4va2e")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_x148y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bualh")
+bbcode_enabled = true
+text = "Response
+
+
+A"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_y6n25")
+
+[node name="Soul" type="Sprite2D" parent="Rect/Person"]
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_lxnxe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2

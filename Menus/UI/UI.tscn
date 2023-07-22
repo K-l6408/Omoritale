@@ -1,32 +1,31 @@
-[gd_scene load_steps=17 format=3 uid="uid://lfs4rjkd1rts"]
+[gd_scene load_steps=15 format=3 uid="uid://lfs4rjkd1rts"]
 
-[ext_resource type="Script" path="res://Menus/UI/UI.gd" id="1_jb848"]
-[ext_resource type="Script" path="res://Battles/Stats.gd" id="2_jamg0"]
-[ext_resource type="Texture2D" uid="uid://u7hk3qpn7hv0" path="res://Assets/UI/FIGHT.png" id="3_c7dji"]
-[ext_resource type="Texture2D" uid="uid://bmts2m553jvqy" path="res://Assets/UI/Selected.png" id="4_vh1et"]
-[ext_resource type="Texture2D" uid="uid://bekq5e5128bej" path="res://Assets/UI/ACT.png" id="5_5qfwa"]
-[ext_resource type="Texture2D" uid="uid://bv0lxweg05t5i" path="res://Assets/UI/SKILL.png" id="6_7d3gk"]
-[ext_resource type="Texture2D" uid="uid://b1cv3c33hks8u" path="res://Assets/UI/ITEM.png" id="7_t1aqb"]
-[ext_resource type="Texture2D" uid="uid://676q0b145nd" path="res://Assets/UI/MERCY.png" id="8_mx0oa"]
-[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="9_vm6vl"]
-[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="10_kj16d"]
-[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="11_6721y"]
-[ext_resource type="FontFile" uid="uid://bsq8kcmgts0yd" path="res://Assets/Fonts/Kschwal.ttf" id="12_y3cxo"]
-[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="13_ib2cv"]
-[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_d1vur"]
-[ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="15_pex3d"]
+[ext_resource type="Script" path="res://Menus/UI/UI.gd" id="1_1ojpt"]
+[ext_resource type="Script" path="res://Battles/Stats.gd" id="2_jml8w"]
+[ext_resource type="Texture2D" uid="uid://u7hk3qpn7hv0" path="res://Assets/UI/FIGHT.png" id="3_yw78y"]
+[ext_resource type="Texture2D" uid="uid://bmts2m553jvqy" path="res://Assets/UI/Selected.png" id="4_udd23"]
+[ext_resource type="Texture2D" uid="uid://bekq5e5128bej" path="res://Assets/UI/ACT.png" id="5_i2ygb"]
+[ext_resource type="Texture2D" uid="uid://bv0lxweg05t5i" path="res://Assets/UI/SKILL.png" id="6_pq61q"]
+[ext_resource type="Texture2D" uid="uid://b1cv3c33hks8u" path="res://Assets/UI/ITEM.png" id="7_we6we"]
+[ext_resource type="Texture2D" uid="uid://676q0b145nd" path="res://Assets/UI/MERCY.png" id="8_7vg82"]
+[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="10_54b67"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="11_ma1x1"]
+[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="13_1r1n7"]
+[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_588nh"]
+[ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="15_k5nru"]
 
-[sub_resource type="Resource" id="Resource_igwun"]
-script = ExtResource("2_jamg0")
+[sub_resource type="Resource" id="Resource_bff64"]
+resource_local_to_scene = true
+script = ExtResource("2_jml8w")
 HP = 26
 MHP = 26
 EHP = Array[int]([])
-JP = 16
-MJP = 16
+JP = 0
+MJP = 20
 EJP = Array[int]([])
-ATK = 0
-DEF = 0
-MAG = 1
+ATK = 1.0
+DEF = 1.0
+MAG = 1.0
 
 [node name="UI" type="Control"]
 texture_filter = 1
@@ -36,96 +35,84 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jb848")
-PlayerStats = SubResource("Resource_igwun")
+script = ExtResource("1_1ojpt")
+PlayerStats = SubResource("Resource_bff64")
 EffectColors = PackedColorArray()
 StatusEffects = PackedStringArray()
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0260417
-anchor_top = 0.875
-anchor_right = 0.998854
-anchor_bottom = 0.97125
-offset_right = -367.9
-offset_bottom = -27.3
+offset_left = 25.0
+offset_top = 620.0
+offset_right = 591.0
+offset_bottom = 662.0
 scale = Vector2(1.6, 1.6)
-metadata/_edit_use_anchors_ = true
 
 [node name="FIGHT" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../MERCY")
 focus_neighbor_right = NodePath("../ACT")
 button_mask = 0
-texture_normal = ExtResource("3_c7dji")
-texture_focused = ExtResource("4_vh1et")
+texture_normal = ExtResource("3_yw78y")
+texture_focused = ExtResource("4_udd23")
 
 [node name="ACT" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../FIGHT")
 focus_neighbor_right = NodePath("../SKILL")
 button_mask = 0
-texture_normal = ExtResource("5_5qfwa")
-texture_focused = ExtResource("4_vh1et")
+texture_normal = ExtResource("5_i2ygb")
+texture_focused = ExtResource("4_udd23")
 
 [node name="SKILL" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ACT")
 focus_neighbor_right = NodePath("../ITEM")
 button_mask = 0
-texture_normal = ExtResource("6_7d3gk")
-texture_focused = ExtResource("4_vh1et")
+texture_normal = ExtResource("6_pq61q")
+texture_focused = ExtResource("4_udd23")
 
 [node name="ITEM" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../SKILL")
 focus_neighbor_right = NodePath("../MERCY")
 button_mask = 0
-texture_normal = ExtResource("7_t1aqb")
-texture_focused = ExtResource("4_vh1et")
+texture_normal = ExtResource("7_we6we")
+texture_focused = ExtResource("4_udd23")
 
 [node name="MERCY" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../ITEM")
 focus_neighbor_right = NodePath("../FIGHT")
 button_mask = 0
-texture_normal = ExtResource("8_mx0oa")
-texture_focused = ExtResource("4_vh1et")
+texture_normal = ExtResource("8_7vg82")
+texture_focused = ExtResource("4_udd23")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0135417
-anchor_top = 0.790278
-anchor_right = 0.121875
-anchor_bottom = 0.872222
-offset_top = -16.0
-offset_right = 11.0
-offset_bottom = -6.99963
+offset_left = 30.0
+offset_top = 553.0
+offset_right = 145.0
+offset_bottom = 612.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_vm6vl")
 theme_override_font_sizes/font_size = 50
 text = "SUNNY"
-script = ExtResource("10_kj16d")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("10_54b67")
 
 [node name="LV" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1875
-anchor_top = 0.790278
-anchor_right = 0.323958
-anchor_bottom = 0.872222
-offset_top = -16.0
-offset_bottom = -6.99963
+offset_left = 180.0
+offset_top = 553.0
+offset_right = 272.0
+offset_bottom = 612.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_vm6vl")
 theme_override_font_sizes/font_size = 50
 text = "LV 1"
-metadata/_edit_use_anchors_ = true
 
 [node name="Effect" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
@@ -141,7 +128,7 @@ offset_right = 243.0
 offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("11_6721y")
+theme_override_fonts/normal_font = ExtResource("11_ma1x1")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center][/center]"
@@ -184,11 +171,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 25
 text = "26"
 horizontal_alignment = 2
-script = ExtResource("13_ib2cv")
+script = ExtResource("13_1r1n7")
 
 [node name="Slash" type="Label" parent="HP/Control"]
 layout_mode = 1
@@ -205,7 +191,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -222,10 +207,9 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 25
 text = "26"
-script = ExtResource("14_d1vur")
+script = ExtResource("14_588nh")
 
 [node name="Label" type="Label" parent="HP"]
 layout_mode = 0
@@ -235,16 +219,16 @@ offset_right = -4.0
 offset_bottom = 41.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("11_6721y")
+theme_override_fonts/font = ExtResource("11_ma1x1")
 theme_override_font_sizes/font_size = 20
 text = "HP"
 
 [node name="JP" type="ColorRect" parent="."]
 layout_direction = 2
 layout_mode = 0
-offset_left = 886.8
+offset_left = 882.0
 offset_top = 554.0
-offset_right = 886.8
+offset_right = 882.0
 offset_bottom = 604.0
 color = Color(0.666667, 0, 1, 1)
 
@@ -254,8 +238,6 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -18.9013
-offset_right = -18.9013
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 1, 1, 1)
@@ -280,11 +262,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 25
-text = "16"
+text = "0"
 horizontal_alignment = 2
-script = ExtResource("13_ib2cv")
+script = ExtResource("13_1r1n7")
 
 [node name="Slash" type="Label" parent="JP/Control"]
 layout_mode = 1
@@ -301,7 +282,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -320,10 +300,9 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_y3cxo")
 theme_override_font_sizes/font_size = 25
-text = "16"
-script = ExtResource("14_d1vur")
+text = "20"
+script = ExtResource("14_588nh")
 
 [node name="Label" type="Label" parent="JP"]
 layout_mode = 1
@@ -340,10 +319,12 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("11_6721y")
+theme_override_fonts/font = ExtResource("11_ma1x1")
 theme_override_font_sizes/font_size = 20
 text = "JP"
 
-[node name="TextBox" parent="." instance=ExtResource("15_pex3d")]
+[node name="TextBox" parent="." instance=ExtResource("15_k5nru")]
+is_ui = true
 
 [connection signal="pressed" from="Buttons/FIGHT" to="." method="Fight"]
+[connection signal="pressed" from="Buttons/ACT" to="." method="Act"]

@@ -1,38 +1,36 @@
-[gd_scene load_steps=33 format=3 uid="uid://ccfws37akrqy5"]
+[gd_scene load_steps=31 format=3 uid="uid://ccfws37akrqy5"]
 
-[ext_resource type="Script" path="res://Battles/Watermelon/Watermelon1.gd" id="1_xoxgd"]
-[ext_resource type="Script" path="res://Battles/Watermelon/bullet.gd" id="2_uul13"]
-[ext_resource type="Texture2D" uid="uid://dll3vsx02c5rn" path="res://Assets/Sprites/evil basil/bullet.png" id="3_d3y1n"]
-[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="4_ue0rq"]
-[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="5_jo7io"]
-[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="6_pc26a"]
-[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="7_7ebn2"]
-[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="8_twn7v"]
-[ext_resource type="FontFile" uid="uid://bsq8kcmgts0yd" path="res://Assets/Fonts/Kschwal.ttf" id="9_088h0"]
-[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="10_foiuy"]
-[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="11_l40cs"]
-[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="12_3uhx6"]
-[ext_resource type="Texture2D" uid="uid://gutfnwu4fkek" path="res://Assets/Sprites/Wind.png" id="13_cw76f"]
-[ext_resource type="Texture2D" uid="uid://cd8yee0tklnqj" path="res://Assets/Sprites/evil basil/Battle1.png" id="14_sgcdr"]
-[ext_resource type="Texture2D" uid="uid://caisfb1q04p2d" path="res://Assets/Sprites/evil basil/Battle5.png" id="15_rfkrq"]
-[ext_resource type="Texture2D" uid="uid://dyoqaiew71im7" path="res://Assets/Sprites/evil basil/Battle2.png" id="16_81dqe"]
-[ext_resource type="Texture2D" uid="uid://b07pc2x30uiem" path="res://Assets/Sprites/evil basil/Battle3.png" id="17_r6ofq"]
-[ext_resource type="Texture2D" uid="uid://bxwe5d14o8hhq" path="res://Assets/Sprites/evil basil/Battle4.png" id="18_8yk25"]
-[ext_resource type="Texture2D" uid="uid://cm587kwoawlky" path="res://Assets/Sprites/evil basil/Battle6.png" id="19_a6qjb"]
-[ext_resource type="PackedScene" uid="uid://bn40joste774d" path="res://Dialogue/textballoon.tscn" id="20_4andw"]
-[ext_resource type="AudioStream" uid="uid://dr8gpnwe1jxl2" path="res://Assets/Audio/BGM/watermelon_intro.mp3" id="21_xplsy"]
-[ext_resource type="Texture2D" uid="uid://dx1mfbspgloef" path="res://Assets/Sprites/mari :)/base.png" id="22_aii56"]
-[ext_resource type="Texture2D" uid="uid://bmidl1o4sfw1q" path="res://Assets/Sprites/mari :)/happ.png" id="23_6oiap"]
-[ext_resource type="Texture2D" uid="uid://cj5be32f21ao4" path="res://Assets/Sprites/mari :)/happ2.png" id="24_0yjn7"]
-[ext_resource type="Texture2D" uid="uid://bltuker4ak530" path="res://Assets/Sprites/mari :)/smug.png" id="25_nu01k"]
-[ext_resource type="Shader" path="res://Shaders/Mari.gdshader" id="26_ytx4l"]
-[ext_resource type="Texture2D" uid="uid://iuhwbm6rkjxy" path="res://Assets/Sprites/mari :)/hair.png" id="27_s5wvw"]
+[ext_resource type="Script" path="res://Battles/Watermelon/Watermelon1.gd" id="1_04nru"]
+[ext_resource type="Script" path="res://Battles/Watermelon/bullet.gd" id="2_li2p4"]
+[ext_resource type="Texture2D" uid="uid://dll3vsx02c5rn" path="res://Assets/Sprites/evil basil/bullet.png" id="3_1muxo"]
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="4_k2fuf"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="5_f77tl"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="6_5tkkt"]
+[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="8_8fk0k"]
+[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="10_1qi57"]
+[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="11_3s1hk"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="12_xnjgh"]
+[ext_resource type="Texture2D" uid="uid://gutfnwu4fkek" path="res://Assets/Sprites/Wind.png" id="13_q2oof"]
+[ext_resource type="Texture2D" uid="uid://cd8yee0tklnqj" path="res://Assets/Sprites/evil basil/Battle1.png" id="14_v5p57"]
+[ext_resource type="Texture2D" uid="uid://caisfb1q04p2d" path="res://Assets/Sprites/evil basil/Battle5.png" id="15_qgpnp"]
+[ext_resource type="Texture2D" uid="uid://dyoqaiew71im7" path="res://Assets/Sprites/evil basil/Battle2.png" id="16_i67p5"]
+[ext_resource type="Texture2D" uid="uid://b07pc2x30uiem" path="res://Assets/Sprites/evil basil/Battle3.png" id="17_kj8rx"]
+[ext_resource type="Texture2D" uid="uid://bxwe5d14o8hhq" path="res://Assets/Sprites/evil basil/Battle4.png" id="18_6tx8c"]
+[ext_resource type="Texture2D" uid="uid://cm587kwoawlky" path="res://Assets/Sprites/evil basil/Battle6.png" id="19_0ptf5"]
+[ext_resource type="PackedScene" uid="uid://bn40joste774d" path="res://Dialogue/textballoon.tscn" id="20_6vjhx"]
+[ext_resource type="AudioStream" uid="uid://dr8gpnwe1jxl2" path="res://Assets/Audio/BGM/watermelon_intro.mp3" id="21_h63ss"]
+[ext_resource type="Texture2D" uid="uid://dx1mfbspgloef" path="res://Assets/Sprites/mari :)/base.png" id="22_tba7d"]
+[ext_resource type="Texture2D" uid="uid://bmidl1o4sfw1q" path="res://Assets/Sprites/mari :)/happ.png" id="23_4r6yq"]
+[ext_resource type="Texture2D" uid="uid://cj5be32f21ao4" path="res://Assets/Sprites/mari :)/happ2.png" id="24_nx4u4"]
+[ext_resource type="Texture2D" uid="uid://bltuker4ak530" path="res://Assets/Sprites/mari :)/smug.png" id="25_2r6kc"]
+[ext_resource type="Shader" path="res://Shaders/Mari.gdshader" id="26_55tv1"]
+[ext_resource type="Texture2D" uid="uid://iuhwbm6rkjxy" path="res://Assets/Sprites/mari :)/hair.png" id="27_uiup8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l6c4"]
 size = Vector2(24, 12)
 
 [sub_resource type="Resource" id="Resource_h00du"]
-script = ExtResource("6_pc26a")
+script = ExtResource("6_5tkkt")
 Red = true
 Orange = false
 Yellow = false
@@ -47,7 +45,7 @@ Value = 1
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_sgcdr")
+"texture": ExtResource("14_v5p57")
 }],
 "loop": true,
 "name": &"default",
@@ -55,7 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("15_rfkrq")
+"texture": ExtResource("15_qgpnp")
 }],
 "loop": true,
 "name": &"nervous",
@@ -63,10 +61,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("16_81dqe")
+"texture": ExtResource("16_i67p5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_r6ofq")
+"texture": ExtResource("17_kj8rx")
 }],
 "loop": false,
 "name": &"shock",
@@ -74,7 +72,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("18_8yk25")
+"texture": ExtResource("18_6tx8c")
 }],
 "loop": true,
 "name": &"troll",
@@ -82,7 +80,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("19_a6qjb")
+"texture": ExtResource("19_0ptf5")
 }],
 "loop": true,
 "name": &"uhh",
@@ -93,7 +91,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("23_6oiap")
+"texture": ExtResource("23_4r6yq")
 }],
 "loop": true,
 "name": &":)",
@@ -101,7 +99,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("24_0yjn7")
+"texture": ExtResource("24_nx4u4")
 }],
 "loop": true,
 "name": &":D",
@@ -109,7 +107,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("25_nu01k")
+"texture": ExtResource("25_2r6kc")
 }],
 "loop": true,
 "name": &">:3",
@@ -117,23 +115,23 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmy4u"]
-shader = ExtResource("26_ytx4l")
+shader = ExtResource("26_55tv1")
 
 [node name="Watermelon Fight 1" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_xoxgd")
+script = ExtResource("1_04nru")
 
 [node name="BulletTemplate" type="Area2D" parent="."]
 visible = false
 position = Vector2(480, 205)
-script = ExtResource("2_uul13")
+script = ExtResource("2_li2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTemplate"]
 shape = SubResource("RectangleShape2D_2l6c4")
 
 [node name="Sprite2D" type="Sprite2D" parent="BulletTemplate"]
 scale = Vector2(2, 2)
-texture = ExtResource("3_d3y1n")
+texture = ExtResource("3_1muxo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -147,10 +145,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Box" parent="." instance=ExtResource("4_ue0rq")]
+[node name="Box" parent="." instance=ExtResource("4_k2fuf")]
 position = Vector2(480, 420)
 
-[node name="Soul" parent="." instance=ExtResource("5_jo7io")]
+[node name="Soul" parent="." instance=ExtResource("5_f77tl")]
 position = Vector2(480, 420)
 State = SubResource("Resource_h00du")
 maximum_jumps = 2
@@ -165,11 +163,10 @@ offset_left = 13.0
 offset_top = 553.0
 offset_right = 128.0
 offset_bottom = 621.0
-theme_override_fonts/font = ExtResource("7_7ebn2")
 theme_override_font_sizes/font_size = 50
 text = "SUNNY"
 uppercase = true
-script = ExtResource("8_twn7v")
+script = ExtResource("8_8fk0k")
 
 [node name="LV" type="Label" parent="."]
 anchors_preset = -1
@@ -181,7 +178,6 @@ offset_left = 177.0
 offset_top = 553.0
 offset_right = 269.0
 offset_bottom = 621.0
-theme_override_fonts/font = ExtResource("7_7ebn2")
 theme_override_font_sizes/font_size = 50
 text = "LV 1"
 
@@ -221,11 +217,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 25
 text = "26"
 horizontal_alignment = 2
-script = ExtResource("10_foiuy")
+script = ExtResource("10_1qi57")
 
 [node name="Slash" type="Label" parent="HP/Control"]
 layout_mode = 1
@@ -242,7 +237,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -259,10 +253,9 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 25
 text = "26"
-script = ExtResource("11_l40cs")
+script = ExtResource("11_3s1hk")
 
 [node name="Label" type="Label" parent="HP"]
 layout_mode = 0
@@ -270,13 +263,13 @@ offset_left = -48.0
 offset_top = 14.0
 offset_right = -4.0
 offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("12_3uhx6")
+theme_override_fonts/font = ExtResource("12_xnjgh")
 theme_override_font_sizes/font_size = 20
 text = "HP"
 
 [node name="JP" type="ColorRect" parent="."]
 layout_direction = 2
-offset_left = 886.8
+offset_left = 882.0
 offset_top = 554.0
 offset_right = 906.0
 offset_bottom = 604.0
@@ -288,7 +281,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -19.1999
+offset_left = -24.0
 grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 1, 1, 1)
@@ -313,11 +306,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 25
-text = "16"
+text = "20"
 horizontal_alignment = 2
-script = ExtResource("10_foiuy")
+script = ExtResource("10_1qi57")
 
 [node name="Slash" type="Label" parent="JP/Control"]
 layout_mode = 1
@@ -334,7 +326,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -353,10 +344,9 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("9_088h0")
 theme_override_font_sizes/font_size = 25
-text = "16"
-script = ExtResource("11_l40cs")
+text = "20"
+script = ExtResource("11_3s1hk")
 
 [node name="Label" type="Label" parent="JP"]
 layout_mode = 1
@@ -371,7 +361,7 @@ offset_right = 49.9999
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_3uhx6")
+theme_override_fonts/font = ExtResource("12_xnjgh")
 theme_override_font_sizes/font_size = 20
 text = "JP"
 
@@ -380,7 +370,7 @@ modulate = Color(1, 1, 1, 0)
 texture_repeat = 2
 position = Vector2(650, 200)
 scale = Vector2(2, 2)
-texture = ExtResource("13_cw76f")
+texture = ExtResource("13_q2oof")
 region_enabled = true
 region_rect = Rect2(0, 0, 44, 36)
 
@@ -395,7 +385,7 @@ animation = &"uhh"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(480, 360)
 
-[node name="TextBox" parent="." instance=ExtResource("20_4andw")]
+[node name="TextBox" parent="." instance=ExtResource("20_6vjhx")]
 offset_left = -468.0
 offset_top = -74.0
 offset_right = -468.0
@@ -407,14 +397,14 @@ top_level = true
 position = Vector2(382, 205)
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_xplsy")
+stream = ExtResource("21_h63ss")
 
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="Mari" type="Sprite2D" parent="."]
 position = Vector2(1430, 200)
 scale = Vector2(2, 2)
-texture = ExtResource("22_aii56")
+texture = ExtResource("22_tba7d")
 
 [node name="Face" type="AnimatedSprite2D" parent="Mari"]
 position = Vector2(0.5, -52)
@@ -425,7 +415,7 @@ animation = &":)"
 show_behind_parent = true
 material = SubResource("ShaderMaterial_cmy4u")
 position = Vector2(0, -16)
-texture = ExtResource("27_s5wvw")
+texture = ExtResource("27_uiup8")
 region_enabled = true
 region_rect = Rect2(-10, 0, 102, 87)
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://db6ql6m4mhs6o"]
+[gd_scene load_steps=5 format=3 uid="uid://db6ql6m4mhs6o"]
 
-[ext_resource type="Texture2D" uid="uid://cj861nyk8aewv" path="res://Assets/Sprites/Logo.png" id="1_alirh"]
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_n4ojn"]
+[ext_resource type="Texture2D" uid="uid://c2ds3tsfcqdtd" path="res://Assets/Sprites/Logo.png" id="1_alirh"]
 [ext_resource type="PackedScene" uid="uid://oxh36k1en2vm" path="res://Menus/FILE.tscn" id="3_4kys8"]
 
 [sub_resource type="Animation" id="Animation_o12dl"]
@@ -18,18 +17,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 7, 50),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-30, 200), Vector2(-80, -700), Vector2(-100, -1500)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Logo/Line2D:width")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.3, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 200.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_avjkw"]
@@ -55,20 +42,14 @@ color = Color(0, 0, 0, 1)
 
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(480, 128)
-scale = Vector2(8, 8)
+scale = Vector2(7, 7)
 texture = ExtResource("1_alirh")
-
-[node name="Line2D" type="Line2D" parent="Logo"]
-position = Vector2(-13, -4.5)
-points = PackedVector2Array(0, 0, 0, -999)
-width = 1.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 282.0
 offset_top = 259.0
 offset_right = 700.0
 offset_bottom = 323.0
-theme_override_fonts/font = ExtResource("2_n4ojn")
 theme_override_font_sizes/font_size = 48
 text = "Choose a Save File:"
 horizontal_alignment = 1

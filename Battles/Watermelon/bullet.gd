@@ -18,7 +18,7 @@ func _process(delta):
 	if smooth:
 		modulate = Color(fract*2, 1, fract*2, 1)
 	elif damage < 0:
-		modulate = Color.GREEN
+		modulate = GLOBALS.Colors["Green"]
 	else:
 		modulate = Color.WHITE
 

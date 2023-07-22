@@ -46,6 +46,10 @@ movie_writer/fps=30
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+[gui]
+
+theme/custom_font="res://Assets/Fonts/Kschwal Monospace.ttf"
+
 [input]
 
 ui_accept={
@@ -428,7 +432,7 @@ rightAlt={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/watermelonFight.dialogue", "res://Dialogue/materwelon.dialogue", "res://Dialogue/flavortext.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/watermelonFight.dialogue", "res://Dialogue/materwelon.dialogue", "res://Dialogue/flavortext.dialogue", "res://Dialogue/marifight.dialogue")
 
 [layer_names]
 

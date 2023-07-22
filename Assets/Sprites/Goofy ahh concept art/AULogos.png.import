@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gutfnwu4fkek"
-path="res://.godot/imported/Wind.png-dbdf23afa8839d6c1b721024f07b6f49.ctex"
+uid="uid://jmb3t851yy5w"
+path="res://.godot/imported/AULogos.png-2c753916422ed7fe6db565085bb33fcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Wind.png"
-dest_files=["res://.godot/imported/Wind.png-dbdf23afa8839d6c1b721024f07b6f49.ctex"]
+source_file="res://Assets/Sprites/Goofy ahh concept art/AULogos.png"
+dest_files=["res://.godot/imported/AULogos.png-2c753916422ed7fe6db565085bb33fcb.ctex"]
 
 [params]
 

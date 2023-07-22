@@ -1,23 +1,21 @@
-[gd_scene load_steps=51 format=3 uid="uid://bloxhynxics1s"]
+[gd_scene load_steps=49 format=3 uid="uid://bloxhynxics1s"]
 
-[ext_resource type="Script" path="res://Minigames/JumpRope.gd" id="1_m0esv"]
-[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="2_no22b"]
-[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_bg88k"]
-[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_2o2sg"]
-[ext_resource type="Texture2D" uid="uid://v76mmdqk04op" path="res://Assets/Sprites/Combo.png" id="5_uqnka"]
-[ext_resource type="Texture2D" uid="uid://cexrd6c8ber8q" path="res://Assets/Sprites/Very.png" id="6_jp4mg"]
-[ext_resource type="FontFile" uid="uid://o3rj32viie25" path="res://Assets/Fonts/TobyFox.ttf" id="7_3hxok"]
-[ext_resource type="Texture2D" uid="uid://b6jwkpmktd7m4" path="res://Assets/Sprites/Jumprope.png" id="8_xij0v"]
-[ext_resource type="Script" path="res://Minigames/RopeArea.gd" id="9_m8flu"]
-[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="10_vf4fw"]
-[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="11_hv0c2"]
-[ext_resource type="FontFile" uid="uid://bsq8kcmgts0yd" path="res://Assets/Fonts/Kschwal.ttf" id="12_1sb0n"]
-[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="13_ufc2d"]
-[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_0ijwx"]
-[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="15_pxqvb"]
+[ext_resource type="Script" path="res://Minigames/JumpRope.gd" id="1_mm0mm"]
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="2_xldkr"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_nyrgq"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_fyce6"]
+[ext_resource type="Texture2D" uid="uid://v76mmdqk04op" path="res://Assets/Sprites/Combo.png" id="5_07fqv"]
+[ext_resource type="Texture2D" uid="uid://cexrd6c8ber8q" path="res://Assets/Sprites/Very.png" id="6_wobql"]
+[ext_resource type="FontFile" uid="uid://o3rj32viie25" path="res://Assets/Fonts/TobyFox.ttf" id="7_2snmq"]
+[ext_resource type="Texture2D" uid="uid://b6jwkpmktd7m4" path="res://Assets/Sprites/Jumprope.png" id="8_bdrv1"]
+[ext_resource type="Script" path="res://Minigames/RopeArea.gd" id="9_dnodt"]
+[ext_resource type="Script" path="res://Menus/UI/UI_Name.gd" id="11_bhokf"]
+[ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="13_4xhsc"]
+[ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_4lb3v"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="15_gduq4"]
 
 [sub_resource type="Resource" id="Resource_8iuds"]
-script = ExtResource("4_2o2sg")
+script = ExtResource("4_fyce6")
 Red = false
 Orange = false
 Yellow = false
@@ -29,131 +27,131 @@ Purple = true
 Value = 192
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnupx"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 0, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlns2"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 0, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jv52c"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 63, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtc7g"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 63, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6g0gj"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 126, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oemw2"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 126, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8dt0"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 189, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lrrpm"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 189, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w40dg"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 252, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pysrt"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 252, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_on1cd"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 315, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxihe"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 315, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vs36v"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 378, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyejo"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 378, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6qc3"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 441, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o72ee"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 441, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nkwd"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 504, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwnsf"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 504, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bf8kq"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 567, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crgol"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 567, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_emrpo"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 630, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xymk1"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 630, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ge1to"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 693, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ho2vj"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 693, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxrwc"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 756, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfox6"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 756, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7eevh"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 819, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylij7"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 819, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgrqg"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 882, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfm6t"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 882, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4slx6"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(0, 945, 163, 63)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udsy4"]
-atlas = ExtResource("5_uqnka")
+atlas = ExtResource("5_07fqv")
 region = Rect2(163, 945, 163, 63)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_llwhm"]
@@ -341,7 +339,7 @@ b = Vector2(30, 0)
 
 [node name="Jumprope!" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_m0esv")
+script = ExtResource("1_mm0mm")
 
 [node name="BG" type="ColorRect" parent="."]
 z_index = -2
@@ -354,10 +352,10 @@ color = Color(0, 0.101961, 0.2, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(480, 360)
 
-[node name="Box" parent="." instance=ExtResource("2_no22b")]
+[node name="Box" parent="." instance=ExtResource("2_xldkr")]
 position = Vector2(480, 360)
 
-[node name="Soul" parent="." instance=ExtResource("3_bg88k")]
+[node name="Soul" parent="." instance=ExtResource("3_nyrgq")]
 position = Vector2(480, 360)
 motion_mode = 0
 State = SubResource("Resource_8iuds")
@@ -369,20 +367,20 @@ current_line = 0
 visible = false
 position = Vector2(876, 523)
 sprite_frames = SubResource("SpriteFrames_llwhm")
-animation = &"45"
+animation = &"15"
 speed_scale = 2.0
 
 [node name="V0" type="Sprite2D" parent="Combo"]
 visible = false
 position = Vector2(-69, -40)
-texture = ExtResource("6_jp4mg")
+texture = ExtResource("6_wobql")
 
 [node name="Label" type="Label" parent="Combo"]
 offset_left = -306.0
 offset_top = -11.0
 offset_right = -103.0
 offset_bottom = 14.0
-theme_override_fonts/font = ExtResource("7_3hxok")
+theme_override_fonts/font = ExtResource("7_2snmq")
 theme_override_font_sizes/font_size = 16
 text = "__ in a row? That's"
 horizontal_alignment = 2
@@ -390,12 +388,12 @@ horizontal_alignment = 2
 [node name="Rope" type="Sprite2D" parent="."]
 position = Vector2(480, 360)
 scale = Vector2(4, 4)
-texture = ExtResource("8_xij0v")
+texture = ExtResource("8_bdrv1")
 centered = false
 offset = Vector2(-60, -5)
 
 [node name="Area2D" type="Area2D" parent="Rope"]
-script = ExtResource("9_m8flu")
+script = ExtResource("9_dnodt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/Area2D"]
 position = Vector2(0, 22.5)
@@ -411,11 +409,11 @@ offset_left = 13.0
 offset_top = 553.0
 offset_right = 128.0
 offset_bottom = 621.0
-theme_override_fonts/font = ExtResource("10_vf4fw")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "SUNNY"
-script = ExtResource("11_hv0c2")
-metadata/_edit_use_anchors_ = true
+script = ExtResource("11_bhokf")
 
 [node name="LV" type="Label" parent="."]
 anchors_preset = -1
@@ -427,10 +425,10 @@ offset_left = 183.0
 offset_top = 554.0
 offset_right = 275.0
 offset_bottom = 622.0
-theme_override_fonts/font = ExtResource("10_vf4fw")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "LV 1"
-metadata/_edit_use_anchors_ = true
 
 [node name="HP" type="ColorRect" parent="."]
 offset_left = 369.0
@@ -468,11 +466,10 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_1sb0n")
 theme_override_font_sizes/font_size = 25
 text = "26"
 horizontal_alignment = 2
-script = ExtResource("13_ufc2d")
+script = ExtResource("13_4xhsc")
 
 [node name="Slash" type="Label" parent="HP/Control"]
 layout_mode = 1
@@ -489,7 +486,6 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_1sb0n")
 theme_override_font_sizes/font_size = 50
 text = "/"
 
@@ -506,10 +502,9 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_1sb0n")
 theme_override_font_sizes/font_size = 25
 text = "26"
-script = ExtResource("14_0ijwx")
+script = ExtResource("14_4lb3v")
 
 [node name="Label" type="Label" parent="HP"]
 layout_mode = 0
@@ -517,8 +512,8 @@ offset_left = -48.0
 offset_top = 14.0
 offset_right = -4.0
 offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("15_pxqvb")
+theme_override_fonts/font = ExtResource("15_gduq4")
 theme_override_font_sizes/font_size = 20
 text = "HP"
 
-[connection signal="hurt" from="Soul" to="." method="ow"]
+[connection signal="hurt_fixed" from="Soul" to="." method="ow"]

@@ -1,42 +1,26 @@
 extends Node
 
+class_name GLOBALS #for constants, in ðe editor
+
 enum Weapon {
-	Stick, Rock, Sword, X, Knife, RedKnife
+	Stick, MkrPhone, __, Ruler, Sword, PntGun, IceSk8, Knife, RedKnife
 }
 enum Armor {
-	Bandage, W, Eyepatch, X, Y, Z
+	Bandage, RlrSk8, PropHat, ChfHat, GstClk, FlwCrn, TrnCrn
 }
-
-var SaveSlot := -1
-var FileOVERRIDE := ""
-var KeyboardLayout = ""
-var PlayerName = ""
-var debugAttack = 0
-var debugAnimation = "default"
-var Secrets = 0
-var Found = []
-var EXP = 0 #143143143143143143
-var LV : int :
-	get:
-		return LVfromXP(EXP)
-var TIME = 0
-var AREA = 0
-var WEPN : Weapon = Weapon.Stick
-var ARMR : Armor = Armor.Bandage
-var musynctime = 0.0  
-var skiptext := true
-var Colors = {
+const Colors = {
 	"Red": Color("f00"),
 	"Orange": Color("f90"),
 	"Yellow": Color("ff0"),
 	"Green": Color("0b0"),
 	"Mint": Color("0f7"),
 	"Cyan": Color("0cf"),
-	"Teal": Color("06f"),
+	"Teal": Color("09f"),
 	"Blue": Color("03f"),
 	"Purple": Color("b3d"),
 	"DarkGreen": Color("090"),
 	"DarkOrange": Color("840"),
+	"DarkMint": Color("096"),
 	"LightTeal": Color("8bf")
 }
 const areas = [
@@ -47,6 +31,42 @@ const areas = [
 	"Snowglobe Peaks",
 	"Faraway City"
 ]
+
+# (WARNING) 
+# 
+# pLEASE don't look in ðis file, even I don't know what
+# half of ðese variables do...
+# k þx bye
+
+var SaveSlot := -1
+var FileOVERRIDE := ""
+var KeyboardLayout = ""
+var PlayerName = ""
+var debugAttack = 0
+var debugAnimation = "default"
+var Secrets = 0
+var Found = []
+var EXP = 0 # 143143143143143143
+var LV: int:
+	get:
+		return GLOBALS.LVfromXP(EXP)
+var PlayerStats := Stats.new():
+	get:
+		PlayerStats.MHP = GLOBALS.MHPfromLV(LV)
+		PlayerStats.MJP = GLOBALS.MJPfromLV(LV)
+		PlayerStats.HP = PlayerStats.MHP
+		PlayerStats.JP = 0
+		PlayerStats.ATK = LV * 1.5
+		PlayerStats.DEF = LV * 0.5
+		PlayerStats.MAG = LV * .75
+		return PlayerStats
+var TIME = 0
+var AREA = 0
+var WEPN : Weapon = Weapon.Stick
+var ARMR : Armor = Armor.Bandage
+var Enemies : Array[Enemy] = []
+var musynctime = 0.0
+var skiptext := true
 
 func _ready():
 	var args = OS.get_cmdline_args()
@@ -79,7 +99,7 @@ func ld(filename):
 	TIME = d[4]
 	return false
 
-func LVfromXP(XP:int):
+static func LVfromXP(XP:int):
 	if XP < 10:
 		return 1
 	if XP < 20:
@@ -120,8 +140,14 @@ func LVfromXP(XP:int):
 		return 19
 	return 20
 
-func MHPfromLV(lv:int):
+static func MHPfromLV(lv:int):
 	if lv < 20:
 		return lv * 6 + 20
 	else:
 		return lv * 9 - 37
+
+static func MJPfromLV(lv:int):
+	if lv < 20:
+		return lv * 4 + 16
+	else:
+		return lv * 7 - 41

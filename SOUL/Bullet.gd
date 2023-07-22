@@ -10,7 +10,7 @@ func _process(delta):
 
 func start(pos, ang, obj):
 	var sc = scale.x
-	position = pos
+	global_position = pos
 	rotation = ang
 	var tw = create_tween()
 	if tw:

@@ -1,19 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn40joste774d"]
+[gd_scene load_steps=6 format=3 uid="uid://bn40joste774d"]
 
-[ext_resource type="Script" path="res://Dialogue/textballoon.gd" id="1_dy7qv"]
-[ext_resource type="Texture2D" uid="uid://bvedp6maxf5ln" path="res://Assets/Sprites/Text.png" id="2_srl46"]
-[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_n5hds"]
-[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="4_e88fv"]
-[ext_resource type="Script" path="res://Dialogue/offset.gd" id="5_g11vx"]
+[ext_resource type="Script" path="res://Dialogue/textballoon.gd" id="1_y4ltf"]
+[ext_resource type="Texture2D" uid="uid://bvedp6maxf5ln" path="res://Assets/Sprites/Text.png" id="2_02kx2"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_x0i2h"]
+[ext_resource type="Script" path="res://Dialogue/offset.gd" id="5_a0t6y"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_vfqtf"]
-script = ExtResource("5_g11vx")
+script = ExtResource("5_a0t6y")
 
 [node name="TextBox" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_dy7qv")
+script = ExtResource("1_y4ltf")
 mode = 1
 
 [node name="Balloon" type="NinePatchRect" parent="."]
@@ -22,13 +21,13 @@ offset_left = 40.0
 offset_right = 390.0
 offset_bottom = 213.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_srl46")
+texture = ExtResource("2_02kx2")
 patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="DialogueLabel" parent="Balloon" instance=ExtResource("3_n5hds")]
+[node name="DialogueLabel" parent="Balloon" instance=ExtResource("3_x0i2h")]
 texture_filter = 2
 layout_mode = 2
 anchors_preset = 0
@@ -38,7 +37,6 @@ offset_top = 10.0
 offset_right = 330.0
 offset_bottom = 45.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("4_e88fv")
 theme_override_font_sizes/normal_font_size = 30
 text = "Dialogue"
 custom_effects = [SubResource("RichTextEffect_vfqtf")]

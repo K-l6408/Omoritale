@@ -1,27 +1,26 @@
-[gd_scene load_steps=19 format=3 uid="uid://dq2l41xp266c7"]
+[gd_scene load_steps=23 format=3 uid="uid://dq2l41xp266c7"]
 
-[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_t4sf8"]
-[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_2g07d"]
-[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_474sn"]
-[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL.png" id="4_6260w"]
-[ext_resource type="Texture2D" uid="uid://csouwdq7qli8j" path="res://Assets/Sprites/Bounced.png" id="5_g3iwb"]
-[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL_bg.png" id="6_n52sb"]
-[ext_resource type="Texture2D" uid="uid://byjlsiyb6nfh1" path="res://Assets/Sprites/Transsoul.png" id="7_5whac"]
-[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/DETERMINATION.png" id="8_uhtje"]
-[ext_resource type="FontFile" uid="uid://bsq8kcmgts0yd" path="res://Assets/Fonts/Kschwal.ttf" id="9_x3noy"]
-[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/Soulshadow.png" id="10_m57bf"]
+[ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_53t3r"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_6jqyy"]
+[ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_hyxmd"]
+[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL.png" id="4_lxrc7"]
+[ext_resource type="Texture2D" uid="uid://csouwdq7qli8j" path="res://Assets/Sprites/Bounced.png" id="5_5h13j"]
+[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL_bg.png" id="6_vjl5w"]
+[ext_resource type="Texture2D" uid="uid://byjlsiyb6nfh1" path="res://Assets/Sprites/Transsoul.png" id="7_vrhir"]
+[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/DETERMINATION.png" id="8_krvst"]
+[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/Soulshadow.png" id="10_3ofd3"]
 
-[sub_resource type="Resource" id="Resource_1pawt"]
-script = ExtResource("2_2g07d")
+[sub_resource type="Resource" id="Resource_dlo5w"]
+script = ExtResource("2_6jqyy")
 Red = false
 Orange = false
 Yellow = false
-Green = false
+Green = true
 Mint = false
 Teal = false
 Blue = false
 Purple = false
-Value = 0
+Value = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bhuf"]
 size = Vector2(36.6667, 5.33336)
@@ -48,7 +47,33 @@ initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+scale_min = 1.2
+scale_max = 1.2
 color = Color(1, 1, 1, 0.12549)
+
+[sub_resource type="Gradient" id="Gradient_3yjpv"]
+offsets = PackedFloat32Array(0, 0.667939, 0.744275, 0.931298, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.813298, 1, 1, 1, 0.67664, 1, 1, 1, 0.374046, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3rq2f"]
+gradient = SubResource("Gradient_3yjpv")
+
+[sub_resource type="Curve" id="Curve_nhe00"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0.00232558, 1), 0.0, 2.92548, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e5uqo"]
+curve = SubResource("Curve_nhe00")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8xv5"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_e5uqo")
+color_ramp = SubResource("GradientTexture1D_3rq2f")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvcve"]
 size = Vector2(10, 10)
@@ -63,9 +88,9 @@ position = Vector2(482, 324)
 scale = Vector2(1.1, 1.1)
 motion_mode = 1
 safe_margin = 2.0
-script = ExtResource("1_t4sf8")
-State = SubResource("Resource_1pawt")
-rotation_settings = 1
+script = ExtResource("1_53t3r")
+State = SubResource("Resource_dlo5w")
+second_shield = true
 maximum_jumps = 1
 line_rotation = 44
 current_line = 1
@@ -76,7 +101,7 @@ top_level = true
 [node name="Shields" type="Node2D" parent="."]
 top_level = true
 position = Vector2(482, 324)
-script = ExtResource("3_474sn")
+script = ExtResource("3_hyxmd")
 
 [node name="1" type="Area2D" parent="Shields"]
 visible = false
@@ -149,13 +174,24 @@ shape = SubResource("RectangleShape2D_2bhuf")
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_ujc20")
+trail_lifetime = 100.0
 
 [node name="Aura" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0.6, 0, 1)
 emitting = false
-amount = 32
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_mp8fl")
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
+explosiveness = 0.5
+local_coords = true
+
+[node name="Change" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_w8xv5")
+texture = ExtResource("4_lxrc7")
+one_shot = true
+explosiveness = 0.5
 local_coords = true
 
 [node name="Sprite" type="SubViewport" parent="."]
@@ -165,35 +201,35 @@ size = Vector2i(19, 20)
 [node name="Colors" type="Node2D" parent="Sprite"]
 
 [node name="Red" type="Sprite2D" parent="Sprite/Colors"]
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
 
 [node name="Orange" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Yellow" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 6.33333, 20)
 
 [node name="Green" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
 
 [node name="Mint" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 9.5, 20)
@@ -201,7 +237,7 @@ region_rect = Rect2(0, 0, 9.5, 20)
 [node name="Teal" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
 position = Vector2(6.33333, 0)
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(6.33333, 0, 6.33333, 20)
@@ -209,14 +245,14 @@ region_rect = Rect2(6.33333, 0, 6.33333, 20)
 [node name="Blue" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
 position = Vector2(9.5, 0)
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(9.5, 0, 9.5, 20)
 
 [node name="Purple" type="Sprite2D" parent="Sprite/Colors"]
 visible = false
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 19, 20)
@@ -224,24 +260,24 @@ region_rect = Rect2(0, 0, 19, 20)
 [node name="Bounce" type="Sprite2D" parent="Sprite"]
 visible = false
 position = Vector2(2, 10)
-texture = ExtResource("5_g3iwb")
+texture = ExtResource("5_5h13j")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("4_6260w")
+texture = ExtResource("4_lxrc7")
 
 [node name="BG" type="Sprite2D" parent="Sprite2D"]
 show_behind_parent = true
-texture = ExtResource("6_n52sb")
+texture = ExtResource("6_vjl5w")
 
 [node name="trans" type="Sprite2D" parent="Sprite2D"]
 visible = false
 position = Vector2(0, 1)
-texture = ExtResource("7_5whac")
+texture = ExtResource("7_vrhir")
 
 [node name="DT" type="Sprite2D" parent="Sprite2D"]
-texture = ExtResource("8_uhtje")
+texture = ExtResource("8_krvst")
 
 [node name="Label" type="Label" parent="Sprite2D"]
 visible = false
@@ -251,14 +287,13 @@ offset_right = 20.0001
 offset_bottom = 15.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("9_x3noy")
 text = "SUS"
 horizontal_alignment = 1
 
 [node name="Shadow" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(1, 1, 1, 0.5)
 position = Vector2(2, 2.5)
-texture = ExtResource("10_m57bf")
+texture = ExtResource("10_3ofd3")
 
 [node name="HitBox" type="Area2D" parent="."]
 
@@ -275,3 +310,21 @@ debug_color = Color(0.701961, 0, 0, 0.419608)
 [node name="Aud" type="AudioStreamPlayer2D" parent="."]
 volume_db = -0.5
 attenuation = 2.0
+
+[node name="TPLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(1, 1, 1, 0.501961)
+
+[node name="TP" type="CharacterBody2D" parent="."]
+top_level = true
+z_index = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="TP"]
+texture = ExtResource("4_lxrc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TP"]
+position = Vector2(0, -3.05176e-05)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_qd8xx")
+debug_color = Color(0.701961, 0, 0, 0.419608)

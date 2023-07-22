@@ -28,9 +28,9 @@ func _process(delta):
 	$JP    .size.x = lerpf($JP    .size.x, 16 * 1.2, delta * 5)
 	$JP    .position.x = 906 - $JP.size.x
 	$JP/Bar.position.x = $JP.size.x - $JP/Bar.size.x
-	JP += delta 
-	if JP > 16:
-		JP = 16
+	JP += delta / 5
+	if JP > 20:
+		JP = 20
 	if $Melon.animation != Globals.debugAnimation:
 		$Melon.play(Globals.debugAnimation)
 	if debug == 0 and Globals.debugAttack == 1:

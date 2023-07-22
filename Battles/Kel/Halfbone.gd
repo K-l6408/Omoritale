@@ -8,7 +8,7 @@ enum uh {
 
 @export var length = 50
 @export var atkType : uh = uh.White
-@export var damage = 3
+@export var attacker = "Kel"
 @export var CollisionLayer := 1
 
 func _ready():
@@ -28,12 +28,11 @@ func _process(_delta):
 	if atkType == Atk.White:
 		modulate = Color.WHITE
 	else:
-		modulate = Globals.Colors["Orange"]
-	if not Engine.is_editor_hint():
-		match CollisionLayer:
-			1:
-				$"Sprite/2".modulate = Color.WHITE
-			2:
-				$"Sprite/2".modulate = Globals.Colors["DarkOrange"]
-			3:
-				$"Sprite/2".modulate = Globals.Colors["LightTeal"]
+		modulate = GLOBALS.Colors["Orange"]
+	match CollisionLayer:
+		1:
+			$"Sprite/2".modulate = Color.WHITE
+		2:
+			$"Sprite/2".modulate = GLOBALS.Colors["DarkOrange"]
+		3:
+			$"Sprite/2".modulate = GLOBALS.Colors["LightTeal"]

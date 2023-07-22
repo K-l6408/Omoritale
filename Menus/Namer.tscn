@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxl34w18wiogh"]
+[gd_scene load_steps=2 format=3 uid="uid://cxl34w18wiogh"]
 
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="1_lff2w"]
 [ext_resource type="Script" path="res://Menus/Namer.gd" id="1_wl76j"]
 
 [node name="Node2D" type="Node2D"]
@@ -18,7 +17,6 @@ offset_left = 63.0
 offset_top = -21.0
 offset_right = 851.0
 offset_bottom = 104.0
-theme_override_fonts/normal_font = ExtResource("1_lff2w")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[shake rate=10 level=1]
@@ -31,7 +29,6 @@ offset_left = 63.0
 offset_top = 122.0
 offset_right = 851.0
 offset_bottom = 247.0
-theme_override_fonts/normal_font = ExtResource("1_lff2w")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[shake rate=10 level=1][center]
@@ -46,7 +43,6 @@ offset_right = -540.0
 offset_bottom = -188.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("1_lff2w")
 theme_override_font_sizes/font_size = 60
 text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 flat = true

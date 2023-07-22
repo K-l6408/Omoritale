@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfwh0v7d5fwgk"]
+[gd_scene load_steps=8 format=3 uid="uid://dfwh0v7d5fwgk"]
 
-[ext_resource type="Script" path="res://Menus/UI/FIGHT.gd" id="1_rohaw"]
+[ext_resource type="Script" path="res://Menus/UI/FIGHT.gd" id="1_8q283"]
+[ext_resource type="Texture2D" uid="uid://tgem6tgjalrd" path="res://Assets/Sprites/Attack.png" id="2_sltu4"]
+[ext_resource type="Texture2D" uid="uid://df1kvoyoahppq" path="res://Assets/Sprites/Weapons/Stick.png" id="3_4v0be"]
+[ext_resource type="Script" path="res://Menus/UI/KILL.gd" id="3_xji0g"]
+[ext_resource type="Script" path="res://Menus/UI/MURDER.gd" id="5_hxvla"]
+[ext_resource type="Script" path="res://Menus/UI/FightRect.gd" id="6_ald3b"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dikbw"]
+a = Vector2(0, -20)
+b = Vector2(0, 20)
 
 [node name="FIGHT" type="Control"]
 layout_mode = 3
@@ -9,27 +18,67 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rohaw")
+script = ExtResource("1_8q283")
+metadata/_edit_vertical_guides_ = []
 
-[node name="Balloon" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(900, 200)
+[node name="Templ" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(930, 420)
+scale = Vector2(1e-05, 1.1)
+texture = ExtResource("2_sltu4")
+
+[node name="KILL" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(43, 620)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_4v0be")
+script = ExtResource("3_xji0g")
+
+[node name="MURDER" type="Area2D" parent="."]
+visible = false
+top_level = true
+texture_filter = 1
+position = Vector2(43, 620)
+scale = Vector2(4.5, 4.5)
+script = ExtResource("5_hxvla")
+
+[node name="Sprite2D" type="Sprite2D" parent="MURDER"]
+texture = ExtResource("3_4v0be")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MURDER"]
+shape = SubResource("SegmentShape2D_dikbw")
+
+[node name="Rect" type="ColorRect" parent="."]
+visible = false
+clip_children = 2
 layout_mode = 0
 offset_left = 30.0
-offset_top = 320.0
+offset_top = 315.0
 offset_right = 930.0
-offset_bottom = 520.0
-color = Color(0, 0, 0, 1)
+offset_bottom = 525.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("6_ald3b")
+DC = Color(1, 0.2, 0.2, 1)
+E = PackedVector2Array(0, 50, 850, 50)
 
-[node name="Rect" type="ColorRect" parent="Balloon"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.2, 0.2, 1)
+[node name="Enemies" type="Node2D" parent="Rect"]
+unique_name_in_owner = true
+position = Vector2(-30, -320)
+
+[node name="Fight" type="Node2D" parent="Rect"]
+unique_name_in_owner = true
+position = Vector2(-30, -320)
+
+[node name="Rect2" type="ColorRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = 315.0
+offset_right = 930.0
+offset_bottom = 525.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("6_ald3b")
+DC = Color(1, 0.2, 0.2, 1)
+E = PackedVector2Array(0, 900)

@@ -38,6 +38,7 @@ enum rSettings {
 
 const ow := preload("res://Assets/Audio/Ouch.wav")
 const thx = preload("res://Assets/Audio/Heal.wav")
+const new = preload("res://Assets/Audio/Ding.wav")
 const sht = preload("res://Assets/Audio/Shot.wav")
 const blt = preload("res://SOUL/Bullet.tscn")
 const swv = preload("res://SOUL/Shockwave.tscn")
@@ -54,8 +55,8 @@ var bounced   := false
 var bounceArea : Area2D
 var dashcharg := 0.0
 var dash      := 0.0
-var mintshr   := 0.0
-var cyancldwn := 0.0
+var mintshr   :=-2.0
+var tping     := false
 var plc       : float
 var h = false
 var handle_rot = true
@@ -68,29 +69,29 @@ func _ready():
 	floor_stop_on_slope = false
 	if not Engine.is_editor_hint():
 		$Trail   .texture = $Sprite.get_texture()
+		$Change  .texture = $Sprite.get_texture()
 		$Sprite2D.texture = $Sprite.get_texture()
 
-func setState(value):
-	if get_parent():
-		if value.Green:
+func setState(value:SoulState):
+	value.connect("changed", func():
+			$Change.restart()
+			$Aud.volume_db = 2
+			$Aud.stream = new
+			$Aud.play()
 			var tw = create_tween()
-			tw.tween_property(self, "arc", 360, .5)
-			tw.connect("finished", queue_redraw)
-		elif State.Green:
-			var tw = create_tween()
-			tw.tween_property(self, "arc", 0, .5)
-			tw.connect("finished", queue_redraw)
+			tw.tween_property(self, "arc", 360 * int(State.Green), .5)
+	)
 	State = value
 	queue_redraw()
 
 func _draw():
 	if not Engine.is_editor_hint():
 		if State.Value == SoulState.GREEN:
-			draw_circle_arc(Vector2.ZERO, 42.5, 0, 0, arc, Color(0,.5,0))
-			draw_circle_arc(Vector2.ZERO, 39.5, 0, 0, arc, Color.BLACK)
-		elif State.Green:
-			draw_circle_arc(Vector2.ZERO, 42.5, 39.5, 0, arc, Color(0,.5,0,.5))
-			draw_circle_arc(Vector2.ZERO, 39.5, 0, 0, arc, Color(0,0,0,.5))
+			draw_circle_arc(Vector2.ZERO, 45, 0, 0, arc, Color(0,.5,0))
+			draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color.BLACK)
+		else:
+			draw_circle_arc(Vector2.ZERO, 45, 42, 0, arc, Color(0,.5,0,.5))
+			draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color(0,0,0,.5))
 
 func draw_circle_arc(center, radius, radius2, angle_from, angle_to, color):
 	var nb_points = 8
@@ -105,8 +106,7 @@ func draw_circle_arc(center, radius, radius2, angle_from, angle_to, color):
 	draw_polygon(points_arc, colors)
 
 func _process(_delta):
-	if arc > 0 and arc < 360 or State.Purple:
-		queue_redraw()
+	queue_redraw()
 	$Shields.position    = global_position
 	$Shields.setang(pvel.angle() + PI/2)
 	$Shields.scale       =  scale
@@ -129,6 +129,10 @@ func _physics_process(delta):
 		motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 		$Sprite2D/Label.hide()
 	if not Engine.is_editor_hint():
+		$TP.collision_layer = 0
+		$TP.collision_mask = 0
+		$TP.visible = State.Teal and tping
+		$TPLine.visible = State.Teal and tping
 		process_texture()
 		iframes -= delta
 		handle_hitbox()
@@ -205,6 +209,8 @@ func _physics_process(delta):
 		if State.Orange:
 			set_collision_layer_value(2, dash < 0)
 			set_collision_mask_value(2, dash < 0)
+			$HitBox.set_collision_layer_value(2, dash < 0)
+			$HitBox.set_collision_mask_value(2, dash < 0)
 			if Input.is_action_pressed("accept") and dash < 0:
 				dashcharg += delta
 				$Aura.emitting = true
@@ -232,15 +238,12 @@ func _physics_process(delta):
 				else:
 					px = pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x
 			elif State.Blue:
-				if dashcharg > 0:
-					velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
-				elif pvel.rotated(-global_rotation).x == 0:
+				if dashcharg <= 0 and pvel.rotated(-global_rotation).x == 0:
 					pvel += Vector2(px, 0).rotated(global_rotation)
 				else:
 					px = pvel.rotated(global_rotation).x
 			elif dashcharg > 0:
 				velocity = Vector2(0, 0)
-		
 		if State.Purple:
 			if State.Blue:
 				line_rotation = rotation_degrees - 90
@@ -275,8 +278,8 @@ func _physics_process(delta):
 				mintshr = 3
 				var s = swv.instantiate()
 				s.scale = Vector2(default_size, default_size)
-				s.position = position
 				add_sibling(s)
+				s.global_position = global_position
 			if mintshr > 0:
 				scale.x = lerp(scale.x, default_size / 2, delta)
 				scale.y = lerp(scale.y, default_size / 2, delta)
@@ -296,7 +299,27 @@ func _physics_process(delta):
 		if State.Yellow:
 			if Input.is_action_just_released("accept"):
 				shoot()
-		move_and_slide()
+		if State.Teal:
+			State.Purple = false # fuck you.
+			set_collision_layer_value(3, not tping)
+			set_collision_mask_value(3, not tping)
+			$HitBox.set_collision_layer_value(3, not tping)
+			$HitBox.set_collision_mask_value(3, not tping)
+			if Input.is_action_just_pressed("menu"):
+				if tping:
+					tping = false
+					position = $TP.position
+				else:
+					tping = true
+					$TP.position = position
+		if State.Teal and tping:
+			$TPLine.points[1] = $TP.position - position
+			$TP.velocity = vel * 2
+			$TP.move_and_slide()
+			$TP.collision_layer = 1
+			$TP.collision_mask = 1
+		else:
+			move_and_slide()
 		if handle_rot:
 			handle_rotation(delta)
 		var collision = get_last_slide_collision()
@@ -382,7 +405,7 @@ func shoot():
 	$Aud.volume_db = 0
 	$Aud.play()
 	get_parent().add_child(bullet)
-	bullet.start(position + Vector2(0,20).rotated(rotation),rotation,self)
+	bullet.start(global_position + Vector2(0,20).rotated(rotation),rotation,self)
 	bullet.global_scale = global_scale / 1.5
 	if State.Blue:
 		var f = fall.rotated(global_rotation)
@@ -426,15 +449,20 @@ func handle_hitbox():
 			iframes = 0
 			if (zero(Obj.get("atkType")) & Atk.Blue and not get_velocity() == Vector2.ZERO) or \
 			(zero(Obj.get("atkType"))    & Atk.Orange  and  get_velocity() == Vector2.ZERO):
-				emit_signal("hurt", zero(Obj.get("damage")))
-				$Aud.stop()
-				iframes = 1
-				if zero(Obj.damage) > 0:
+				if Obj.get("attacker") != null and Obj.get("attacker") != "":
+					emit_signal("hurt", Obj.get("attacker"))
 					$Aud.stream = ow
 					$Aud.play()
-				elif zero(Obj.damage) < 0:
-					$Aud.stream = thx
-					$Aud.play()
+				else:
+					if zero(Obj.damage) > 0:
+						$Aud.stream = ow
+						$Aud.play()
+					elif zero(Obj.damage) < 0:
+						$Aud.stream = thx
+						$Aud.play()
+					emit_signal("hurt_fixed", zero(Obj.get("damage")))
+				$Aud.stop()
+				iframes = 1
 				$Aud.volume_db = 0
 		else:
 			if zero(Obj.get("delete")):
@@ -478,4 +506,5 @@ func zero(arg):
 	else:
 		return 0
 
-signal hurt(damage)
+signal hurt(attacker)
+signal hurt_fixed(damage)

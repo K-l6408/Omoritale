@@ -1,0 +1,133 @@
+[gd_scene load_steps=18 format=3 uid="uid://cxki262ka5pom"]
+
+[ext_resource type="Script" path="res://Battles/Mari/MariFight.gd" id="1_g51ic"]
+[ext_resource type="Texture2D" uid="uid://dx1mfbspgloef" path="res://Assets/Sprites/mari :)/base.png" id="1_k7wqo"]
+[ext_resource type="Texture2D" uid="uid://bmidl1o4sfw1q" path="res://Assets/Sprites/mari :)/happ.png" id="2_ere3v"]
+[ext_resource type="Script" path="res://Battles/EHbox.gd" id="2_nlsls"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="3_8sben"]
+[ext_resource type="Texture2D" uid="uid://cj5be32f21ao4" path="res://Assets/Sprites/mari :)/happ2.png" id="3_lx4aw"]
+[ext_resource type="Texture2D" uid="uid://bltuker4ak530" path="res://Assets/Sprites/mari :)/smug.png" id="4_fnrn2"]
+[ext_resource type="Shader" path="res://Shaders/Mari.gdshader" id="5_0ccog"]
+[ext_resource type="Texture2D" uid="uid://iuhwbm6rkjxy" path="res://Assets/Sprites/mari :)/hair.png" id="6_exnmf"]
+[ext_resource type="PackedScene" uid="uid://lfs4rjkd1rts" path="res://Menus/UI/UI.tscn" id="7_krltc"]
+[ext_resource type="Script" path="res://Battles/Stats.gd" id="10_mwgbq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asoiw"]
+size = Vector2(180, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6w6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ere3v")
+}],
+"loop": true,
+"name": &":)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lx4aw")
+}],
+"loop": true,
+"name": &":D",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fnrn2")
+}],
+"loop": true,
+"name": &">:3",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yn0pk"]
+shader = ExtResource("5_0ccog")
+
+[sub_resource type="Resource" id="Resource_u8d6r"]
+resource_local_to_scene = true
+script = ExtResource("10_mwgbq")
+HP = 26
+MHP = 26
+EHP = Array[int]([])
+JP = 0
+MJP = 20
+EJP = Array[int]([])
+ATK = 1.0
+DEF = 1.0
+MAG = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwqek"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o23qe"]
+bg_color = Color(1, 1, 0, 1)
+
+[node name="MariFight" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_g51ic")
+
+[node name="Damage" type="Node2D" parent="."]
+
+[node name="EHbox" type="Area2D" parent="."]
+position = Vector2(488, 188)
+script = ExtResource("2_nlsls")
+
+[node name="Shape" type="CollisionShape2D" parent="EHbox"]
+shape = SubResource("RectangleShape2D_asoiw")
+
+[node name="Mari" type="Sprite2D" parent="."]
+position = Vector2(487, 186)
+scale = Vector2(2, 2)
+texture = ExtResource("1_k7wqo")
+
+[node name="Face" type="AnimatedSprite2D" parent="Mari"]
+position = Vector2(0.5, -52)
+sprite_frames = SubResource("SpriteFrames_a6w6t")
+animation = &">:3"
+
+[node name="Hair" type="Sprite2D" parent="Mari"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_yn0pk")
+position = Vector2(0, -16)
+texture = ExtResource("6_exnmf")
+region_enabled = true
+region_rect = Rect2(-10, 0, 102, 87)
+
+[node name="UI" parent="." instance=ExtResource("7_krltc")]
+PlayerStats = SubResource("Resource_u8d6r")
+DialogueSource = "res://Dialogue/marifight.dialogue"
+DialogueText = "FlTxt0"
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = 398.0
+offset_top = 168.0
+offset_right = 578.0
+offset_bottom = 208.0
+pivot_offset = Vector2(90, 20)
+theme_override_colors/font_color = Color(0.768627, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("3_8sben")
+theme_override_font_sizes/font_size = 30
+text = "0.0001"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Label"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -33.0
+offset_right = 176.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wwqek")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o23qe")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[connection signal="hurt" from="EHbox" to="." method="the_ouchies"]
+[connection signal="YourTurn" from="UI" to="." method="attack"]

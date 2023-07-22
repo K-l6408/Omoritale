@@ -13,15 +13,15 @@ func _process(delta):
 	$Walls.collision_layer = 1 << (CollisionLayer - 1)
 	$Walls.collision_mask  = 1 << (CollisionLayer - 1)
 	if Engine.is_editor_hint():
-		$Green.color = Color.MAGENTA
+		$Green.default_color = Color.MAGENTA
 	else:
 		match CollisionLayer:
 			1:
-				$Green.color = Globals.Colors["DarkGreen"]
+				$Green.default_color = Globals.Colors["DarkGreen"]
 			2:
-				$Green.color = Globals.Colors["DarkOrange"]
+				$Green.default_color = Globals.Colors["DarkOrange"]
 			3:
-				$Green.color = Globals.Colors["LightTeal"]
+				$Green.default_color = Globals.Colors["LightTeal"]
 	$Black.color = BGColor
 	if Size != size:
 		changeSize(Size, delta)
@@ -38,7 +38,6 @@ func changeSize(N : Vector2, dt):
 func InstChangeSize(N : Vector2):
 	for j in get_children():
 		j.position = -N/2
-	$Black.position += Vector2(2,2)
 	size = N
 	sizeChanged()
 
@@ -50,8 +49,8 @@ func sizeChanged():
 	VCollision.a = size.y/2 * Vector2.UP
 	VCollision.b = size.y/2 * Vector2.DOWN
 	
-	$Green.size = size
-	$Black.size = Vector2(size.x - 4, size.y - 4)
+	$Green.points = [0, size * Vector2(0,1), size, size * Vector2(1,0), 0]
+	$Black.size = Vector2(size.x, size.y)
 	$Walls/T.position  = Vector2(size.x / 2, 0)
 	$Walls/B.position  = Vector2(size.x / 2, size.y)
 	$Walls/L.position  = Vector2(0, size.y / 2)

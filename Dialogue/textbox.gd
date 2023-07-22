@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var is_ui := false
+
 @onready var balloon: ColorRect = $Balloon
 @onready var margin: MarginContainer = $Balloon/Margin
 @onready var character_label: RichTextLabel = $Balloon/Margin/VBox/CharacterLabel
@@ -93,7 +95,6 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-
 
 ### Helpers
 
@@ -202,10 +203,12 @@ func type(letter, _letter_index, _speed):
 func character_audio(chr):
 	match chr:
 		"Melony":
-			$Balloon/Rect.modulate = Color("d19292")
+			if not is_ui:
+				$Balloon/Rect.modulate = Color("d19292")
 			return "mln.wav"
 		_:
-			$Balloon/Rect.modulate = Color.WHITE
+			if not is_ui:
+				$Balloon/Rect.modulate = Color.WHITE
 			return "txt.wav"
 
 signal finished()

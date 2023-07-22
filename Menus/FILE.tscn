@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://oxh36k1en2vm"]
+[gd_scene load_steps=3 format=3 uid="uid://oxh36k1en2vm"]
 
-[ext_resource type="Texture2D" uid="uid://cn26bt27qf08s" path="res://Assets/Sprites/File.png" id="1_2hj2l"]
+[ext_resource type="Texture2D" uid="uid://digxkl7084jh8" path="res://Assets/Sprites/File.png" id="1_2hj2l"]
 [ext_resource type="Script" path="res://Menus/File.gd" id="2_3w08j"]
-[ext_resource type="FontFile" uid="uid://vyib537i7v3x" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="3_mac0m"]
 
 [node name="F1" type="TextureButton"]
 texture_filter = 2
@@ -20,7 +19,6 @@ offset_left = 34.0
 offset_top = 34.0
 offset_right = 166.0
 offset_bottom = 98.0
-theme_override_fonts/font = ExtResource("3_mac0m")
 theme_override_font_sizes/font_size = 48
 text = "File 1"
 horizontal_alignment = 1
@@ -32,7 +30,6 @@ offset_left = 232.0
 offset_top = 34.0
 offset_right = 364.0
 offset_bottom = 98.0
-theme_override_fonts/font = ExtResource("3_mac0m")
 theme_override_font_sizes/font_size = 48
 text = "000:02"
 horizontal_alignment = 1
@@ -44,7 +41,6 @@ offset_left = 34.0
 offset_top = 98.0
 offset_right = 166.0
 offset_bottom = 162.0
-theme_override_fonts/font = ExtResource("3_mac0m")
 theme_override_font_sizes/font_size = 48
 text = "OK"
 horizontal_alignment = 1
@@ -56,7 +52,6 @@ offset_left = 232.0
 offset_top = 98.0
 offset_right = 364.0
 offset_bottom = 162.0
-theme_override_fonts/font = ExtResource("3_mac0m")
 theme_override_font_sizes/font_size = 48
 text = "LV 1"
 horizontal_alignment = 1
@@ -68,7 +63,6 @@ offset_left = 32.0
 offset_top = 224.0
 offset_right = 368.0
 offset_bottom = 288.0
-theme_override_fonts/font = ExtResource("3_mac0m")
 theme_override_font_sizes/font_size = 35
 text = "The fucking uh the uh"
 horizontal_alignment = 1
