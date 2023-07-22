@@ -25,7 +25,7 @@ Value = 1
 
 [node name="Mintro" type="Node2D"]
 texture_filter = 1
-position = Vector2(480, 415)
+position = Vector2(480, 435)
 script = ExtResource("1_lsobv")
 
 [node name="Box" parent="." instance=ExtResource("1_c3hej")]
@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape2D_yp5sa")
 texture = ExtResource("3_g4nlb")
 
 [node name="Soul" parent="." instance=ExtResource("3_5hsup")]
-position = Vector2(480, 415)
+position = Vector2(480, 435)
 State = SubResource("Resource_oqteb")
 
 [node name="Leaves" type="Node2D" parent="."]

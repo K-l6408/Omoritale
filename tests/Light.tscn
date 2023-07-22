@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://duihuuflrwhfd"]
 
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="1_hqhan"]
-[ext_resource type="Texture2D" uid="uid://bvq30ato6er42" path="res://Assets/Sprites/Light.png" id="2_1corm"]
+[ext_resource type="Texture2D" uid="uid://doom351ppltl8" path="res://Assets/Sprites/Light.png" id="2_1corm"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_l16vf"]
 [ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="4_0j6xu"]
 

@@ -317,8 +317,13 @@ width = 3.0
 default_color = Color(1, 1, 1, 0.501961)
 
 [node name="TP" type="CharacterBody2D" parent="."]
+visible = false
 top_level = true
 z_index = 1
+texture_filter = 1
+position = Vector2(482, 324)
+scale = Vector2(1.1, 1.1)
+motion_mode = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="TP"]
 texture = ExtResource("4_lxrc7")

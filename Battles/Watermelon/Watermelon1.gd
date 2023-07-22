@@ -85,7 +85,11 @@ func _process(delta):
 		await TW.finished
 		TW = create_tween().set_parallel()
 		TW.tween_property($Wind, "position:x", -100, 7./8)
+		TW.tween_property($Audio, "pitch_scale", .3, 7./8).set_trans(Tween.TRANS_CUBIC)\
+		.set_ease(Tween.EASE_OUT)
 		debVelocity = Vector2(-800, -250)
+		await TW.finished
+		$Audio.stop()
 	if debug == 8:
 		time += delta
 		$Melon.position += debVelocity * delta

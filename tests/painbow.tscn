@@ -7,13 +7,14 @@
 [sub_resource type="Resource" id="Resource_obolm"]
 script = ExtResource("3_c8wr1")
 Red = true
-Orange = true
+Orange = false
 Yellow = true
 Green = true
 Mint = true
-Cyan = true
+Teal = true
 Blue = true
 Purple = false
+Value = 125
 
 [node name="Node2D" type="Node2D"]
 

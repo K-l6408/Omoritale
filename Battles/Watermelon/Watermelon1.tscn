@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Menus/UI/Label A.gd" id="10_1qi57"]
 [ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="11_3s1hk"]
 [ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="12_xnjgh"]
-[ext_resource type="Texture2D" uid="uid://gutfnwu4fkek" path="res://Assets/Sprites/Wind.png" id="13_q2oof"]
+[ext_resource type="Texture2D" uid="uid://gutfnwu4fkek" path="res://Assets/Sprites/mari :)/Wind.png" id="13_q2oof"]
 [ext_resource type="Texture2D" uid="uid://cd8yee0tklnqj" path="res://Assets/Sprites/evil basil/Battle1.png" id="14_v5p57"]
 [ext_resource type="Texture2D" uid="uid://caisfb1q04p2d" path="res://Assets/Sprites/evil basil/Battle5.png" id="15_qgpnp"]
 [ext_resource type="Texture2D" uid="uid://dyoqaiew71im7" path="res://Assets/Sprites/evil basil/Battle2.png" id="16_i67p5"]
@@ -419,6 +419,6 @@ texture = ExtResource("27_uiup8")
 region_enabled = true
 region_rect = Rect2(-10, 0, 102, 87)
 
-[connection signal="hurt" from="Soul" to="." method="ouch"]
+[connection signal="hurt_fixed" from="Soul" to="." method="ouch"]
 [connection signal="finished" from="Audio" to="." method="actual_mus"]
 [connection signal="finished" from="Audio" to="Audio" method="play"]

@@ -57,7 +57,7 @@ var dashcharg := 0.0
 var dash      := 0.0
 var mintshr   :=-2.0
 var tping     := false
-var plc       : float
+var plc       :  float
 var h = false
 var handle_rot = true
 var mouse = true
@@ -67,6 +67,9 @@ func _ready():
 	$Lines.position = purpleStartPos
 	jumps = maximum_jumps
 	floor_stop_on_slope = false
+	$TP.add_collision_exception_with(self)
+	var tw = create_tween()
+	tw.tween_property(self, "arc", 360 * int(State.Green), .5)
 	if not Engine.is_editor_hint():
 		$Trail   .texture = $Sprite.get_texture()
 		$Change  .texture = $Sprite.get_texture()
@@ -85,13 +88,12 @@ func setState(value:SoulState):
 	queue_redraw()
 
 func _draw():
-	if not Engine.is_editor_hint():
-		if State.Value == SoulState.GREEN:
-			draw_circle_arc(Vector2.ZERO, 45, 0, 0, arc, Color(0,.5,0))
-			draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color.BLACK)
-		else:
-			draw_circle_arc(Vector2.ZERO, 45, 42, 0, arc, Color(0,.5,0,.5))
-			draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color(0,0,0,.5))
+	if State.Value == SoulState.GREEN:
+		draw_circle_arc(Vector2.ZERO, 45, 0, 0, arc, Color(0,.5,0))
+		draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color.BLACK)
+	else:
+		draw_circle_arc(Vector2.ZERO, 45, 42, 0, arc, Color(0,.5,0,.5))
+		draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color(0,0,0,.5))
 
 func draw_circle_arc(center, radius, radius2, angle_from, angle_to, color):
 	var nb_points = 8
@@ -108,7 +110,7 @@ func draw_circle_arc(center, radius, radius2, angle_from, angle_to, color):
 func _process(_delta):
 	queue_redraw()
 	$Shields.position    = global_position
-	$Shields.setang(pvel.angle() + PI/2)
+	if not State.Teal or not tping: $Shields.setang(pvel.angle() + PI/2)
 	$Shields.scale       =  scale
 	$Trail.process_material.angle_min = -$Sprite2D.global_rotation_degrees
 	$Trail.process_material.angle_max = -$Sprite2D.global_rotation_degrees
@@ -140,165 +142,166 @@ func _physics_process(delta):
 		if State.Orange:
 			v = pvel
 		handle_input()
-		if State.Red:
-			velocity = velocity.rotated(global_rotation)
-			vel = vel.rotated(global_rotation)
-			if Input.is_action_pressed("cancel"):
-				velocity /= 2
-		if State.Blue:
-			var j
-			fallspd = fall.rotated(-rotation).y
-			if State.Orange:
-				jumps = int(is_on_floor())
-				j = -pvel.rotated(-global_rotation).y
-				var pj = -v.rotated(-global_rotation).y
-				if j < -10 and pj > -10:
-					fallspd = 200
-				j = 100
-			else:
-				j = -vel.rotated(-global_rotation).y
-				if j < 0:
-					j = 0
-					jumping = false
-			if is_on_floor() and (
-				bounceArea == null or not self in bounceArea.get_overlapping_bodies()
-				):
-				jumps = maximum_jumps
-				fallspd = 50
-				jumping = false
-				bounced = false
-				if State.Orange:
-					pvel = Vector2(pvel.rotated(-global_rotation).x, -100).rotated(global_rotation)
-			elif jumps == maximum_jumps:
-				jumps -= 1
-			if is_on_ceiling():
-				jumps = 0
-				fallspd = abs(fallspd)
-			if j > 10:
-				if jumping:
-					fallspd -= delta * 300
-				elif jumps > 0 or maximum_jumps < 0:
-					fallspd = -150
-					jumps -= 1
-					jumping = true
-			else:
-				jumping = false
-			if fallspd > 500:
-				fallspd = 500
-			var lt = jumps + int(not is_on_floor()) # Label Text
-			if lt > 1:
-				$Sprite2D/Label.show()
-				$Sprite2D/Label.text = str(lt)
-			elif lt < 0:
-				$Sprite2D/Label.show()
-				$Sprite2D/Label.text = "∞"
-			else:
-				$Sprite2D/Label.hide()
-			var p = velocity.rotated(-global_rotation)
-			p.y = 0
-			fall = fall.rotated(-global_rotation)
-			if dash > 0 and State.Orange:
-				fall.y = 0
-			else:
-				fallspd += 400 * delta
-				fall.y = fallspd
-			fall.x = lerp(fall.x, 0., delta * 3)
-			fall   = fall.rotated(global_rotation)
-			velocity  = p.rotated(global_rotation)
-			velocity += fall
-		if State.Orange:
-			set_collision_layer_value(2, dash < 0)
-			set_collision_mask_value(2, dash < 0)
-			$HitBox.set_collision_layer_value(2, dash < 0)
-			$HitBox.set_collision_mask_value(2, dash < 0)
-			if Input.is_action_pressed("accept") and dash < 0:
-				dashcharg += delta
-				$Aura.emitting = true
-				if dashcharg > 1.5:
-					iframes = dashcharg / 2
-					Input.action_release("accept")
-			if Input.is_action_just_released("accept"):
-				$Aura.emitting = false
-				dash = dashcharg / 2
-				dashcharg = 0
-			if dash > -1:
-				dash -= delta
-			if dash > 0:
-				if State.Blue:
-					var p = velocity.rotated(-global_rotation)
-					p.x /= .375
-					velocity = p.rotated(global_rotation)
-				else:
-					velocity /= .375
-			if State.Purple:
-				if dashcharg > 0:
-					velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
-				elif abs(pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x) <= 10:
-					pvel += Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
-				else:
-					px = pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x
-			elif State.Blue:
-				if dashcharg <= 0 and pvel.rotated(-global_rotation).x == 0:
-					pvel += Vector2(px, 0).rotated(global_rotation)
-				else:
-					px = pvel.rotated(global_rotation).x
-			elif dashcharg > 0:
-				velocity = Vector2(0, 0)
-		if State.Purple:
+		if not State.Teal or not tping:
+			if State.Red:
+				velocity = velocity.rotated(global_rotation)
+				vel = vel.rotated(global_rotation)
+				if Input.is_action_pressed("cancel"):
+					velocity /= 2
 			if State.Blue:
-				line_rotation = rotation_degrees - 90
-			var temp = (position-purpleStartPos).rotated(deg_to_rad(-line_rotation))+purpleStartPos
-			line_extents.resize(line_number)
-			if State.Orange and temp.x != clamp(temp.x - purpleStartPos.x,\
-			line_extents[current_line].x, line_extents[current_line].y) + purpleStartPos.x:
-				pvel -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
-				px *= -1
-				velocity *= -1
-			temp.x = clamp(temp.x - purpleStartPos.x,
-			line_extents[current_line].x, line_extents[current_line].y) + purpleStartPos.x
-			temp.y = lerp(temp.y, (current_line * line_spacing) + purpleStartPos.y, delta * 5)
-			position = (temp-purpleStartPos).rotated(deg_to_rad(line_rotation))+purpleStartPos
-			velocity.x = velocity.rotated(deg_to_rad(-line_rotation)).x
-			velocity.y = 0
-			velocity = velocity.rotated(deg_to_rad(line_rotation))
-			if current_line > 0:
-				if vel.rotated(deg_to_rad(-line_rotation)).y < -70 and not v.rotated(deg_to_rad(-line_rotation)).y < -70 \
-				and temp.x - purpleStartPos.x == \
-				clamp(temp.x - purpleStartPos.x, line_extents[current_line -1].x, line_extents[current_line -1].y):
-					current_line -= 1
-			if current_line < line_number - 1:
-				if vel.rotated(deg_to_rad(-line_rotation)).y > 70 and not v.rotated(deg_to_rad(-line_rotation)).y > 70 \
-				and temp.x - purpleStartPos.x == \
-				clamp(temp.x - purpleStartPos.x, line_extents[current_line +1].x, line_extents[current_line +1].y):
-					current_line += 1
-		if State.Mint:
-			if mintshr > -2:
-				mintshr -= delta
-			elif Input.is_action_just_pressed("cancel"):
-				mintshr = 3
-				var s = swv.instantiate()
-				s.scale = Vector2(default_size, default_size)
-				add_sibling(s)
-				s.global_position = global_position
-			if mintshr > 0:
-				scale.x = lerp(scale.x, default_size / 2, delta)
-				scale.y = lerp(scale.y, default_size / 2, delta)
-				if State.Blue:
-					var p = velocity.rotated(-global_rotation)
-					p.x /= scale.x / default_size
-					velocity = p.rotated(global_rotation)
+				var j
+				fallspd = fall.rotated(-rotation).y
+				if State.Orange:
+					jumps = int(is_on_floor())
+					j = -pvel.rotated(-global_rotation).y
+					var pj = -v.rotated(-global_rotation).y
+					if j < -10 and pj > -10:
+						fallspd = 200
+					j = 100
 				else:
-					velocity /= scale.x / default_size
-				if (mintshr + .5) - floor(mintshr + .5) < delta:
-					modulate.v = 0
-				elif modulate.v < 1:
-					modulate.v += delta * 2
-			else:
-				scale.x = lerp(scale.x, default_size, delta)
-				scale.y = lerp(scale.y, default_size, delta)
-		if State.Yellow:
-			if Input.is_action_just_released("accept"):
-				shoot()
+					j = -vel.rotated(-global_rotation).y
+					if j < 0:
+						j = 0
+						jumping = false
+				if is_on_floor() and (
+					bounceArea == null or not self in bounceArea.get_overlapping_bodies()
+					):
+					jumps = maximum_jumps
+					fallspd = 50
+					jumping = false
+					bounced = false
+					if State.Orange:
+						pvel = Vector2(pvel.rotated(-global_rotation).x, -100).rotated(global_rotation)
+				elif jumps == maximum_jumps:
+					jumps -= 1
+				if is_on_ceiling():
+					jumps = 0
+					fallspd = abs(fallspd)
+				if j > 10:
+					if jumping:
+						fallspd -= delta * 300
+					elif jumps > 0 or maximum_jumps < 0:
+						fallspd = -150
+						jumps -= 1
+						jumping = true
+				else:
+					jumping = false
+				if fallspd > 500:
+					fallspd = 500
+				var lt = jumps + int(not is_on_floor()) # Label Text
+				if lt > 1:
+					$Sprite2D/Label.show()
+					$Sprite2D/Label.text = str(lt)
+				elif lt < 0:
+					$Sprite2D/Label.show()
+					$Sprite2D/Label.text = "∞"
+				else:
+					$Sprite2D/Label.hide()
+				var p = velocity.rotated(-global_rotation)
+				p.y = 0
+				fall = fall.rotated(-global_rotation)
+				if dash > 0 and State.Orange:
+					fall.y = 0
+				else:
+					fallspd += 400 * delta
+					fall.y = fallspd
+				fall.x = lerp(fall.x, 0., delta * 3)
+				fall   = fall.rotated(global_rotation)
+				velocity  = p.rotated(global_rotation)
+				velocity += fall
+			if State.Orange:
+				set_collision_layer_value(2, dash < 0)
+				set_collision_mask_value(2, dash < 0)
+				$HitBox.set_collision_layer_value(2, dash < 0)
+				$HitBox.set_collision_mask_value(2, dash < 0)
+				if Input.is_action_pressed("accept") and dash < 0:
+					dashcharg += delta
+					$Aura.emitting = true
+					if dashcharg > 1.5:
+						iframes = dashcharg / 2
+						Input.action_release("accept")
+				if Input.is_action_just_released("accept"):
+					$Aura.emitting = false
+					dash = dashcharg / 2
+					dashcharg = 0
+				if dash > -1:
+					dash -= delta
+				if dash > 0:
+					if State.Blue:
+						var p = velocity.rotated(-global_rotation)
+						p.x /= .375
+						velocity = p.rotated(global_rotation)
+					else:
+						velocity /= .375
+				if State.Purple:
+					if dashcharg > 0:
+						velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
+					elif abs(pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x) <= 10:
+						pvel += Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
+					else:
+						px = pvel.rotated(-global_rotation - deg_to_rad(line_rotation)).x
+				elif State.Blue:
+					if dashcharg <= 0 and pvel.rotated(-global_rotation).x == 0:
+						pvel += Vector2(px, 0).rotated(global_rotation)
+					else:
+						px = pvel.rotated(global_rotation).x
+				elif dashcharg > 0:
+					velocity = Vector2(0, 0)
+			if State.Purple:
+				if State.Blue:
+					line_rotation = rotation_degrees - 90
+				var temp = (position-purpleStartPos).rotated(deg_to_rad(-line_rotation))+purpleStartPos
+				line_extents.resize(line_number)
+				if State.Orange and temp.x != clamp(temp.x - purpleStartPos.x,\
+				line_extents[current_line].x, line_extents[current_line].y) + purpleStartPos.x:
+					pvel -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
+					px *= -1
+					velocity *= -1
+				temp.x = clamp(temp.x - purpleStartPos.x,
+				line_extents[current_line].x, line_extents[current_line].y) + purpleStartPos.x
+				temp.y = lerp(temp.y, (current_line * line_spacing) + purpleStartPos.y, delta * 5)
+				position = (temp-purpleStartPos).rotated(deg_to_rad(line_rotation))+purpleStartPos
+				velocity.x = velocity.rotated(deg_to_rad(-line_rotation)).x
+				velocity.y = 0
+				velocity = velocity.rotated(deg_to_rad(line_rotation))
+				if current_line > 0:
+					if vel.rotated(deg_to_rad(-line_rotation)).y < -70 and not v.rotated(deg_to_rad(-line_rotation)).y < -70 \
+					and temp.x - purpleStartPos.x == \
+					clamp(temp.x - purpleStartPos.x, line_extents[current_line -1].x, line_extents[current_line -1].y):
+						current_line -= 1
+				if current_line < line_number - 1:
+					if vel.rotated(deg_to_rad(-line_rotation)).y > 70 and not v.rotated(deg_to_rad(-line_rotation)).y > 70 \
+					and temp.x - purpleStartPos.x == \
+					clamp(temp.x - purpleStartPos.x, line_extents[current_line +1].x, line_extents[current_line +1].y):
+						current_line += 1
+			if State.Mint:
+				if mintshr > -2:
+					mintshr -= delta
+				elif Input.is_action_just_pressed("cancel"):
+					mintshr = 3
+					var s = swv.instantiate()
+					s.scale = Vector2(default_size, default_size)
+					add_sibling(s)
+					s.global_position = global_position
+				if mintshr > 0:
+					scale.x = lerp(scale.x, default_size / 2, delta)
+					scale.y = lerp(scale.y, default_size / 2, delta)
+					if State.Blue:
+						var p = velocity.rotated(-global_rotation)
+						p.x /= scale.x / default_size
+						velocity = p.rotated(global_rotation)
+					else:
+						velocity /= scale.x / default_size
+					if (mintshr + .5) - floor(mintshr + .5) < delta:
+						modulate.v = 0
+					elif modulate.v < 1:
+						modulate.v += delta * 2
+				else:
+					scale.x = lerp(scale.x, default_size, delta)
+					scale.y = lerp(scale.y, default_size, delta)
+			if State.Yellow:
+				if Input.is_action_just_released("accept"):
+					shoot()
 		if State.Teal:
 			State.Purple = false # fuck you.
 			set_collision_layer_value(3, not tping)
@@ -313,11 +316,12 @@ func _physics_process(delta):
 					tping = true
 					$TP.position = position
 		if State.Teal and tping:
-			$TPLine.points[1] = $TP.position - position
+			$TPLine.points[1] = ($TP.position - position) / scale
 			$TP.velocity = vel * 2
-			$TP.move_and_slide()
+			$TP.scale = scale
 			$TP.collision_layer = 1
 			$TP.collision_mask = 1
+			$TP.move_and_slide()
 		else:
 			move_and_slide()
 		if handle_rot:
@@ -449,6 +453,7 @@ func handle_hitbox():
 			iframes = 0
 			if (zero(Obj.get("atkType")) & Atk.Blue and not get_velocity() == Vector2.ZERO) or \
 			(zero(Obj.get("atkType"))    & Atk.Orange  and  get_velocity() == Vector2.ZERO):
+				$Aud.stop()
 				if Obj.get("attacker") != null and Obj.get("attacker") != "":
 					emit_signal("hurt", Obj.get("attacker"))
 					$Aud.stream = ow
@@ -457,11 +462,10 @@ func handle_hitbox():
 					if zero(Obj.damage) > 0:
 						$Aud.stream = ow
 						$Aud.play()
-					elif zero(Obj.damage) < 0:
+					else:
 						$Aud.stream = thx
 						$Aud.play()
 					emit_signal("hurt_fixed", zero(Obj.get("damage")))
-				$Aud.stop()
 				iframes = 1
 				$Aud.volume_db = 0
 		else:

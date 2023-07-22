@@ -12,9 +12,10 @@ Orange = true
 Yellow = false
 Green = false
 Mint = false
-Cyan = false
+Teal = false
 Blue = false
 Purple = false
+Value = 2
 
 [node name="null" type="Node2D"]
 
