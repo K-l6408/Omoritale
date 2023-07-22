@@ -1,0 +1,213 @@
+[gd_scene load_steps=9 format=3 uid="uid://chwwjjvfyy3f1"]
+
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_6kp0f"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_6uft0"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_3gx48"]
+[ext_resource type="Script" path="res://tests/GBone.gd" id="4_ehk7s"]
+[ext_resource type="Texture2D" uid="uid://88wv7wmkkplr" path="res://Assets/Sprites/KelBone.png" id="5_oxw2h"]
+[ext_resource type="Texture2D" uid="uid://dkn68ofakh6om" path="res://Assets/Sprites/Stripes.png" id="6_wybyv"]
+
+[sub_resource type="Resource" id="Resource_c14if"]
+script = ExtResource("3_3gx48")
+Red = false
+Orange = false
+Yellow = false
+Green = true
+Mint = false
+Teal = false
+Blue = true
+Purple = false
+Value = 72
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7va7t"]
+size = Vector2(4, 6)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(482, 325)
+
+[node name="Box" parent="." instance=ExtResource("1_6kp0f")]
+position = Vector2(0, 0)
+
+[node name="Soul" parent="." instance=ExtResource("2_6uft0")]
+State = SubResource("Resource_c14if")
+third_shield = true
+fourth_shield = true
+
+[node name="1" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(-79, 100)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_ehk7s")
+length = 8
+atkType = 11
+
+[node name="Sprite" type="Sprite2D" parent="1"]
+self_modulate = Color(0.380392, 0.121569, 0.690196, 1)
+clip_children = 2
+rotation = -3.14159
+centered = false
+offset = Vector2(-10, 0)
+
+[node name="2" type="Sprite2D" parent="1/Sprite"]
+modulate = Color(0.380392, 0.121569, 0.690196, 1)
+texture_repeat = 2
+texture = ExtResource("6_wybyv")
+centered = false
+offset = Vector2(-10, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 12)
+
+[node name="Shape" type="CollisionShape2D" parent="1"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_7va7t")
+debug_color = Color(1, 0.584314, 0, 0.501961)
+
+[node name="V" type="SubViewport" parent="1"]
+transparent_bg = true
+size = Vector2i(20, 12)
+
+[node name="Line" type="Line2D" parent="1/V"]
+texture_filter = 1
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 8)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="1/V/Line"]
+position = Vector2(0, 6)
+rotation = 3.14159
+texture = ExtResource("5_oxw2h")
+
+[node name="2" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(22, 100)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_ehk7s")
+Shield = 2
+length = 8
+atkType = 11
+
+[node name="Sprite" type="Sprite2D" parent="2"]
+self_modulate = Color(0.43539, 0.69, 0.1242, 1)
+clip_children = 2
+rotation = -3.14159
+centered = false
+offset = Vector2(-10, 0)
+
+[node name="2" type="Sprite2D" parent="2/Sprite"]
+modulate = Color(0.43539, 0.69, 0.1242, 1)
+texture_repeat = 2
+texture = ExtResource("6_wybyv")
+centered = false
+offset = Vector2(-10, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 12)
+
+[node name="Shape" type="CollisionShape2D" parent="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_7va7t")
+debug_color = Color(1, 0.584314, 0, 0.501961)
+
+[node name="V" type="SubViewport" parent="2"]
+transparent_bg = true
+size = Vector2i(20, 12)
+
+[node name="Line" type="Line2D" parent="2/V"]
+texture_filter = 1
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 8)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="2/V/Line"]
+position = Vector2(0, 6)
+rotation = 3.14159
+texture = ExtResource("5_oxw2h")
+
+[node name="3" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(-25, 100)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_ehk7s")
+Shield = 3
+length = 8
+atkType = 11
+
+[node name="Sprite" type="Sprite2D" parent="3"]
+self_modulate = Color(0.69, 0.1242, 0.15249, 1)
+clip_children = 2
+rotation = -3.14159
+centered = false
+offset = Vector2(-10, 0)
+
+[node name="2" type="Sprite2D" parent="3/Sprite"]
+modulate = Color(0.69, 0.1242, 0.15249, 1)
+texture_repeat = 2
+texture = ExtResource("6_wybyv")
+centered = false
+offset = Vector2(-10, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 12)
+
+[node name="Shape" type="CollisionShape2D" parent="3"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_7va7t")
+debug_color = Color(1, 0.584314, 0, 0.501961)
+
+[node name="V" type="SubViewport" parent="3"]
+transparent_bg = true
+size = Vector2i(20, 12)
+
+[node name="Line" type="Line2D" parent="3/V"]
+texture_filter = 1
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 8)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="3/V/Line"]
+position = Vector2(0, 6)
+rotation = 3.14159
+texture = ExtResource("5_oxw2h")
+
+[node name="4" type="Area2D" parent="."]
+texture_filter = 1
+position = Vector2(76, 100)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_ehk7s")
+Shield = 4
+length = 8
+atkType = 11
+
+[node name="Sprite" type="Sprite2D" parent="4"]
+self_modulate = Color(0.1242, 0.69, 0.66171, 1)
+clip_children = 2
+rotation = -3.14159
+centered = false
+offset = Vector2(-10, 0)
+
+[node name="2" type="Sprite2D" parent="4/Sprite"]
+modulate = Color(0.1242, 0.69, 0.66171, 1)
+texture_repeat = 2
+texture = ExtResource("6_wybyv")
+centered = false
+offset = Vector2(-10, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 12)
+
+[node name="Shape" type="CollisionShape2D" parent="4"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_7va7t")
+debug_color = Color(1, 0.584314, 0, 0.501961)
+
+[node name="V" type="SubViewport" parent="4"]
+transparent_bg = true
+size = Vector2i(20, 12)
+
+[node name="Line" type="Line2D" parent="4/V"]
+texture_filter = 1
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 8)
+width = 6.0
+
+[node name="T" type="Sprite2D" parent="4/V/Line"]
+position = Vector2(0, 6)
+rotation = 3.14159
+texture = ExtResource("5_oxw2h")

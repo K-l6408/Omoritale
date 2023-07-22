@@ -3,7 +3,7 @@
 extends Area2D
 
 enum uh {
-	Orange = Atk.Orange, White = Atk.White
+	Orange = Atk.Orange, White = Atk.White, Block = Atk.White + Atk.Block
 }
 
 @export var length = 50
@@ -26,12 +26,12 @@ func _process(_delta):
 	$Shape.position.y = -length / 2
 	$"Sprite/2".region_rect.size.y = length + 4
 	if atkType == Atk.White:
-		modulate = Color.WHITE
-	else:
-		modulate = GLOBALS.Colors["Orange"]
+		$Sprite.self_modulate = Color.WHITE
+	elif atkType == Atk.Orange:
+		$Sprite.self_modulate = GLOBALS.Colors["Orange"]
 	match CollisionLayer:
 		1:
-			$"Sprite/2".modulate = Color.WHITE
+			$"Sprite/2".modulate = $Sprite.self_modulate
 		2:
 			$"Sprite/2".modulate = GLOBALS.Colors["DarkOrange"]
 		3:

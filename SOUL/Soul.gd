@@ -32,6 +32,9 @@ class_name Soul
 @onready var purpleStartLin = Vector2(0, -current_line * line_spacing).rotated(deg_to_rad(line_rotation))
 @onready var purpleStartPos = purpleStartPnt + purpleStartLin
 
+@export_group("")
+@export var debug = 0.0 # use for whatever
+
 enum rSettings {
 	DEFAULT, MOUSE, LAST_KEY_PRESSED, INVERSE_LAST_KEY_PRESSED
 }
@@ -61,6 +64,7 @@ var plc       :  float
 var h = false
 var handle_rot = true
 var mouse = true
+
 
 func _ready():
 	plc = current_line
@@ -303,7 +307,6 @@ func _physics_process(delta):
 				if Input.is_action_just_released("accept"):
 					shoot()
 		if State.Teal:
-			State.Purple = false # fuck you.
 			set_collision_layer_value(3, not tping)
 			set_collision_mask_value(3, not tping)
 			$HitBox.set_collision_layer_value(3, not tping)
@@ -314,6 +317,9 @@ func _physics_process(delta):
 					position = $TP.position
 				else:
 					tping = true
+					if State.Purple:
+						var temp = ($TP.position - purpleStartPos).rotated(deg_to_rad(-line_rotation))
+						current_line = int(temp.y / line_spacing +.5)
 					$TP.position = position
 		if State.Teal and tping:
 			$TPLine.points[1] = ($TP.position - position) / scale
@@ -471,38 +477,47 @@ func handle_hitbox():
 		else:
 			if zero(Obj.get("delete")):
 				Obj.queue_free()
-	for s in $Shields.get_children():
+	if State.Green:
+		$"Shields/1".monitoring  = first_shield
+		$"Shields/1".visible     = first_shield
+		$"Shields/1".monitorable = first_shield
+		$"Shields/2".monitoring  = second_shield
+		$"Shields/2".monitorable = second_shield
+		$"Shields/2".visible     = second_shield
+		$"Shields/3".monitoring  = third_shield
+		$"Shields/3".monitorable = third_shield
+		$"Shields/3".visible     = third_shield
+		$"Shields/4".monitoring  = fourth_shield
+		$"Shields/4".monitorable = fourth_shield
+		$"Shields/4".visible     = fourth_shield
+		if first_shield:
+			for Obj in $"Shields/1".get_overlapping_areas():
+				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(1): 
+					if State.Blue and abs(wrapf(rotation_degrees - $"Shields/1".rotation_degrees, -180, 180)) < 50:
+						fall = Vector2(0,-150).rotated(rotation)
+						jumping = true
+		if second_shield:
+			for Obj in $"Shields/2".get_overlapping_areas():
+				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(2):
+					if State.Blue and abs(wrapf(180+rotation_degrees - $"Shields/2".rotation_degrees, -180, 180)) < 50:
+						fall = Vector2(0,-150).rotated(rotation)
+						jumping = true
+		if third_shield:
+			for Obj in $"Shields/3".get_overlapping_areas():
+				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(3):
+					if State.Blue and abs(wrapf(90+rotation_degrees - $"Shields/3".rotation_degrees, -180, 180)) < 50:
+						fall = Vector2(0,-150).rotated(rotation)
+						jumping = true
+		if fourth_shield:
+			for Obj in $"Shields/4".get_overlapping_areas():
+				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(4):
+					if State.Blue and abs(wrapf(-90+rotation_degrees - $"Shields/4".rotation_degrees, -180, 180)) < 50:
+						fall = Vector2(0,-150).rotated(rotation)
+						jumping = true
+	else: for s in $Shields.get_children():
 		s.monitoring  = false
 		s.monitorable = false
 		s.visible     = false
-	if State.Green and first_shield:
-		$"Shields/1".monitoring  = true
-		$"Shields/1".monitorable = true
-		$"Shields/1".visible     = true
-		for Obj in $"Shields/1".get_overlapping_areas():
-			if zero(Obj.get("atkType")) & Atk.Block:
-				Obj.Block(1)
-	if State.Green and second_shield:
-		$"Shields/2".monitoring  = true
-		$"Shields/2".monitorable = true
-		$"Shields/2".visible     = true
-		for Obj in $"Shields/2".get_overlapping_areas():
-			if zero(Obj.get("atkType")) & Atk.Block:
-				Obj.Block(2)
-	if State.Green and third_shield:
-		$"Shields/3".monitoring  = true
-		$"Shields/3".monitorable = true
-		$"Shields/3".visible     = true
-		for Obj in $"Shields/3".get_overlapping_areas():
-			if zero(Obj.get("atkType")) & Atk.Block:
-				Obj.Block(3)
-	if State.Green and fourth_shield:
-		$"Shields/4".monitoring  = true
-		$"Shields/4".monitorable = true
-		$"Shields/4".visible     = true
-		for Obj in $"Shields/4".get_overlapping_areas():
-			if zero(Obj.get("atkType")) & Atk.Block:
-				Obj.Block(4)
 
 func zero(arg):
 	if arg:

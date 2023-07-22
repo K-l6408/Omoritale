@@ -7,14 +7,14 @@
 [sub_resource type="Resource" id="Resource_obolm"]
 script = ExtResource("3_c8wr1")
 Red = true
-Orange = false
+Orange = true
 Yellow = true
 Green = true
 Mint = true
 Teal = true
 Blue = true
-Purple = false
-Value = 125
+Purple = true
+Value = 255
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,3 +23,6 @@ Value = 125
 [node name="Soul" parent="." instance=ExtResource("2_lawcr")]
 position = Vector2(477, 325)
 State = SubResource("Resource_obolm")
+line_spacing = 50
+line_rotation = -90
+line_extents = PackedVector2Array(-100, 100, -100, 100, -100, 100)
