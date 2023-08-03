@@ -3,7 +3,8 @@ extends Node2D
 var playerStats = Globals.PlayerStats.duplicate()
 var attackNum = 0
 var attacks = [
-	preload("res://Battles/Mari/Mintro.tscn")
+	preload("res://Battles/Mari/Mintro.tscn"),
+	preload("res://Battles/Mari/Two.tscn")
 ]
 
 func _ready():
@@ -29,10 +30,13 @@ func _process(delta):
 
 func attack():
 	attackNum += 1
-	if attackNum == 1:
-		var A = attacks[0].instantiate()
-		add_child(A)
-		await A.tree_exiting
+	var n
+	if attackNum == 1: n = 0
+	else: n = 1
+	var A = attacks[n].instantiate()
+	add_child(A)
+	A.connect("hit", gothit)
+	await A.tree_exiting
 	$UI.playerTurn()
 
 func the_ouchies(intensity):
@@ -51,3 +55,9 @@ func the_ouchies(intensity):
 	LB.queue_free()
 	if Globals.Enemies[0].Stat.HP <= 0:
 		pass
+
+func gothit(what):
+	if what is int:
+		playerStats.HP -= what
+	elif what == "Mari":
+		playerStats.HP -= Globals.Enemies[0].Stat.ATK / playerStats.DEF

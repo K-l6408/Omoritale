@@ -5,9 +5,10 @@ var ak48 = true # why did I name it ÐAT?
 var ak49 = 1    # ok, ðat was on purpose
 
 func _ready():
-	$Box.Size = Vector2(500, 75)
+	$Box.ChangeSize(Vector2(500, 75), 1)
 	for i in range(-240, 241, 20):
 		var I = $Leaf.duplicate()
+		I.T = randf_range(-PI, PI)
 		$Leaves.add_child(I)
 		I.position = Vector2(i, 0)
 		I.show()
@@ -25,6 +26,10 @@ func _process(delta):
 		$Soul.State.Value = 16
 	if has_node("Shockwave"):
 		ak47 = true
-		$Box.Size = Vector2(900, 200)
+		$Box.ChangeSize(Vector2(900, 200), 0.5)
 		await get_tree().create_timer(3).timeout
 		queue_free()
+
+func h(wh): emit_signal("hit", wh)
+
+signal hit(what)

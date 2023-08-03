@@ -3,24 +3,17 @@
 [ext_resource type="Script" path="res://Bullet Boards/BulletBox.gd" id="1_k0y28"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_qa7qs"]
-a = Vector2(-100.5, 0)
-b = Vector2(100.5, 0)
+resource_local_to_scene = true
+b = Vector2(0, 0)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0v8fa"]
-a = Vector2(0, -100)
-b = Vector2(0, 100)
+resource_local_to_scene = true
+b = Vector2(0, 0)
 
 [node name="Box" type="CanvasGroup"]
 position = Vector2(475, 325)
 script = ExtResource("1_k0y28")
 Size = Vector2(201, 200)
-
-[node name="Green" type="Line2D" parent="."]
-position = Vector2(-100.5, -100)
-points = PackedVector2Array(0, 0, 0, 200, 201, 200, 201, 0, 0, 0)
-default_color = Color(1, 0, 1, 1)
-begin_cap_mode = 1
-end_cap_mode = 1
 
 [node name="Black" type="ColorRect" parent="."]
 offset_left = -100.5
@@ -28,6 +21,14 @@ offset_top = -100.0
 offset_right = 100.5
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
+
+[node name="Green" type="Line2D" parent="."]
+position = Vector2(-100.5, -100)
+points = PackedVector2Array(0, 0, 0, 200, 201, 200, 201, 0, 0, 0)
+width = 5.0
+default_color = Color(1, 0, 1, 1)
+begin_cap_mode = 1
+end_cap_mode = 1
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2(-100.5, -100)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6a7uw0uss7cl"]
+
+[ext_resource type="Script" path="res://Battles/Mari/Leaf.gd" id="1_bcrx7"]
+[ext_resource type="Texture2D" uid="uid://bleglm40srw8c" path="res://Assets/Sprites/mari :)/leaf.png" id="2_ft3cx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yp5sa"]
+radius = 5.65686
+height = 22.6274
+
+[node name="Leaf" type="Area2D"]
+position = Vector2(0, -120)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_bcrx7")
+atkType = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.785397
+shape = SubResource("CapsuleShape2D_yp5sa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ft3cx")

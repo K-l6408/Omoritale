@@ -23,8 +23,8 @@ Green = false
 Mint = false
 Teal = false
 Blue = true
-Purple = true
-Value = 192
+Purple = false
+Value = 64
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnupx"]
 atlas = ExtResource("5_07fqv")
@@ -359,9 +359,7 @@ position = Vector2(480, 360)
 position = Vector2(480, 360)
 motion_mode = 0
 State = SubResource("Resource_8iuds")
-line_number = 1
-line_rotation = 90
-current_line = 0
+line_rotation = 0
 
 [node name="Combo" type="AnimatedSprite2D" parent="."]
 visible = false

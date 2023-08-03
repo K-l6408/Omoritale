@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkd4xn8goeiig"]
+
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_7dwq1"]
+[ext_resource type="PackedScene" uid="uid://bg5qgt3481ojs" path="res://Battles/Mari/Wind.tscn" id="2_dxitl"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_571l5"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_yrjha"]
+
+[sub_resource type="Resource" id="Resource_innpu"]
+script = ExtResource("4_yrjha")
+Red = false
+Orange = false
+Yellow = false
+Green = false
+Mint = true
+Teal = false
+Blue = false
+Purple = false
+Value = 16
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Box" parent="." instance=ExtResource("1_7dwq1")]
+position = Vector2(492, 346)
+
+[node name="Wind" parent="." instance=ExtResource("2_dxitl")]
+position = Vector2(492, 372)
+rotation = -1.5708
+Size = Vector2i(150, 200)
+
+[node name="Soul" parent="." instance=ExtResource("3_571l5")]
+position = Vector2(491, 284)
+State = SubResource("Resource_innpu")

@@ -1,5 +1,7 @@
 extends Area2D
 
+const Shockwave = true
+
 func _physics_process(delta):
 	scale.x += delta
 	scale.y += delta

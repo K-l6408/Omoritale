@@ -45,7 +45,7 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn0pk"]
 shader = ExtResource("5_0ccog")
 
-[sub_resource type="Resource" id="Resource_b74fp"]
+[sub_resource type="Resource" id="Resource_y5156"]
 resource_local_to_scene = true
 script = ExtResource("10_mwgbq")
 HP = 26
@@ -96,7 +96,7 @@ region_enabled = true
 region_rect = Rect2(-10, 0, 102, 87)
 
 [node name="UI" parent="." instance=ExtResource("7_krltc")]
-PlayerStats = SubResource("Resource_b74fp")
+PlayerStats = SubResource("Resource_y5156")
 DialogueSource = "res://Dialogue/marifight.dialogue"
 DialogueText = "FlTxt0"
 

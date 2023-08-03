@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg5qgt3481ojs"]
+
+[ext_resource type="Script" path="res://Battles/Mari/Wind.gd" id="1_ds6p7"]
+[ext_resource type="Texture2D" uid="uid://gutfnwu4fkek" path="res://Assets/Sprites/mari :)/Wind.png" id="2_nnl75"]
+[ext_resource type="Shader" path="res://Battles/Mari/Wind.gdshader" id="2_txaso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uslhm"]
+resource_local_to_scene = true
+size = Vector2(150, 150)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aihxy"]
+shader = ExtResource("2_txaso")
+
+[node name="Wind" type="Area2D"]
+script = ExtResource("1_ds6p7")
+Size = Vector2i(150, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uslhm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_aihxy")
+texture = ExtResource("2_nnl75")
+region_enabled = true
+region_rect = Rect2(0, 0, 150, 150)

@@ -1,15 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://g7q161wbu2r1"]
+[gd_scene load_steps=7 format=3 uid="uid://g7q161wbu2r1"]
 
 [ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_c3hej"]
 [ext_resource type="Script" path="res://Battles/Mari/Mintro.gd" id="1_lsobv"]
-[ext_resource type="Script" path="res://Battles/Mari/Leaf.gd" id="3_3j68d"]
+[ext_resource type="PackedScene" uid="uid://c6a7uw0uss7cl" path="res://Battles/Mari/Leaf.tscn" id="3_3fika"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_5hsup"]
-[ext_resource type="Texture2D" uid="uid://bleglm40srw8c" path="res://Assets/Sprites/mari :)/leaf.png" id="3_g4nlb"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_lnt7d"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yp5sa"]
-radius = 5.65686
-height = 22.6274
 
 [sub_resource type="Resource" id="Resource_oqteb"]
 script = ExtResource("4_lnt7d")
@@ -32,19 +27,8 @@ script = ExtResource("1_lsobv")
 position = Vector2(0, 0)
 Size = Vector2(900, 200)
 
-[node name="Leaf" type="Area2D" parent="."]
+[node name="Leaf" parent="." instance=ExtResource("3_3fika")]
 visible = false
-position = Vector2(0, -120)
-scale = Vector2(1.5, 1.5)
-script = ExtResource("3_3j68d")
-atkType = 35
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Leaf"]
-rotation = -0.785397
-shape = SubResource("CapsuleShape2D_yp5sa")
-
-[node name="Sprite2D" type="Sprite2D" parent="Leaf"]
-texture = ExtResource("3_g4nlb")
 
 [node name="Soul" parent="." instance=ExtResource("3_5hsup")]
 position = Vector2(480, 435)
@@ -52,3 +36,6 @@ State = SubResource("Resource_oqteb")
 
 [node name="Leaves" type="Node2D" parent="."]
 position = Vector2(0, -120)
+
+[connection signal="hurt" from="Soul" to="." method="h"]
+[connection signal="hurt_fixed" from="Soul" to="." method="h"]

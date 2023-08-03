@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://dobffe4l8ach8"]
+
+[ext_resource type="Script" path="res://Battles/Mari/Two.gd" id="1_107l4"]
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_meohg"]
+[ext_resource type="PackedScene" uid="uid://bg5qgt3481ojs" path="res://Battles/Mari/Wind.tscn" id="2_ab4ta"]
+[ext_resource type="Texture2D" uid="uid://bf2geakfel0ed" path="res://Assets/Sprites/Warn.png" id="2_c6gf1"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="4_kjdu5"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="5_ooqpw"]
+[ext_resource type="AudioStream" uid="uid://cyi8myfkvggxn" path="res://Assets/Audio/Warn.wav" id="7_duy8x"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_r1rb0"]
+resource_local_to_scene = true
+a = Vector2(-450, 0)
+b = Vector2(450, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_di7mp"]
+resource_local_to_scene = true
+a = Vector2(0, -100)
+b = Vector2(0, 100)
+
+[sub_resource type="Resource" id="Resource_wivf4"]
+script = ExtResource("5_ooqpw")
+Red = false
+Orange = false
+Yellow = false
+Green = false
+Mint = true
+Teal = false
+Blue = false
+Purple = false
+Value = 16
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(480, 435)
+script = ExtResource("1_107l4")
+
+[node name="Box" parent="." instance=ExtResource("1_meohg")]
+position = Vector2(0, 0)
+Size = Vector2(900, 200)
+
+[node name="Black" parent="Box" index="0"]
+clip_contents = true
+offset_left = -450.0
+offset_right = 450.0
+
+[node name="Leaves" type="Node2D" parent="Box/Black" index="0"]
+position = Vector2(100, 0)
+
+[node name="Leaves2" type="Node2D" parent="Box/Black" index="1"]
+position = Vector2(800, 0)
+
+[node name="Warn" type="Sprite2D" parent="Box/Black" index="2"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(100, 250)
+scale = Vector2(2, 2)
+texture = ExtResource("2_c6gf1")
+region_enabled = true
+region_rect = Rect2(-45, -110, 100, 250)
+
+[node name="Warn2" type="Sprite2D" parent="Box/Black" index="3"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(800, 250)
+scale = Vector2(2, 2)
+texture = ExtResource("2_c6gf1")
+region_enabled = true
+region_rect = Rect2(-45, -110, 100, 250)
+
+[node name="Wind" parent="Box/Black" index="4" instance=ExtResource("2_ab4ta")]
+position = Vector2(450, 75)
+scale = Vector2(2, 2)
+Size = Vector2i(250, 0)
+
+[node name="Wind2" parent="Box/Black" index="5" instance=ExtResource("2_ab4ta")]
+position = Vector2(450, 425)
+rotation = -3.14159
+scale = Vector2(2, 2)
+Size = Vector2i(250, 0)
+
+[node name="Green" parent="Box" index="1"]
+position = Vector2(-450, -100)
+points = PackedVector2Array(0, 0, 0, 200, 900, 200, 900, 0, 0, 0)
+
+[node name="Walls" parent="Box" index="2"]
+position = Vector2(-450, -100)
+
+[node name="T" parent="Box/Walls" index="0"]
+position = Vector2(450, 0)
+shape = SubResource("SegmentShape2D_r1rb0")
+
+[node name="B" parent="Box/Walls" index="1"]
+position = Vector2(450, 200)
+shape = SubResource("SegmentShape2D_r1rb0")
+
+[node name="L" parent="Box/Walls" index="2"]
+shape = SubResource("SegmentShape2D_di7mp")
+
+[node name="R" parent="Box/Walls" index="3"]
+position = Vector2(900, 100)
+shape = SubResource("SegmentShape2D_di7mp")
+
+[node name="Box2" parent="." instance=ExtResource("1_meohg")]
+position = Vector2(0, 0)
+Size = Vector2(0, 0)
+
+[node name="Soul" parent="." instance=ExtResource("4_kjdu5")]
+position = Vector2(127, 435)
+State = SubResource("Resource_wivf4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_duy8x")
+
+[connection signal="hurt" from="Soul" to="." method="h"]
+[connection signal="hurt_fixed" from="Soul" to="." method="h"]
+
+[editable path="Box"]
