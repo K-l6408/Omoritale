@@ -19,16 +19,49 @@ content_margin_right = 5.0
 content_margin_bottom = 5.0
 draw_center = false
 
-[node name="ACT" type="ColorRect"]
-custom_minimum_size = Vector2(900, 200)
-offset_left = 30.0
-offset_top = 333.0
-offset_right = 930.0
-offset_bottom = 533.0
-color = Color(0, 0, 0, 1)
+[node name="ACT" type="Node2D"]
+z_index = 2
 script = ExtResource("1_f4r73")
 
-[node name="Rect" type="ColorRect" parent="."]
+[node name="Option" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+texture_filter = 2
+clip_contents = false
+offset_left = 30.0
+offset_top = 315.0
+offset_right = 930.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+focus_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_4va2e")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_x148y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bualh")
+bbcode_enabled = true
+text = "Response"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("3_y6n25")
+
+[node name="Soul" type="Sprite2D" parent="Option"]
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_lxnxe")
+
+[node name="PPL" type="ColorRect" parent="."]
+offset_left = 30.0
+offset_top = 333.0
+offset_right = 480.0
+offset_bottom = 543.0
+color = Color(0, 0, 0, 1)
+
+[node name="Rect" type="ColorRect" parent="PPL"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -42,42 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6, 0.2, 1, 1)
 
-[node name="Person" type="RichTextLabel" parent="Rect"]
-unique_name_in_owner = true
-visible = false
-z_index = 1
-texture_filter = 2
-clip_contents = false
-layout_mode = 2
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 905.0
-offset_bottom = 155.0
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("2_4va2e")
-theme_override_font_sizes/normal_font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxFlat_x148y")
-theme_override_styles/normal = SubResource("StyleBoxFlat_bualh")
-bbcode_enabled = true
-text = "Response
-
-
-A"
-fit_content = true
-scroll_active = false
-shortcut_keys_enabled = false
-meta_underlined = false
-hint_underlined = false
-script = ExtResource("3_y6n25")
-
-[node name="Soul" type="Sprite2D" parent="Rect/Person"]
-texture_filter = 1
-position = Vector2(18, 21)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_lxnxe")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Rect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PPL/Rect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,3 +86,42 @@ offset_right = -17.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ACT" type="ColorRect" parent="."]
+offset_left = 480.0
+offset_top = 333.0
+offset_right = 930.0
+offset_bottom = 543.0
+color = Color(0, 0, 0, 1)
+
+[node name="Rect" type="ColorRect" parent="ACT"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.2, 1, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ACT/Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 11.0
+offset_right = -9.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ACT/Rect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

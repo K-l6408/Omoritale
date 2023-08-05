@@ -57,7 +57,7 @@ var PlayerStats := Stats.new():
 		PlayerStats.HP = PlayerStats.MHP
 		PlayerStats.JP = 0
 		PlayerStats.ATK = LV * 1.5
-		PlayerStats.DEF = LV * 0.5 + 0.5
+		PlayerStats.DEF = 2.0 - 1.0 / LV
 		PlayerStats.MAG = LV * .75
 		return PlayerStats
 var TIME = 0

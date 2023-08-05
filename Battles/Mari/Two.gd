@@ -10,7 +10,7 @@ func _ready():
 	go()
 
 func go():
-	for j in 7:
+	for _j in 7:
 		var i = randi_range(0, 1)
 		if i % 2: $Box/Black/Warn.modulate.a = 1
 		else: $Box/Black/Warn2.modulate.a = 1

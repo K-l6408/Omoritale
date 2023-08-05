@@ -1,16 +1,6 @@
-extends Node2D
+extends Battle
 
-var playerStats = Globals.PlayerStats.duplicate()
-var attackNum = 0
-var attacks = [
-	preload("res://Battles/Mari/Mintro.tscn"),
-	preload("res://Battles/Mari/Two.tscn")
-]
-
-func _ready():
-	$UI.PlayerStats = playerStats
-	$UI.LevelOfViolence = Globals.LV
-	
+func _on_start():
 	var M = Enemy.new()
 	var S = Stats.new()
 	S.HP  = 100
@@ -23,41 +13,29 @@ func _ready():
 	M.Position = 456
 	M.Scale = 0.8
 	M.Stat = S
+	M.ACTs = [
+		"Check", "Talk"
+	]
 	Globals.Enemies = [M]
+	$UI.DialogueSource = "res://Dialogue/marifight.dialogue"
+	attacks = [
+		load("res://Battles/Mari/Mintro.tscn"),
+		load("res://Battles/Mari/Two.tscn")
+	]
 
-func _process(delta):
-	playerStats.JP += delta / 5
+func _on_frame(_delta):
+	pass
 
-func attack():
-	attackNum += 1
-	var n
-	if attackNum == 1: n = 0
-	else: n = 1
-	var A = attacks[n].instantiate()
-	add_child(A)
-	A.connect("hit", gothit)
-	await A.tree_exiting
-	$UI.playerTurn()
+func get_dialogue_title():
+	return "FlTxt0"
 
-func the_ouchies(intensity):
-	Globals.Enemies[0].Stat.HP -= max(intensity * playerStats.ATK * 15 / Globals.Enemies[0].Stat.DEF, 0)
-	Globals.Enemies[0].Stat.DEF = max(Globals.Enemies[0].Stat.DEF * 0.95, 1)
-	$Label/ProgressBar.value = Globals.Enemies[0].Stat.HP
-	$Label/ProgressBar.max_value = Globals.Enemies[0].Stat.MHP
-	var LB = $Label.duplicate()
-	$Damage.add_child(LB)
-	LB.show()
-	LB.text = "%d" % max(ceil(intensity * playerStats.ATK * 15 / Globals.Enemies[0].Stat.DEF), 0)
-	var TW = create_tween()
-	TW.tween_property(LB, "position", Vector2(400, 100), .3).set_trans(Tween.TRANS_CUBIC)
-	TW.tween_property(LB, "position", Vector2(400, 170), .7).set_trans(Tween.TRANS_CUBIC)
-	await TW.finished
-	LB.queue_free()
-	if Globals.Enemies[0].Stat.HP <= 0:
-		pass
+func choose_attack():
+	if attackNum == 1: return 0
+	else: return 1
 
-func gothit(what):
-	if what is int:
-		playerStats.HP -= what
-	elif what == "Mari":
-		playerStats.HP -= Globals.Enemies[0].Stat.ATK / playerStats.DEF
+func act(enemy, action):
+	if enemy != "Mari": return
+	match action:
+		"Check":
+			$UI.DialogueText = "Check"
+			$UI.dialogue()

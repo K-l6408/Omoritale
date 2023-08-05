@@ -11,3 +11,8 @@ class_name Stats
 @export var ATK : float = 1
 @export var DEF : float = 1
 @export var MAG : float = 1
+
+var IHP :
+	get: return HP as int
+var IJP :
+	get: return JP as int

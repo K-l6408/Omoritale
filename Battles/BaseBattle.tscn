@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpb1nvjt0w7yn"]
+
+[ext_resource type="PackedScene" uid="uid://lfs4rjkd1rts" path="res://Menus/UI/UI.tscn" id="1_65q1f"]
+[ext_resource type="Script" path="res://Battles/BaseBattle.gd" id="1_ncjgo"]
+[ext_resource type="Script" path="res://Battles/Stats.gd" id="2_4o6j6"]
+[ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="3_aeao1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfstx"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x30s"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_uhokh"]
+resource_local_to_scene = true
+script = ExtResource("2_4o6j6")
+HP = 26
+MHP = 26
+EHP = Array[int]([])
+JP = 0
+MJP = 20
+EJP = Array[int]([])
+ATK = 1.0
+DEF = 1.0
+MAG = 1.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ncjgo")
+
+[node name="Damage" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = 398.0
+offset_top = 168.0
+offset_right = 578.0
+offset_bottom = 208.0
+pivot_offset = Vector2(90, 20)
+theme_override_colors/font_color = Color(0.768627, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("3_aeao1")
+theme_override_font_sizes/font_size = 30
+text = "0.0001"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Label"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -33.0
+offset_right = 176.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yfstx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6x30s")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="UI" parent="." instance=ExtResource("1_65q1f")]
+z_index = 2
+PlayerStats = SubResource("Resource_uhokh")
+
+[connection signal="Ask" from="UI" to="." method="Act"]
+[connection signal="YourTurn" from="UI" to="." method="attack"]

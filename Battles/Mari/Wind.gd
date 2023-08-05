@@ -3,7 +3,7 @@ extends Area2D
 
 @export var Size = Vector2i(100, 100)
 
-func _process(delta):
+func _process(_delta):
 	if Size.x < 0: Size.x = 0
 	if Size.y < 0: Size.y = 0
 	$CollisionShape2D.shape.size = Size

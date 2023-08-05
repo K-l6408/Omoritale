@@ -7,7 +7,8 @@ extends Control
 @export var DialogueSource := "res://Dialogue/"
 @export var DialogueText   := ""
 var T = 1
-var C : Color
+var C  := Color.WHITE
+var TC := Color.WHITE
 var EffectNum : int
 var Fightscn = preload("res://Menus/UI/FIGHT.tscn")
 var Actscn = preload("res://Menus/UI/ACT.tscn")
@@ -15,7 +16,6 @@ var Actscn = preload("res://Menus/UI/ACT.tscn")
 func _ready():
 	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
 	$TextBox/Balloon.position = position + Vector2(30, 333)
-	if not Engine.is_editor_hint(): playerTurn(Color.WHITE)
 	for c in EffectNum:
 		var e = ColorRect.new()
 		e.color = EffectColors[c]
@@ -35,14 +35,18 @@ func _ready():
 
 func playerTurn(defclr := GLOBALS.Colors["Green"]):
 	C = defclr
-	$TextBox.show()
-	$TextBox/Balloon/Margin/VBox.show()
-	$TextBox.start(load(DialogueSource), DialogueText)
+	TC = Color.WHITE
+	dialogue()
 	T = 0
 	await $TextBox.finished
 	$TextBox.show()
 	$TextBox/Balloon/Margin/VBox.hide()
 	$Buttons/FIGHT.grab_focus()
+
+func dialogue():
+	$TextBox.show()
+	$TextBox/Balloon/Margin/VBox.show()
+	$TextBox.start(load(DialogueSource), DialogueText)
 
 func _process(delta):
 	T += delta
@@ -70,7 +74,7 @@ func _process(delta):
 		j += $JP/Bar.get_child(e).size.x
 	$Effect.text += "[/center]"
 	$LV.text = "LV " + str(LevelOfViolence)
-	$TextBox/Balloon/Rect.modulate = lerp(C, Color.WHITE, T)
+	$TextBox/Balloon/Rect.modulate = lerp(C, TC, T)
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
@@ -87,8 +91,21 @@ func Act():
 	$TextBox.hide()
 	var A = Actscn.instantiate()
 	add_child(A)
-	if await A.fuck >= 0: emit_signal("YourTurn")
-	else: playerTurn(A.get_node("Rect").color)
-	A.queue_free()
+	A.connect("nvm", func():
+		playerTurn(A.get_node("ACT/Rect").color)
+		A.queue_free()
+	)
+	A.connect("act", func(enm,act):
+		await A.done
+		emit_signal("Ask", enm, act)
+		C  = A.get_node("ACT/Rect").color
+		TC = A.get_node("ACT/Rect").color
+		if $TextBox.visible:
+			await $TextBox.finished
+			TC = Globals.Colors["DarkGreen"]
+		emit_signal("YourTurn")
+	)
 
 signal YourTurn()
+signal Ask(enm, act)
+signal What()

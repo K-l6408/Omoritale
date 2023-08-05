@@ -1,3 +1,6 @@
+~ Check
+MARI - {{Globals.Enemies[0].Stat.ATK}} ATK, {{Globals.Enemies[0].Stat.DEF}} DEF, {{Globals.Enemies[0].Stat.MAG}} MAG,\n{{Globals.Enemies[0].Stat.IHP}} / {{Globals.Enemies[0].Stat.MHP}} HP
+=> END
 ~ FlTxt0
 ...
 => END

@@ -35,12 +35,12 @@ func ChangeSize(_N : Vector2, _T : float):
 	S = Size
 	T = 0
 	N = _N
-	D = _T
+	D = 1/_T
 
-func InstChangeSize(N : Vector2):
+func InstChangeSize(_N : Vector2):
 	for j in get_children():
-		j.position = -N/2
-	Size = N
+		j.position = -_N/2
+	Size = _N
 	SizeChanged()
 
 func SizeChanged():
