@@ -40,6 +40,7 @@ script = ExtResource("3_xji0g")
 [node name="MURDER" type="Area2D" parent="."]
 visible = false
 top_level = true
+z_index = 7
 texture_filter = 1
 position = Vector2(43, 620)
 scale = Vector2(4.5, 4.5)

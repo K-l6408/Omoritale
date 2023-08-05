@@ -6,7 +6,7 @@ func _on_start():
 	S.HP  = 100
 	S.MHP = 100
 	S.ATK = 4
-	S.DEF = Globals.LV
+	S.DEF = 1 + Globals.LV / 1.5
 	S.MAG = 7
 	M.Name = "Mari"
 	M.Check = "uh"

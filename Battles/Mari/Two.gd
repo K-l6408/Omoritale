@@ -27,9 +27,9 @@ func go():
 	await get_tree().create_timer(2).timeout
 	time = 1
 	j = -1
-	$Box.ChangeSize(Vector2(900, 200), 0.5)
-	$Box2.ChangeSize(Vector2(0, 0), 0.5)
-	await get_tree().create_timer(4).timeout
+	$Box.ChangeSize(Vector2(900, 200), 2)
+	$Box2.ChangeSize(Vector2(0, 0), 2)
+	await get_tree().create_timer(2.5).timeout
 	queue_free()
 
 func _process(delta):

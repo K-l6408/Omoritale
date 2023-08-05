@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxki262ka5pom"]
+[gd_scene load_steps=16 format=3 uid="uid://cxki262ka5pom"]
 
 [ext_resource type="Script" path="res://Battles/Mari/MariFight.gd" id="1_g51ic"]
 [ext_resource type="Texture2D" uid="uid://dx1mfbspgloef" path="res://Assets/Sprites/mari :)/base.png" id="1_k7wqo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bltuker4ak530" path="res://Assets/Sprites/mari :)/smug.png" id="4_fnrn2"]
 [ext_resource type="Shader" path="res://Shaders/Mari.gdshader" id="5_0ccog"]
 [ext_resource type="Texture2D" uid="uid://iuhwbm6rkjxy" path="res://Assets/Sprites/mari :)/hair.png" id="6_exnmf"]
+[ext_resource type="Texture2D" uid="uid://b083gyixddgvs" path="res://Assets/Sprites/mari :)/sad.png" id="6_im7tq"]
 [ext_resource type="Script" path="res://Battles/Stats.gd" id="10_mwgbq"]
 
 [sub_resource type="Resource" id="Resource_sgxjl"]
@@ -29,6 +30,14 @@ size = Vector2(180, 71)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v8s32"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_im7tq")
+}],
+"loop": true,
+"name": &":(",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ere3v")
@@ -78,7 +87,7 @@ texture = ExtResource("1_k7wqo")
 [node name="Face" type="AnimatedSprite2D" parent="Mari" index="0"]
 position = Vector2(0.5, -52)
 sprite_frames = SubResource("SpriteFrames_v8s32")
-animation = &">:3"
+animation = &":("
 
 [node name="Hair" type="Sprite2D" parent="Mari" index="1"]
 show_behind_parent = true

@@ -31,6 +31,7 @@ Purple = false
 Value = 16
 
 [node name="Node2D" type="Node2D"]
+z_index = 4
 position = Vector2(480, 435)
 script = ExtResource("1_107l4")
 
@@ -103,6 +104,7 @@ position = Vector2(0, 0)
 Size = Vector2(0, 0)
 
 [node name="Soul" parent="." instance=ExtResource("4_kjdu5")]
+z_index = 4
 position = Vector2(127, 435)
 State = SubResource("Resource_wivf4")
 
