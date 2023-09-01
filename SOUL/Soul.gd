@@ -89,39 +89,19 @@ func setState(value:SoulState):
 			tw.tween_property(self, "arc", 360 * int(State.Green), .5)
 	)
 	State = value
-	queue_redraw()
-
-func _draw():
-	if State.Value == SoulState.GREEN:
-		draw_circle_arc(Vector2.ZERO, 45, 0, 0, arc, Color(0,.5,0))
-		draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color.BLACK)
-	else:
-		draw_circle_arc(Vector2.ZERO, 45, 42, 0, arc, Color(0,.5,0,.5))
-		draw_circle_arc(Vector2.ZERO, 42, 0, 0, arc, Color(0,0,0,.5))
-
-func draw_circle_arc(center, radius, radius2, angle_from, angle_to, color):
-	var nb_points = 8
-	var points_arc = PackedVector2Array()
-	var colors = PackedColorArray([color])
-	for i in range(nb_points + 1):
-		var angle_point = deg_to_rad(angle_from + (i + .5) * (angle_to - angle_from) / nb_points - 90)
-		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
-	for i in range(nb_points + 1, 0, -1):
-		var angle_point = deg_to_rad(angle_from + (i + .5) * (angle_to - angle_from) / nb_points - 90)
-		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius2)
-	draw_polygon(points_arc, colors)
 
 func _process(_delta):
-	queue_redraw()
-	$Shields.position    = global_position
+	$Shields.position = global_position
+	$Shields.scale    = scale
+	$Line2D.visible   = State.Green
 	if not State.Teal or not tping: $Shields.setang(pvel.angle() + PI/2)
-	$Shields.scale       =  scale
 	$Trail.process_material.angle_min = -$Sprite2D.global_rotation_degrees
 	$Trail.process_material.angle_max = -$Sprite2D.global_rotation_degrees
 	$Trail.process_material.scale_min = min(global_scale.x, global_scale.y)
 	$Trail.process_material.scale_max = max(global_scale.x, global_scale.y)
 	$Trail.emitting = State.Orange
 	$Sprite/Bounce.visible = bounced and State.Blue
+	$Sprite2D/Charge.visible = State.Orange
 	modulate.a = 1 if iframes <= 0 else (.33 if fmod(iframes, .5) > .25 else .66)
 
 func _physics_process(delta):
@@ -237,6 +217,9 @@ func _physics_process(delta):
 						velocity = p.rotated(global_rotation)
 					else:
 						velocity /= .375
+				$Sprite2D/Charge.region_rect.size.y = 20*dashcharg/1.5
+				$Sprite2D/Charge.region_rect.position.y = 20-20*dashcharg/1.5
+				$Sprite2D/Charge.position.y = 10-20*dashcharg/1.5
 				if State.Purple:
 					if dashcharg > 0:
 						velocity -= Vector2(px, 0).rotated(global_rotation + deg_to_rad(line_rotation))
@@ -284,7 +267,7 @@ func _physics_process(delta):
 				elif Input.is_action_just_pressed("cancel"):
 					mintshr = 3
 					var s = swv.instantiate()
-					s.scale = Vector2(default_size, default_size)
+					s.scale = Vector2(default_size, default_size) * 1.3
 					add_sibling(s)
 					s.global_position = global_position
 				if mintshr > 0:
@@ -464,7 +447,7 @@ func handle_hitbox():
 					emit_signal("hurt", Obj.get("attacker"))
 					$Aud.stream = ow
 					$Aud.play()
-				else:
+				elif Obj.get("damage") != null:
 					if zero(Obj.damage) > 0:
 						$Aud.stream = ow
 						$Aud.play()
@@ -493,25 +476,25 @@ func handle_hitbox():
 		if first_shield:
 			for Obj in $"Shields/1".get_overlapping_areas():
 				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(1): 
-					if State.Blue and abs(wrapf(rotation_degrees - $"Shields/1".rotation_degrees, -180, 180)) < 50:
+					if State.Blue and abs(wrapf(180+rotation_degrees - $Shields.rotation_degrees, -180, 180)) < 50:
 						fall = Vector2(0,-150).rotated(rotation)
 						jumping = true
 		if second_shield:
 			for Obj in $"Shields/2".get_overlapping_areas():
 				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(2):
-					if State.Blue and abs(wrapf(180+rotation_degrees - $"Shields/2".rotation_degrees, -180, 180)) < 50:
+					if State.Blue and abs(wrapf(rotation_degrees - $Shields.rotation_degrees, -180, 180)) < 50:
 						fall = Vector2(0,-150).rotated(rotation)
 						jumping = true
 		if third_shield:
 			for Obj in $"Shields/3".get_overlapping_areas():
 				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(3):
-					if State.Blue and abs(wrapf(90+rotation_degrees - $"Shields/3".rotation_degrees, -180, 180)) < 50:
+					if State.Blue and abs(wrapf(90+rotation_degrees - $Shields.rotation_degrees, -180, 180)) < 50:
 						fall = Vector2(0,-150).rotated(rotation)
 						jumping = true
 		if fourth_shield:
 			for Obj in $"Shields/4".get_overlapping_areas():
 				if zero(Obj.get("atkType")) & Atk.Block: if Obj.Block(4):
-					if State.Blue and abs(wrapf(-90+rotation_degrees - $"Shields/4".rotation_degrees, -180, 180)) < 50:
+					if State.Blue and abs(wrapf(-90+rotation_degrees - $Shields.rotation_degrees, -180, 180)) < 50:
 						fall = Vector2(0,-150).rotated(rotation)
 						jumping = true
 	else: for s in $Shields.get_children():

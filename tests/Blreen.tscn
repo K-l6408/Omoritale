@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chwwjjvfyy3f1"]
+[gd_scene load_steps=13 format=3 uid="uid://chwwjjvfyy3f1"]
 
 [ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_6kp0f"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_6uft0"]
@@ -19,8 +19,20 @@ Blue = true
 Purple = false
 Value = 72
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_h6frv"]
+viewport_path = NodePath("1/V")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7va7t"]
 size = Vector2(4, 6)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f22mo"]
+viewport_path = NodePath("2/V")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fcppt"]
+viewport_path = NodePath("3/V")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2it8c"]
+viewport_path = NodePath("4/V")
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(482, 325)
@@ -45,6 +57,7 @@ atkType = 11
 self_modulate = Color(0.380392, 0.121569, 0.690196, 1)
 clip_children = 2
 rotation = -3.14159
+texture = SubResource("ViewportTexture_h6frv")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -90,6 +103,7 @@ atkType = 11
 self_modulate = Color(0.43539, 0.69, 0.1242, 1)
 clip_children = 2
 rotation = -3.14159
+texture = SubResource("ViewportTexture_f22mo")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -124,7 +138,7 @@ texture = ExtResource("5_oxw2h")
 
 [node name="3" type="Area2D" parent="."]
 texture_filter = 1
-position = Vector2(-25, 100)
+position = Vector2(-27, 100)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("4_ehk7s")
 Shield = 3
@@ -135,6 +149,7 @@ atkType = 11
 self_modulate = Color(0.69, 0.1242, 0.15249, 1)
 clip_children = 2
 rotation = -3.14159
+texture = SubResource("ViewportTexture_fcppt")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -180,6 +195,7 @@ atkType = 11
 self_modulate = Color(0.1242, 0.69, 0.66171, 1)
 clip_children = 2
 rotation = -3.14159
+texture = SubResource("ViewportTexture_2it8c")
 centered = false
 offset = Vector2(-10, 0)
 

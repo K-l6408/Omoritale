@@ -11,7 +11,7 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x30s"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="Resource" id="Resource_qj41t"]
+[sub_resource type="Resource" id="Resource_b70lu"]
 resource_local_to_scene = true
 script = ExtResource("2_4o6j6")
 HP = 26
@@ -60,7 +60,7 @@ show_percentage = false
 
 [node name="UI" parent="." instance=ExtResource("1_65q1f")]
 z_index = 2
-PlayerStats = SubResource("Resource_qj41t")
+PlayerStats = SubResource("Resource_b70lu")
 
 [connection signal="Ask" from="UI" to="." method="Act"]
 [connection signal="YourTurn" from="UI" to="." method="attack"]

@@ -70,7 +70,7 @@ func Interpolate(start:PackedVector2Array, end:PackedVector2Array, tt = 1.0):
 	lerping = true
 	if start.size() != end.size():
 		return false
-	Polygon = start
+	StartingPolygon = start
 	TargetPolygon = end
 	TimeItTakes = tt
 	await smoothed

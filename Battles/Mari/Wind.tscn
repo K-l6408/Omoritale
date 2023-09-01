@@ -10,6 +10,7 @@ size = Vector2(150, 150)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aihxy"]
 shader = ExtResource("2_txaso")
+shader_parameter/speed = 1.0
 
 [node name="Wind" type="Area2D"]
 script = ExtResource("1_ds6p7")

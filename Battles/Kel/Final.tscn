@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0cb1nxesi0w1"]
+[gd_scene load_steps=12 format=3 uid="uid://d0cb1nxesi0w1"]
 
 [ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="1_dmk8a"]
 [ext_resource type="Script" path="res://Battles/Kel/Final.gd" id="1_g5hin"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="2_c1mve"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="3_cijqh"]
+[ext_resource type="PackedScene" uid="uid://b8gh2n4hdiacv" path="res://Battles/Kel/Halfbone.tscn" id="3_io8hu"]
 [ext_resource type="PackedScene" uid="uid://jusk8r420yj3" path="res://Battles/Kel/Platform.tscn" id="5_gp4w5"]
 [ext_resource type="PackedScene" uid="uid://bjrh304ge3gkf" path="res://Battles/Kel/Bounce.tscn" id="6_mocyc"]
 [ext_resource type="PackedScene" uid="uid://3y31wmagh7ee" path="res://Battles/Kel/GravityArea.tscn" id="7_ldbay"]
@@ -29,13 +30,50 @@ script = ExtResource("1_g5hin")
 offset_left = -988.0
 offset_top = -644.0
 offset_right = 1993.0
-offset_bottom = 804.0
+offset_bottom = 1251.0
 color = Color(0, 0.0627451, 0.203922, 1)
 
 [node name="Pongon" parent="." instance=ExtResource("1_dmk8a")]
-StartingPolygon = PackedVector2Array(-1200, -200, -100, -200, -100, 160, -100, -200, 900, -200, 900, -400, 1000, -400, 1000, -700, 1200, -700, 1200, 200, -1200, 200)
+position = Vector2(480, 435)
+StartingPolygon = PackedVector2Array(-450, -100, 450, -100, 450, 100, -450, 100)
+TargetPolygon = PackedVector2Array(-450, -100, 450, -100, 450, 100, -450, 100)
+TimeItTakes = 0.0
+
+[node name="CollisionPolygon2D" parent="Pongon" index="0"]
+polygon = PackedVector2Array(-450, -100, 450, -100, 450, 100, -450, 100)
+
+[node name="Polygon2D" parent="Pongon" index="1"]
+self_modulate = Color(0, 0, 0, 1)
+clip_children = 2
+polygon = PackedVector2Array(-450, -100, 450, -100, 450, 100, -450, 100)
+
+[node name="Section 0" type="Node2D" parent="Pongon/Polygon2D" index="0"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-480, -435)
+
+[node name="Area2D" parent="Pongon/Polygon2D/Section 0" instance=ExtResource("3_io8hu")]
+position = Vector2(-546, 657)
+length = 8
+
+[node name="Platform2" parent="Pongon/Polygon2D/Section 0" instance=ExtResource("5_gp4w5")]
+position = Vector2(-413, 541)
+length = 100.0
+
+[node name="Bounce2" parent="Pongon/Polygon2D/Section 0/Platform2" instance=ExtResource("6_mocyc")]
+position = Vector2(23, -4)
+
+[node name="Bounce" parent="Pongon/Polygon2D/Section 0" instance=ExtResource("6_mocyc")]
+z_index = 2
+position = Vector2(-491, 635)
+
+[node name="Line2D" parent="Pongon" index="2"]
+points = PackedVector2Array(-450, -100, 450, -100, 450, 100, -450, 100, -450, -100)
+default_color = Color(1, 0, 1, 1)
 
 [node name="Section 1" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 75)
 
 [node name="NullArea" parent="Section 1" instance=ExtResource("8_5udvc")]
 position = Vector2(279, 362)
@@ -99,20 +137,9 @@ position = Vector2(-0.999969, 12)
 rotation = 1.57079
 length = 115
 
-[node name="Platform2" parent="Section 1" instance=ExtResource("5_gp4w5")]
-position = Vector2(-413, 466)
-length = 100.0
-
-[node name="Bounce2" parent="Section 1/Platform2" instance=ExtResource("6_mocyc")]
-position = Vector2(23, -4)
-
-[node name="Bounce" parent="Section 1" instance=ExtResource("6_mocyc")]
-position = Vector2(-491, 560)
-
-[node name="Bone" parent="Section 1" instance=ExtResource("9_ab34q")]
-position = Vector2(-533, 514)
-
 [node name="Section 2" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 75)
 
 [node name="Platforms" type="Node2D" parent="Section 2"]
 
@@ -138,6 +165,8 @@ offset_bottom = 557.0
 color = Color(0, 0, 0, 1)
 
 [node name="Section 3" type="Node2D" parent="."]
+visible = false
+position = Vector2(0, 75)
 
 [node name="Big bone" parent="Section 3" instance=ExtResource("9_ab34q")]
 position = Vector2(1628, 178)
@@ -173,11 +202,19 @@ position = Vector2(1580, -209)
 length = 190.0
 
 [node name="Soul" parent="." instance=ExtResource("2_c1mve")]
-position = Vector2(-708, 548)
+position = Vector2(480, 360)
 wall_min_slide_angle = 0.0
 State = SubResource("Resource_2ullb")
 
 [node name="Camera2D" type="Camera2D" parent="Soul"]
+enabled = false
 zoom = Vector2(2, 2)
+limit_top = -300
+limit_right = 1700
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(480, 360)
 
 [connection signal="body_entered" from="Section 1/NullArea/GravityArea2" to="." method="orange"]
+
+[editable path="Pongon"]

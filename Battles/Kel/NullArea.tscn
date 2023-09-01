@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx81lqm4aibsw"]
 
-[ext_resource type="Texture2D" uid="uid://carwtl4obbbdf" path="res://Assets/Sprites/Null.png" id="1_56dqa"]
+[ext_resource type="Texture2D" uid="uid://chgcequuv4prw" path="res://Assets/Sprites/Null.png" id="1_56dqa"]
 [ext_resource type="Script" path="res://Battles/Kel/NullArea.gd" id="1_xdtpq"]
 
 [node name="NullArea" type="Area2D"]
@@ -13,7 +13,7 @@ Polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-clip_children = 1
+clip_children = 2
 color = Color(1, 1, 1, 0.75)
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 

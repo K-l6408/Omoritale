@@ -22,8 +22,9 @@ Blue = false
 Purple = false
 Value = 8
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bhuf"]
-size = Vector2(36.6667, 5.33336)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gpmil"]
+a = Vector2(-5, 0)
+b = Vector2(5, 0)
 
 [sub_resource type="Gradient" id="Gradient_n3rwb"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -83,6 +84,7 @@ size = Vector2(12.7279, 12.7279)
 
 [node name="Soul" type="CharacterBody2D"]
 top_level = true
+z_index = 10
 texture_filter = 1
 position = Vector2(482, 324)
 scale = Vector2(1.1, 1.1)
@@ -98,6 +100,16 @@ current_line = 1
 [node name="Lines" type="Node2D" parent="."]
 top_level = true
 
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+z_as_relative = false
+points = PackedVector2Array(-8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8, -8, -16)
+width = 4.0
+default_color = Color(0, 0.501961, 0, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="Shields" type="Node2D" parent="."]
 top_level = true
 position = Vector2(482, 324)
@@ -111,64 +123,67 @@ monitorable = false
 
 [node name="Line2D" type="Line2D" parent="Shields/1"]
 position = Vector2(0, 7.62939e-06)
-points = PackedVector2Array(-18, -38, 15, -38, 0, 0)
-width = 5.0
+points = PackedVector2Array(-6, -16, 3, -16, 0, 0)
+width = 4.0
 default_color = Color(0.380392, 0.121569, 0.690196, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/1"]
-position = Vector2(0.333313, -38)
-shape = SubResource("RectangleShape2D_2bhuf")
+position = Vector2(0, -16)
+shape = SubResource("SegmentShape2D_gpmil")
 
 [node name="2" type="Area2D" parent="Shields"]
 visible = false
-rotation = 3.14159
+rotation = -3.14159
 scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
 [node name="Line2D" type="Line2D" parent="Shields/2"]
 position = Vector2(0, 7.62939e-06)
-points = PackedVector2Array(-18, -38, 15, -38, 0, 0)
-width = 5.0
+points = PackedVector2Array(-6, -16, 3, -16, 0, 0)
+width = 4.0
 default_color = Color(0.435294, 0.690196, 0.12549, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/2"]
-position = Vector2(0.333313, -38)
-shape = SubResource("RectangleShape2D_2bhuf")
+position = Vector2(0, -16)
+shape = SubResource("SegmentShape2D_gpmil")
 
 [node name="3" type="Area2D" parent="Shields"]
 visible = false
-rotation = 1.5708
+rotation = -3.14159
 scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
 [node name="Line2D" type="Line2D" parent="Shields/3"]
 position = Vector2(0, 7.62939e-06)
-points = PackedVector2Array(-18, -38, 15, -38, 0, 0)
-width = 5.0
+rotation = -1.57079
+points = PackedVector2Array(-6, -16, 3, -16, 0, 0)
+width = 4.0
 default_color = Color(0.69, 0.15249, 0.1242, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/3"]
-position = Vector2(0.333313, -38)
-shape = SubResource("RectangleShape2D_2bhuf")
+position = Vector2(-16, 0)
+rotation = -1.57079
+shape = SubResource("SegmentShape2D_gpmil")
 
 [node name="4" type="Area2D" parent="Shields"]
 visible = false
-rotation = -1.5708
 scale = Vector2(1.1, 1.1)
 monitoring = false
 monitorable = false
 
 [node name="Line2D" type="Line2D" parent="Shields/4"]
 position = Vector2(0, 7.62939e-06)
-points = PackedVector2Array(-18, -38, 15, -38, 0, 0)
-width = 5.0
+rotation = -1.57079
+points = PackedVector2Array(-6, -16, 3, -16, 0, 0)
+width = 4.0
 default_color = Color(0.1242, 0.69, 0.66171, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/4"]
-position = Vector2(0.333313, -38)
-shape = SubResource("RectangleShape2D_2bhuf")
+position = Vector2(-16, 0)
+rotation = -1.57079
+shape = SubResource("SegmentShape2D_gpmil")
 
 [node name="Trail" type="GPUParticles2D" parent="."]
 emitting = false
@@ -266,6 +281,13 @@ centered = false
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("4_lxrc7")
+
+[node name="Charge" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-9.5, -10)
+texture = ExtResource("4_lxrc7")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 19, 20)
 
 [node name="BG" type="Sprite2D" parent="Sprite2D"]
 show_behind_parent = true

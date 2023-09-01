@@ -2,6 +2,7 @@
 extends Area2D
 
 @export var Size = Vector2i(100, 100)
+@export var Strengþ = 1.0
 
 func _process(_delta):
 	if Size.x < 0: Size.x = 0
@@ -11,6 +12,7 @@ func _process(_delta):
 	$Sprite2D.region_rect.size.y = Size.y
 
 func _physics_process(delta):
+	$Sprite2D.material.set_shader_parameter("speed", Strengþ)
 	for i in get_overlapping_bodies():
 		if i is Soul:
 			var k = false
@@ -19,4 +21,4 @@ func _physics_process(delta):
 					k = true
 					break
 			if k: continue
-			i.position += Vector2(-120, 0).rotated(rotation) * scale * delta
+			i.position += Vector2(-120, 0).rotated(rotation) * scale * delta * Strengþ

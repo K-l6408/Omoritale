@@ -5,26 +5,31 @@ var j = 1
 var leaf = preload("res://Battles/Mari/Leaf.tscn")
 
 func _ready():
-	$Box.ChangeSize(Vector2(900, 500), 1)
-	$Box2.ChangeSize(Vector2(500, 200), 1)
+	$Box.ChangeSize(Vector2(900, 400), 1)
+	$Box2.ChangeSize(Vector2(500, 100), 1)
 	go()
 
 func go():
-	for _j in 7:
+	$Box/Black/Warn2.modulate.a = 1
+	$AudioStreamPlayer.play()
+	await $AudioStreamPlayer.finished
+	spawn($Box/Black/Leaves2)
+	await get_tree().create_timer(2.5).timeout
+	for _j in 5:
 		var i = randi_range(0, 1)
 		if i % 2: $Box/Black/Warn.modulate.a = 1
 		else: $Box/Black/Warn2.modulate.a = 1
 		$AudioStreamPlayer.play()
 		await $AudioStreamPlayer.finished
 		spawn($Box/Black/Leaves if i%2 else $Box/Black/Leaves2)
-		await get_tree().create_timer(3.5).timeout
+		await get_tree().create_timer(2.5).timeout
 	$Box/Black/Warn.modulate.a = 1
 	$Box/Black/Warn2.modulate.a = 1
 	$AudioStreamPlayer.play()
 	await $AudioStreamPlayer.finished
 	spawn($Box/Black/Leaves)
 	spawn($Box/Black/Leaves2)
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	time = 1
 	j = -1
 	$Box.ChangeSize(Vector2(900, 200), 2)
@@ -36,13 +41,13 @@ func _process(delta):
 	time += delta * j
 	$Box/Black/Warn.modulate.a -= delta * 2
 	$Box/Black/Warn2.modulate.a -= delta * 2
-	$Box/Black/Wind.Size.y =  lerp(0, 60, min(time, 1))
-	$Box/Black/Wind2.Size.y = lerp(0, 60, min(time, 1))
+	$Box/Black/Wind.Size.y =  lerp(0, 120, min(time, 1))
+	$Box/Black/Wind2.Size.y = lerp(0, 120, min(time, 1))
 	for L in $Box/Black/Leaves.get_children():
-		L.position.y += delta * 500
+		L.position.y += delta * 1000
 		if L.position.y > 600: L.queue_free()
 	for L in $Box/Black/Leaves2.get_children():
-		L.position.y += delta * 500
+		L.position.y += delta * 1000
 		if L.position.y > 600: L.queue_free()
 
 func spawn(nd):

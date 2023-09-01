@@ -5,8 +5,8 @@ extends CanvasGroup
 @export var CollisionLayer = 1
 var T = 0
 var D = 1
-var S = Size
-var N = Size
+@onready var S = Size
+@onready var N = Size
 
 func _ready():
 	InstChangeSize(Size)

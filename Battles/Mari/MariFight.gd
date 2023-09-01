@@ -20,6 +20,7 @@ func _on_start():
 	$UI.DialogueSource = "res://Dialogue/marifight.dialogue"
 	attacks = [
 		load("res://Battles/Mari/Mintro.tscn"),
+		load("res://Battles/Mari/Windtro.tscn"),
 		load("res://Battles/Mari/Two.tscn")
 	]
 
@@ -31,7 +32,8 @@ func get_dialogue_title():
 
 func choose_attack():
 	if attackNum == 1: return 0
-	else: return 1
+	elif attackNum == 2: return 1
+	else: return 2
 
 func act(enemy, action):
 	if enemy != "Mari": return

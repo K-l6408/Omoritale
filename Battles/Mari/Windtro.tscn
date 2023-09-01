@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsaynx8rlnk64"]
+
+[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_2yh1x"]
+[ext_resource type="Script" path="res://Battles/Mari/Windtro.gd" id="1_kf8w1"]
+[ext_resource type="PackedScene" uid="uid://c6a7uw0uss7cl" path="res://Battles/Mari/Leaf.tscn" id="2_bwllb"]
+[ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_w7c5u"]
+[ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_knytj"]
+[ext_resource type="PackedScene" uid="uid://bg5qgt3481ojs" path="res://Battles/Mari/Wind.tscn" id="6_7af1e"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bstt3"]
+resource_local_to_scene = true
+a = Vector2(-450, 0)
+b = Vector2(450, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ydjec"]
+resource_local_to_scene = true
+a = Vector2(0, -100)
+b = Vector2(0, 100)
+
+[sub_resource type="Resource" id="Resource_1v43f"]
+script = ExtResource("4_knytj")
+Red = false
+Orange = false
+Yellow = false
+Green = false
+Mint = true
+Teal = false
+Blue = false
+Purple = false
+Value = 16
+
+[node name="Windtro" type="Node2D"]
+position = Vector2(480, 435)
+script = ExtResource("1_kf8w1")
+
+[node name="Box" parent="." instance=ExtResource("1_2yh1x")]
+position = Vector2(0, 0)
+Size = Vector2(900, 200)
+
+[node name="Black" parent="Box" index="0"]
+offset_left = -450.0
+offset_right = 450.0
+
+[node name="Leaves" type="Node2D" parent="Box/Black" index="0"]
+unique_name_in_owner = true
+position = Vector2(450, 100)
+
+[node name="Green" parent="Box" index="1"]
+position = Vector2(-450, -100)
+points = PackedVector2Array(0, 0, 0, 200, 900, 200, 900, 0, 0, 0)
+
+[node name="Walls" parent="Box" index="2"]
+position = Vector2(-450, -100)
+
+[node name="T" parent="Box/Walls" index="0"]
+position = Vector2(450, 0)
+shape = SubResource("SegmentShape2D_bstt3")
+
+[node name="B" parent="Box/Walls" index="1"]
+position = Vector2(450, 200)
+shape = SubResource("SegmentShape2D_bstt3")
+
+[node name="L" parent="Box/Walls" index="2"]
+shape = SubResource("SegmentShape2D_ydjec")
+
+[node name="R" parent="Box/Walls" index="3"]
+position = Vector2(900, 100)
+shape = SubResource("SegmentShape2D_ydjec")
+
+[node name="Leaf" parent="." instance=ExtResource("2_bwllb")]
+visible = false
+atkType = 3
+
+[node name="Soul" parent="." instance=ExtResource("3_w7c5u")]
+position = Vector2(480, 435)
+State = SubResource("Resource_1v43f")
+
+[node name="Wind" parent="." instance=ExtResource("6_7af1e")]
+rotation = -3.14159
+Size = Vector2i(195, 195)
+"Strengþ" = 0.75
+
+[connection signal="hurt" from="Soul" to="." method="ow"]
+[connection signal="hurt_fixed" from="Soul" to="." method="ow"]
+
+[editable path="Box"]

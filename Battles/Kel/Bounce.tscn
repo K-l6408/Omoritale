@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjrh304ge3gkf"]
 
 [ext_resource type="Script" path="res://Battles/Kel/Bounce.gd" id="1_jarqy"]
-[ext_resource type="Texture2D" uid="uid://dnvfr4aiyv8qv" path="res://Assets/Sprites/Bouncy.png" id="2_rmk81"]
+[ext_resource type="Texture2D" uid="uid://dfx5cciqj7c42" path="res://Assets/Sprites/Bouncy.png" id="2_rmk81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0vpc"]
 size = Vector2(50.5, 11)
@@ -29,6 +29,7 @@ region_rect = Rect2(2, 0, 52, 8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, -5.5)
 shape = SubResource("RectangleShape2D_s0vpc")
+one_way_collision = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 4

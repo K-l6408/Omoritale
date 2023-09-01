@@ -6,7 +6,62 @@ var halfbone = preload("res://Battles/Kel/Halfbone.tscn")
 var time = 0
 
 func _ready():
-	$Pongon.Interpolate([
+	go()
+
+func go():
+	$Soul.position = Vector2(480, 360)
+	$Pongon.Polygon = [
+		Vector2(-450, -100),
+		Vector2( 450, -100),
+		Vector2( 450,  100),
+		Vector2(-450,  100)
+	]
+	await get_tree().create_timer(1).timeout
+	$Soul.iframes = 7
+	$Soul.controls = false
+	$Camera2D.zoom = Vector2(1,1)
+	var tw = create_tween().set_parallel()
+	tw.tween_property($Soul, "position:x", -708, 10).set_trans(Tween.TRANS_BOUNCE)
+	tw.tween_property($Camera2D, "position", Vector2(-708, 620), 10).set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property($Camera2D, "zoom", Vector2(2, 2), 10).set_trans(Tween.TRANS_CUBIC)
+	await $Pongon.Interpolate([
+		Vector2(-450, -100),
+		Vector2(- 51, -100),
+		Vector2(- 50, -100),
+		Vector2(- 49, -100),
+		Vector2( 200, -100),
+		Vector2( 200, -100),
+		Vector2( 400, -100),
+		Vector2( 400, -100),
+		Vector2( 450, -100),
+		Vector2( 450,  100),
+		Vector2(-450,  100)
+	],[
+		Vector2(-1200, -200),
+		Vector2(- 100, -200),
+		Vector2(- 100,  160),
+		Vector2(- 100, -200),
+		Vector2(  900, -200),
+		Vector2(  900, -400),
+		Vector2( 1000, -400),
+		Vector2( 1000, -700),
+		Vector2( 1200, -700),
+		Vector2( 1200,  200),
+		Vector2(-1200,  200)
+	], 5)
+	await get_tree().create_timer(3).timeout
+	var tw2 = create_tween()
+	tw2.tween_property($"Pongon/Polygon2D/Section 0/Area2D", "length", 60, 2).set_trans(Tween.TRANS_BOUNCE)
+	%"Section 0".show()
+	$"Section 1".show()
+	$"Section 2".show()
+	$"Section 3".show()
+	$"Pongon/Polygon2D/Section 0/Area2D/Sprite/2".hide()
+	await get_tree().create_timer(2).timeout
+	$Soul.controls = true
+	$Soul/Camera2D.enabled = true
+	$Camera2D.enabled = false
+	await $Pongon.Interpolate([
 		Vector2(-1200, -200),
 		Vector2(- 100, -200),
 		Vector2(- 100,  160),
@@ -19,7 +74,7 @@ func _ready():
 		Vector2( 1200,  200),
 		Vector2(-1200,  200)
 	],[
-		Vector2(- 101, -200),
+		Vector2(- 100.01, -200),
 		Vector2(- 100, -200),
 		Vector2(- 100,  160),
 		Vector2(- 100, -200),
@@ -29,8 +84,8 @@ func _ready():
 		Vector2( 1000, -700),
 		Vector2( 1200, -700),
 		Vector2( 1200,  200),
-		Vector2(- 101,  200)
-	], 30)
+		Vector2(- 100.01,  200)
+	], 40)
 
 func orange(body):
 	if body == $Soul:
@@ -67,7 +122,7 @@ func _physics_process(delta):
 		var b = halfbone.instantiate()
 		b.position = Vector2(1200, 162)
 		b.rotation_degrees = 180
-		b.CollisionLayer = 2
+#		b.CollisionLayer = 2
 		$"Section 2/Bones_above".add_child(b)
 	for b in $"Section 2/Bones_above".get_children():
 		b.position.x -= 100 * delta

@@ -147,6 +147,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Box" parent="." instance=ExtResource("4_k2fuf")]
 position = Vector2(480, 420)
+Size = Vector2(200, 200)
 
 [node name="Soul" parent="." instance=ExtResource("5_f77tl")]
 position = Vector2(480, 420)
