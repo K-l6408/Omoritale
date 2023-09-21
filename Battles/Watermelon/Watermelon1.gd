@@ -1,6 +1,5 @@
 extends Node2D
 
-var HP := 26
 var JP = 0
 var debug = 0
 var bulletpos = [
@@ -20,19 +19,22 @@ func _ready():
 	$HP/Bar.size.x = 0
 	$JP/Bar.size.x = 0
 	$Audio.play(Globals.musynctime)
+	Globals.HP = 26
 
 func _process(delta):
-	$HP/Bar.size.x = lerpf($HP/Bar.size.x, HP * 1.2, delta * 2)
+	$HP/Bar.size.x = lerpf($HP/Bar.size.x, Globals.HP * 1.2, delta * 2)
 	$JP/Bar.size.x = lerpf($JP/Bar.size.x, JP * 1.2, delta * 2)
-	$HP    .size.x = lerpf($HP    .size.x, 26 * 1.2, delta * 5)
-	$JP    .size.x = lerpf($JP    .size.x, 16 * 1.2, delta * 5)
+	$HP    .size.x = lerpf($HP    .size.x, GLOBALS.MHPfromLV(1) * 1.2, delta * 5)
+	$JP    .size.x = lerpf($JP    .size.x, GLOBALS.MJPfromLV(1) * 1.2, delta * 5)
 	$JP    .position.x = 906 - $JP.size.x
 	$JP/Bar.position.x = $JP.size.x - $JP/Bar.size.x
 	JP += delta / 5
-	if JP > 20:
-		JP = 20
-	if $Melon.animation != Globals.debugAnimation:
-		$Melon.play(Globals.debugAnimation)
+	if JP > GLOBALS.MJPfromLV(1):
+		JP = GLOBALS.MJPfromLV(1)
+	if debug != 9:
+		if $Melon.animation != Globals.debugAnimation: $Melon.play(Globals.debugAnimation)
+	if debug == 9:
+		if $Mari/Face.animation != Globals.debugAnimation: $Mari/Face.play(Globals.debugAnimation)
 	if debug == 0 and Globals.debugAttack == 1:
 		debug = 1
 		for i in 4:
@@ -56,11 +58,12 @@ func _process(delta):
 			b.go_towards($Soul.position, 150)
 	if debug == 4 and Globals.debugAttack == 3:
 		debug = 5
+		$Soul.iframes = 0
 		for i in 20:
 			var b = bullet.duplicate(5)
 			$Bullets.add_child(b)
 			b.position = $Soul.position + Vector2(0, 200).rotated(TAU / 20 * i)
-			b.damage = HP - 1
+			b.damage = Globals.HP - 1
 			b.smooth = true
 			b.show()
 			b.go_towards($Soul.position, 150)
@@ -90,18 +93,28 @@ func _process(delta):
 		debVelocity = Vector2(-800, -250)
 		await TW.finished
 		$Audio.stop()
+		okay()
 	if debug == 8:
 		time += delta
 		$Melon.position += debVelocity * delta
 		debVelocity.y += 500 * delta
-		while $Bullets.get_child_count() > 0:
-			$Bullets.get_child(0).queue_free()
-			await get_tree().create_timer(.25).timeout
+	if Globals.debugAttack > 90:
+		get_tree().change_scene_to_file("res://Battles/Watermelon/Cutscene.tscn")
+
+func okay():
+	while $Bullets.get_child_count() > 0:
+		$Bullets.get_child(0).queue_free()
+		await get_tree().create_timer(.01).timeout
+	var TW = create_tween()
+	TW.tween_property($Mari, "position:x", 480, 1)
+	await TW.finished
+	debug = 9
+	$TextBox.start(load("res://Dialogue/materwelon.dialogue"), "mariiii")
 
 func ouch(damage):
-	HP -= damage
-	if  HP > 26:
-		HP = 26
+	Globals.HP -= damage
+	if Globals.HP > GLOBALS.MHPfromLV(1):
+		Globals.HP = GLOBALS.MHPfromLV(1)
 	if Globals.debugAttack == 1:
 		await get_tree().create_timer(1).timeout
 		debug = 2

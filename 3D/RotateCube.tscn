@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://kgqdo1wmxfu4"]
+
+[ext_resource type="Script" path="res://3D/RotateCube.gd" id="1_vh2uw"]
+[ext_resource type="Shader" path="res://3D/RotateCube.gdshader" id="2_5uhqw"]
+[ext_resource type="Texture2D" uid="uid://dlx0q16o4h4hs" path="res://Assets/Sprites/RotateBlock.png" id="2_51c6b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d47ge"]
+size = Vector3(1.6, 1.6, 1.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04c2g"]
+render_priority = 0
+shader = ExtResource("2_5uhqw")
+shader_parameter/Texture = ExtResource("2_51c6b")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjsyh"]
+material = SubResource("ShaderMaterial_04c2g")
+size = Vector3(1.6, 1.6, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3bn28"]
+size = Vector3(1, 0.5, 1)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_vh2uw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_d47ge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0090332, 0, 0.00830078)
+instance_shader_parameters/Distance = 10.0
+mesh = SubResource("BoxMesh_fjsyh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.703704, 0)
+shape = SubResource("BoxShape3D_3bn28")
+
+[connection signal="body_entered" from="Area3D" to="." method="body_in"]

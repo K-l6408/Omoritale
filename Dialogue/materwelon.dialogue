@@ -58,11 +58,23 @@ Melony: You really think no one would take the opportunity…
 Melony: to take a SOUL as powerful as yours?
 Melony: You fucking idiot.\n\n\n\nHas no one told you yet?\n\n\n[color=white]in this world, it's kill or be killed.
 set Globals.debugAttack = 4
-set Globals.skiptext = false
-Melony: [font_size=100]DIE.[wait=2]..
-set Globals.skiptext = true
+Melony: [next=auto][font_size=100]DIE.[wait=2]..
 set Globals.debugAnimation = "uhh"
 set Globals.debugAttack = 5
 Melony: wait, why did they stop?
 set Globals.debugAttack = 6
 => END
+
+~ mariiii
+set Globals.debugAnimation = ":("
+if Globals.HP < 26:
+	Mari: I knew I should have arrived earlier…
+	set Globals.HP = 26
+	Mari: There, does it feel better?
+else:
+	Mari: Good thing I got here in time…
+	Mari: [color=d19292]He[/color] didn't hurt you, did he?
+Mari: Oh, I forgot to introduce [color=a83eff]myself[/color]!
+Mari: My name is [color=a83eff]Mari[/color].
+[ i need more dialogue ]
+set Globals.debugAttack = 99

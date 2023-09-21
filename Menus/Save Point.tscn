@@ -1,0 +1,181 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm3ct7628ta8s"]
+
+[ext_resource type="Script" path="res://Menus/Save Point.gd" id="1_0weem"]
+[ext_resource type="Texture2D" uid="uid://c152c170tp0bj" path="res://Assets/Sprites/SAVE.png" id="1_tks44"]
+[ext_resource type="Script" path="res://Menus/SaveButton.gd" id="3_00ibe"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="4_xagao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wfex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26a3a"]
+atlas = ExtResource("1_tks44")
+region = Rect2(0, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aldmy"]
+atlas = ExtResource("1_tks44")
+region = Rect2(19, 0, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gkf6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26a3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aldmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk4gi"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3n4f"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.25098)
+
+[node name="SavePoint" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_0weem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4wfex")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gkf6v")
+frame_progress = 0.0729723
+
+[node name="Balloon" type="ColorRect" parent="."]
+visible = false
+z_index = 4096
+offset_left = -110.0
+offset_top = -115.0
+offset_right = 332.0
+offset_bottom = 71.0
+scale = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 1)
+
+[node name="Rect" type="ColorRect" parent="Balloon"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="N" type="Label" parent="Balloon"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 97.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 40
+text = "SNUUY"
+
+[node name="L" type="Label" parent="Balloon"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 6.0
+offset_right = 235.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 40
+text = "LV 99"
+horizontal_alignment = 1
+
+[node name="T" type="Label" parent="Balloon"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 6.0
+offset_right = 441.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 40
+text = "999:59:59"
+horizontal_alignment = 2
+
+[node name="W" type="Label" parent="Balloon"]
+layout_mode = 0
+offset_top = 66.0
+offset_right = 442.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 40
+text = "Some kind of place idk"
+horizontal_alignment = 1
+
+[node name="OK" type="Label" parent="Balloon"]
+visible = false
+layout_mode = 0
+offset_top = 132.0
+offset_right = 442.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 40
+text = "File saved."
+horizontal_alignment = 1
+
+[node name="Yes" type="Button" parent="Balloon"]
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 58.0
+offset_top = 132.0
+offset_right = 194.0
+offset_bottom = 187.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wk4gi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y3n4f")
+text = " Save"
+alignment = 2
+script = ExtResource("3_00ibe")
+
+[node name="Soul" type="Sprite2D" parent="Balloon/Yes"]
+texture_filter = 1
+position = Vector2(20, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("4_xagao")
+
+[node name="No" type="Button" parent="Balloon"]
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 220.0
+offset_top = 132.0
+offset_right = 392.0
+offset_bottom = 187.0
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Yes")
+focus_neighbor_right = NodePath("../Yes")
+mouse_filter = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_wk4gi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_y3n4f")
+toggle_mode = true
+button_pressed = true
+text = " Return"
+alignment = 2
+script = ExtResource("3_00ibe")
+
+[node name="Soul" type="Sprite2D" parent="Balloon/No"]
+visible = false
+texture_filter = 1
+position = Vector2(32, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("4_xagao")
+
+[connection signal="pressed" from="Balloon/Yes" to="." method="yessave"]
+[connection signal="pressed" from="Balloon/No" to="." method="nosave"]

@@ -2,14 +2,8 @@
 > Just a tree.
 => END
 ~ hugewall
-> A huge wall.\n> It looks very old.
+> A huge wall.\n> You don't remember it being there.
 => END
 ~ water
 > This puddle of water must have broken your fall.
-=> END
-~ lario
-> holy shit is that lario from the hit indie wario-like platformer, 「pizza tower」
-if not ("lario" in Found)
-	do Secrets += 1
-	do Found.append("lario")
 => END

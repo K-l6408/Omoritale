@@ -133,6 +133,10 @@ func character_audio(chr):
 			if is_equal_approx(pos.global_rotation, PI / -2):
 				mode = BalloonMode.DOWN
 	match chr:
+		"Mari":
+			balloon.self_modulate = Color("cb8bff")
+			polygon.self_modulate = Color("cb8bff")
+			return "mari.ogg"
 		"Melony":
 			balloon.self_modulate = Color("d19292")
 			polygon.self_modulate = Color("d19292")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://csfcxogobo53r"]
+[gd_scene load_steps=4 format=3 uid="uid://csfcxogobo53r"]
 
 [ext_resource type="Script" path="res://Menus/Config.gd" id="1_pfnrb"]
-[ext_resource type="Texture2D" uid="uid://ouy62bnigw7w" path="res://Assets/Sprites/KEY_filled.png" id="2_bvwrv"]
+[ext_resource type="Texture2D" uid="uid://b6umuy3uvvdxf" path="res://Assets/Sprites/KEY_filled.png" id="2_bvwrv"]
+[ext_resource type="FontFile" uid="uid://o3rj32viie25" path="res://Assets/Fonts/TobyFox.ttf" id="3_ogbdp"]
 
 [node name="Config" type="Node2D"]
 texture_filter = 1
@@ -39,6 +40,8 @@ offset_top = -2.0
 offset_right = 20.5
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Q"
 
 [node name="2" type="Label" parent="QWERTY"]
@@ -48,6 +51,8 @@ offset_top = -1.5
 offset_right = 53.5
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "W"
 
 [node name="3" type="Label" parent="QWERTY"]
@@ -57,6 +62,8 @@ offset_top = -1.5
 offset_right = 79.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "E"
 
 [node name="4" type="Label" parent="QWERTY"]
@@ -66,6 +73,8 @@ offset_top = -2.0
 offset_right = 111.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "R"
 
 [node name="5" type="Label" parent="QWERTY"]
@@ -75,6 +84,8 @@ offset_top = -1.5
 offset_right = 139.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "T"
 
 [node name="6" type="Label" parent="QWERTY"]
@@ -84,6 +95,8 @@ offset_top = -2.0
 offset_right = 171.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Y"
 
 [node name="Label2" type="Label" parent="QWERTY"]
@@ -94,6 +107,8 @@ offset_right = 225.0
 offset_bottom = 54.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "(or QÜERTY)"
 
 [node name="QWERTZ" type="TextureButton" parent="."]
@@ -113,6 +128,8 @@ offset_top = -2.0
 offset_right = 20.5
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Q"
 
 [node name="2" type="Label" parent="QWERTZ"]
@@ -122,6 +139,8 @@ offset_top = -1.5
 offset_right = 53.5
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "W"
 
 [node name="3" type="Label" parent="QWERTZ"]
@@ -131,6 +150,8 @@ offset_top = -1.5
 offset_right = 79.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "E"
 
 [node name="4" type="Label" parent="QWERTZ"]
@@ -140,6 +161,8 @@ offset_top = -2.0
 offset_right = 111.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "R"
 
 [node name="5" type="Label" parent="QWERTZ"]
@@ -149,6 +172,8 @@ offset_top = -1.5
 offset_right = 139.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "T"
 
 [node name="6" type="Label" parent="QWERTZ"]
@@ -158,6 +183,8 @@ offset_top = -2.0
 offset_right = 171.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Z"
 
 [node name="ÄWERTY" type="TextureButton" parent="."]
@@ -176,6 +203,8 @@ offset_left = 9.0
 offset_right = 22.0
 offset_bottom = 26.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Ä"
 
 [node name="2" type="Label" parent="ÄWERTY"]
@@ -185,6 +214,8 @@ offset_top = -1.0
 offset_right = 53.5
 offset_bottom = 25.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "W"
 
 [node name="3" type="Label" parent="ÄWERTY"]
@@ -194,6 +225,8 @@ offset_top = -1.5
 offset_right = 79.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "E"
 
 [node name="4" type="Label" parent="ÄWERTY"]
@@ -203,6 +236,8 @@ offset_top = -2.0
 offset_right = 111.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "R"
 
 [node name="5" type="Label" parent="ÄWERTY"]
@@ -212,6 +247,8 @@ offset_top = -1.5
 offset_right = 139.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "T"
 
 [node name="6" type="Label" parent="ÄWERTY"]
@@ -221,6 +258,8 @@ offset_top = -2.0
 offset_right = 171.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Y"
 
 [node name="AZERTY" type="TextureButton" parent="."]
@@ -240,6 +279,8 @@ offset_top = -1.0
 offset_right = 22.0
 offset_bottom = 25.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "A"
 
 [node name="2" type="Label" parent="AZERTY"]
@@ -249,6 +290,8 @@ offset_top = -1.0
 offset_right = 50.0
 offset_bottom = 25.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Z"
 
 [node name="3" type="Label" parent="AZERTY"]
@@ -258,6 +301,8 @@ offset_top = -1.5
 offset_right = 79.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "E"
 
 [node name="4" type="Label" parent="AZERTY"]
@@ -267,6 +312,8 @@ offset_top = -2.0
 offset_right = 111.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "R"
 
 [node name="5" type="Label" parent="AZERTY"]
@@ -276,6 +323,8 @@ offset_top = -1.5
 offset_right = 139.0
 offset_bottom = 24.5
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "T"
 
 [node name="6" type="Label" parent="AZERTY"]
@@ -285,6 +334,8 @@ offset_top = -2.0
 offset_right = 171.0
 offset_bottom = 24.0
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("3_ogbdp")
+theme_override_font_sizes/font_size = 16
 text = "Y"
 
 [connection signal="pressed" from="QWERTY" to="." method="set_layout" binds= ["QWERTY"]]

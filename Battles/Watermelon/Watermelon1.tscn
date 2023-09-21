@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ccfws37akrqy5"]
+[gd_scene load_steps=32 format=3 uid="uid://ccfws37akrqy5"]
 
 [ext_resource type="Script" path="res://Battles/Watermelon/Watermelon1.gd" id="1_04nru"]
 [ext_resource type="Script" path="res://Battles/Watermelon/bullet.gd" id="2_li2p4"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cm587kwoawlky" path="res://Assets/Sprites/evil basil/Battle6.png" id="19_0ptf5"]
 [ext_resource type="PackedScene" uid="uid://bn40joste774d" path="res://Dialogue/textballoon.tscn" id="20_6vjhx"]
 [ext_resource type="AudioStream" uid="uid://dr8gpnwe1jxl2" path="res://Assets/Audio/BGM/watermelon_intro.mp3" id="21_h63ss"]
+[ext_resource type="Texture2D" uid="uid://b083gyixddgvs" path="res://Assets/Sprites/mari :)/sad.png" id="21_u4ql8"]
 [ext_resource type="Texture2D" uid="uid://dx1mfbspgloef" path="res://Assets/Sprites/mari :)/base.png" id="22_tba7d"]
 [ext_resource type="Texture2D" uid="uid://bmidl1o4sfw1q" path="res://Assets/Sprites/mari :)/happ.png" id="23_4r6yq"]
 [ext_resource type="Texture2D" uid="uid://cj5be32f21ao4" path="res://Assets/Sprites/mari :)/happ2.png" id="24_nx4u4"]
@@ -91,6 +92,14 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("21_u4ql8")
+}],
+"loop": true,
+"name": &":(",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("23_4r6yq")
 }],
 "loop": true,
@@ -146,13 +155,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Box" parent="." instance=ExtResource("4_k2fuf")]
+z_index = 1
 position = Vector2(480, 420)
 Size = Vector2(200, 200)
 
 [node name="Soul" parent="." instance=ExtResource("5_f77tl")]
 position = Vector2(480, 420)
 State = SubResource("Resource_h00du")
-maximum_jumps = 2
 
 [node name="Name" type="Label" parent="."]
 anchors_preset = -1
@@ -308,9 +317,10 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
-text = "20"
+text = "20.00"
 horizontal_alignment = 2
 script = ExtResource("10_1qi57")
+round = null
 
 [node name="Slash" type="Label" parent="JP/Control"]
 layout_mode = 1
@@ -397,10 +407,16 @@ mode = 0
 top_level = true
 position = Vector2(382, 205)
 
+[node name="Mari" type="Marker2D" parent="TextBox"]
+top_level = true
+position = Vector2(566, 105)
+rotation = 3.14159
+
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_h63ss")
 
 [node name="Bullets" type="Node2D" parent="."]
+z_index = 2
 
 [node name="Mari" type="Sprite2D" parent="."]
 position = Vector2(1430, 200)
@@ -410,7 +426,7 @@ texture = ExtResource("22_tba7d")
 [node name="Face" type="AnimatedSprite2D" parent="Mari"]
 position = Vector2(0.5, -52)
 sprite_frames = SubResource("SpriteFrames_fpdeu")
-animation = &":)"
+animation = &":("
 
 [node name="Hair" type="Sprite2D" parent="Mari"]
 show_behind_parent = true

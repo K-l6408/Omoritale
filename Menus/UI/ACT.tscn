@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Menus/UI/ACT.gd" id="1_f4r73"]
 [ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="2_4va2e"]
 [ext_resource type="Script" path="res://Dialogue/ResponseTemplate.gd" id="3_y6n25"]
-[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/DefaultSoul.png" id="4_lxnxe"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="4_wt2mj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x148y"]
 content_margin_left = 40.0
@@ -52,7 +52,7 @@ script = ExtResource("3_y6n25")
 texture_filter = 1
 position = Vector2(18, 21)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_lxnxe")
+texture = ExtResource("4_wt2mj")
 
 [node name="PPL" type="ColorRect" parent="."]
 offset_left = 30.0

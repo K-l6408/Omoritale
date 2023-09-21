@@ -14,15 +14,15 @@
 [ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_588nh"]
 [ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="15_k5nru"]
 
-[sub_resource type="Resource" id="Resource_bff64"]
+[sub_resource type="Resource" id="Resource_vdysp"]
 resource_local_to_scene = true
 script = ExtResource("2_jml8w")
-HP = 26
-MHP = 26
-EHP = Array[int]([])
-JP = 0
-MJP = 20
-EJP = Array[int]([])
+HP = 26.0
+MHP = 26.0
+EHP = Array[float]([])
+JP = 0.0
+MJP = 20.0
+EJP = Array[float]([])
 ATK = 1.0
 DEF = 1.0
 MAG = 1.0
@@ -36,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ojpt")
-PlayerStats = SubResource("Resource_bff64")
+PlayerStats = SubResource("Resource_vdysp")
 EffectColors = PackedColorArray()
 StatusEffects = PackedStringArray()
 
@@ -139,7 +139,7 @@ scroll_active = false
 layout_mode = 0
 offset_left = 369.0
 offset_top = 554.0
-offset_right = 369.0
+offset_right = 400.2
 offset_bottom = 604.0
 color = Color(1, 0, 0, 1)
 
@@ -147,6 +147,7 @@ color = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 31.2
 grow_vertical = 2
 color = Color(1, 1, 0, 1)
 
@@ -156,6 +157,10 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 20.8
+offset_top = 3.0
+offset_right = 20.8
+offset_bottom = 3.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -172,9 +177,10 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
-text = "26"
+text = "26.00"
 horizontal_alignment = 2
 script = ExtResource("13_1r1n7")
+rounded = null
 
 [node name="Slash" type="Label" parent="HP/Control"]
 layout_mode = 1
@@ -201,8 +207,8 @@ anchor_left = 1.63333
 anchor_top = 0.44
 anchor_right = 2.48333
 anchor_bottom = 1.2
-offset_left = 28.4
-offset_right = 62.4
+offset_left = 28.0
+offset_right = 151.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -228,7 +234,7 @@ layout_direction = 2
 layout_mode = 0
 offset_left = 882.0
 offset_top = 554.0
-offset_right = 882.0
+offset_right = 906.0
 offset_bottom = 604.0
 color = Color(0.666667, 0, 1, 1)
 
@@ -246,6 +252,10 @@ color = Color(0, 1, 1, 1)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_left = -20.0001
+offset_top = -1.0
+offset_right = -20.0001
+offset_bottom = -1.0
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="JP/Control"]
@@ -263,9 +273,10 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
-text = "0"
+text = "0.00"
 horizontal_alignment = 2
 script = ExtResource("13_1r1n7")
+rounded = null
 
 [node name="Slash" type="Label" parent="JP/Control"]
 layout_mode = 1

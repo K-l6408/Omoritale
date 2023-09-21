@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100
 var prev : Vector2
+var moving = true
 @export var limitTopLeft : Vector2
 @export var limitBottomRight : Vector2
 @onready var RayCast = $RayCast2D
@@ -18,7 +19,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	if $Sprite.animation == "prebattle":
 		return
-	if TextBox.visible:
+	if TextBox.visible or not moving:
 		RayCast.enabled = false
 		$Sprite.frame = 3
 		return
@@ -47,20 +48,27 @@ func _physics_process(_delta):
 		$Sprite.frame = 3
 	$BattleTime.animation = $Sprite.animation
 	$Sprite.speed_scale = 1
-	if Input.is_action_pressed("cancel"):
-		velocity *= 1.5
-		$Sprite.speed_scale = 1.5
+#	if Input.is_action_pressed("cancel"):
+#		velocity *= 1.5
+#		$Sprite.speed_scale = 1.5
 	if Input.is_action_just_pressed("accept") and RayCast.is_colliding():
-		if get_parent() is TileMap and RayCast.get_collider() == get_parent():
+		if RayCast.get_collider().get("SAVE"):
+			moving = false
+			await RayCast.get_collider().Save()
+			moving = true
+		elif get_parent() is TileMap and RayCast.get_collider() == get_parent():
 			var pos = get_parent().local_to_map(
 				get_parent().to_local(RayCast.get_collision_point()))
 			var layer = null
-			if   get_parent().get_cell_tile_data(0, pos).get_custom_data("Source") != "":
-				layer = 0
-			elif get_parent().get_cell_tile_data(1, pos).get_custom_data("Source") != "":
-				layer = 1
-			elif get_parent().get_cell_tile_data(2, pos).get_custom_data("Source") != "":
-				layer = 2
+			if get_parent().get_cell_tile_data(0, pos):
+				if get_parent().get_cell_tile_data(0, pos).get_custom_data("Source") != "":
+					layer = 0
+			if get_parent().get_cell_tile_data(1, pos):
+				if get_parent().get_cell_tile_data(1, pos).get_custom_data("Source") != "":
+					layer = 1
+			if get_parent().get_cell_tile_data(2, pos):
+				if get_parent().get_cell_tile_data(2, pos).get_custom_data("Source") != "":
+					layer = 2
 			TextBox.start(load("res://Dialogue/flavortext.dialogue"), 
 			get_parent().get_cell_tile_data(layer, pos).get_custom_data("Source"))
 		else:

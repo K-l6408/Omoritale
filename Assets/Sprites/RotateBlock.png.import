@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cto0seshinrd0"
-path="res://.godot/imported/Soulshadow.png-2d0aa889e20f8d82f3a3a44cbefe6e24.ctex"
+uid="uid://dlx0q16o4h4hs"
+path="res://.godot/imported/RotateBlock.png-4b223ff7e4bd86bd707a46018dcd861f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Soulshadow.png"
-dest_files=["res://.godot/imported/Soulshadow.png-2d0aa889e20f8d82f3a3a44cbefe6e24.ctex"]
+source_file="res://Assets/Sprites/RotateBlock.png"
+dest_files=["res://.godot/imported/RotateBlock.png-4b223ff7e4bd86bd707a46018dcd861f.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

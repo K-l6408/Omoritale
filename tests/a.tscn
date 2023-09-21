@@ -11,9 +11,10 @@ Orange = false
 Yellow = false
 Green = false
 Mint = false
-Cyan = false
+Teal = false
 Blue = false
 Purple = true
+Value = 128
 
 [node name="Node2D" type="Node2D"]
 

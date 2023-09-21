@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://SOUL/Soul.gd" id="1_53t3r"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="2_6jqyy"]
 [ext_resource type="Script" path="res://SOUL/GreenShield.gd" id="3_hyxmd"]
-[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL.png" id="4_lxrc7"]
-[ext_resource type="Texture2D" uid="uid://csouwdq7qli8j" path="res://Assets/Sprites/Bounced.png" id="5_5h13j"]
-[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL_bg.png" id="6_vjl5w"]
-[ext_resource type="Texture2D" uid="uid://byjlsiyb6nfh1" path="res://Assets/Sprites/Transsoul.png" id="7_vrhir"]
-[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/DETERMINATION.png" id="8_krvst"]
-[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/Soulshadow.png" id="10_3ofd3"]
+[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL/SOUL.png" id="4_lxrc7"]
+[ext_resource type="Texture2D" uid="uid://csouwdq7qli8j" path="res://Assets/Sprites/SOUL/Bounced.png" id="5_5h13j"]
+[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL/SOUL_bg.png" id="6_vjl5w"]
+[ext_resource type="Texture2D" uid="uid://byjlsiyb6nfh1" path="res://Assets/Sprites/SOUL/Transsoul.png" id="7_vrhir"]
+[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/SOUL/DETERMINATION.png" id="8_krvst"]
+[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/SOUL/Soulshadow.png" id="10_3ofd3"]
 
 [sub_resource type="Resource" id="Resource_dlo5w"]
 script = ExtResource("2_6jqyy")

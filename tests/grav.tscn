@@ -28,17 +28,18 @@ visible = false
 polygon = PackedVector2Array(-150, -150, -150, 150, -50, 150, -50, 50, 50, 50, 50, 150, 150, 150, 150, -150, 50, -150, 50, -50, -50, -50, -50, -150)
 
 [node name="Polygon2D" parent="Pongon" index="1"]
+self_modulate = Color(0, 0, 0, 1)
 clip_children = 1
 polygon = PackedVector2Array(-150, -150, -150, 150, -50, 150, -50, 50, 50, 50, 50, 150, 150, 150, 150, -150, 50, -150, 50, -50, -50, -50, -50, -150)
 
 [node name="GravityArea" parent="Pongon/Polygon2D" index="0" instance=ExtResource("2_syy23")]
 position = Vector2(0, 0)
 scale = Vector2(1.5, 1.5)
-Type = 2
+Type = 3
 
 [node name="Line2D" parent="Pongon" index="2"]
 points = PackedVector2Array(-150, -150, -150, 150, -50, 150, -50, 50, 50, 50, 50, 150, 150, 150, 150, -150, 50, -150, 50, -50, -50, -50, -50, -150, -150, -150)
-default_color = Color(0, 0.509804, 0.00784314, 1)
+default_color = Color(1, 0, 1, 1)
 
 [node name="Soul" parent="." instance=ExtResource("2_jcl3m")]
 position = Vector2(390, 275)

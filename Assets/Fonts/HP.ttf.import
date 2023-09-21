@@ -13,14 +13,14 @@ dest_files=["res://.godot/imported/HP.ttf-a8d1ade668c7ef10a37757e6ea315bd1.fontd
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
+hinting=0
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null

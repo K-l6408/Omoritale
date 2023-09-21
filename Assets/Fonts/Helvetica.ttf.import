@@ -13,14 +13,14 @@ dest_files=["res://.godot/imported/Helvetica.ttf-cecb86c084372fda812ddff0c653e87
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
+hinting=0
 subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null

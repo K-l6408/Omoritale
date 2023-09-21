@@ -1,7 +1,8 @@
-[gd_scene load_steps=48 format=3 uid="uid://c5ubsilw2ag7g"]
+[gd_scene load_steps=50 format=3 uid="uid://c5ubsilw2ag7g"]
 
 [ext_resource type="Script" path="res://OverworldPlayer.gd" id="1_mccbr"]
 [ext_resource type="Script" path="res://Menus/PauseMenu.gd" id="2_ubtu2"]
+[ext_resource type="Script" path="res://Menus/STATmenu.gd" id="3_hiets"]
 [ext_resource type="Script" path="res://Battles/Name.gd" id="4_lflnb"]
 [ext_resource type="Texture2D" uid="uid://chyyw753f3vit" path="res://Assets/UI/_menuITEM.png" id="5_7whk5"]
 [ext_resource type="Texture2D" uid="uid://crt0cgpde3fnr" path="res://Assets/UI/_selectITEM.png" id="6_ok3aq"]
@@ -11,14 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://dr8fx16y6gvry" path="res://Assets/UI/_selectCALL.png" id="10_fuq78"]
 [ext_resource type="Texture2D" uid="uid://dbht73y63wx04" path="res://Assets/UI/_menuHELP.png" id="11_8604j"]
 [ext_resource type="Texture2D" uid="uid://3pdg8ttupwn5" path="res://Assets/UI/_selectHELP.png" id="12_0x2bh"]
+[ext_resource type="Script" path="res://Menus/UI/MenuHPBar.gd" id="12_uc1yr"]
 [ext_resource type="Script" path="res://Menus/UI/Label C.gd" id="14_45i8c"]
 [ext_resource type="Script" path="res://Menus/UI/Label D.gd" id="15_70gth"]
 [ext_resource type="FontFile" uid="uid://vjtxm5t8l4px" path="res://Assets/Fonts/HP.ttf" id="16_28ono"]
+[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL/SOUL.png" id="17_gvg6g"]
 [ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="17_uod0j"]
-[ext_resource type="Texture2D" uid="uid://bbmwkokpwc6vc" path="res://Assets/Sprites/SOUL.png" id="18_yfhov"]
-[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL_bg.png" id="19_1hxqp"]
-[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/DETERMINATION.png" id="20_fmb63"]
-[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/Soulshadow.png" id="21_u1b51"]
+[ext_resource type="Texture2D" uid="uid://b0pxwif5gokwd" path="res://Assets/Sprites/SOUL/SOUL_bg.png" id="18_sx1ea"]
+[ext_resource type="Texture2D" uid="uid://dugh3uiisvgrl" path="res://Assets/Sprites/SOUL/DETERMINATION.png" id="19_q8hlx"]
+[ext_resource type="Texture2D" uid="uid://cto0seshinrd0" path="res://Assets/Sprites/SOUL/Soulshadow.png" id="20_ad8xh"]
 [ext_resource type="Texture2D" uid="uid://csg3u5155jydh" path="res://Assets/Sprites/Overworld.png" id="22_pn7hb"]
 [ext_resource type="AudioStream" uid="uid://dd0l4kykcb5dw" path="res://Assets/Audio/FS1.wav" id="23_cmqc1"]
 [ext_resource type="AudioStream" uid="uid://pebny2jw077h" path="res://Assets/Audio/FS2.wav" id="24_iegdg"]
@@ -251,7 +253,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.0108815, 0.1, 0.175, 0.275, 0.35, 0.45, 0.525, 0.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.25), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0), Color(1, 1, 1, 0.75), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
@@ -260,7 +262,7 @@ _data = {
 "battle": SubResource("Animation_e5n7c")
 }
 
-[node name="Sunnisk" type="CharacterBody2D"]
+[node name="Snuuy" type="CharacterBody2D"]
 process_mode = 1
 texture_filter = 1
 position = Vector2(480, 360)
@@ -271,8 +273,60 @@ limitBottomRight = Vector2(720, 180)
 
 [node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 2
-visible = false
+offset = Vector2(0, -300)
+transform = Transform2D(1, 0, 0, 1, 0, -300)
 script = ExtResource("2_ubtu2")
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 538.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="STATS" type="ColorRect" parent="Pause"]
+visible = false
+offset_left = 7.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 207.0
+color = Color(0, 0, 0, 1)
+
+[node name="Rect" type="ColorRect" parent="Pause/STATS"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pause/STATS"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "ATK: 99 (99)
+DEF: 99 (99)
+MAG: 99 (99)
+EXP: 1444443
+Next LV: 1444443
+Weapon: yroue mom
+Armor: last night"
+autowrap_mode = 1
+script = ExtResource("3_hiets")
 
 [node name="BG" type="Polygon2D" parent="Pause"]
 polygon = PackedVector2Array(0, 0, 580, 0, 257, 240, 0, 240)
@@ -359,38 +413,32 @@ stretch_mode = 0
 process_mode = 3
 texture_filter = 1
 offset_left = 61.0
-offset_top = 46.0
-offset_right = 164.0
-offset_bottom = 75.0
+offset_top = 60.0
+offset_right = 212.0
+offset_bottom = 89.0
 color = Color(1, 0, 0, 1)
 
 [node name="Bar" type="ColorRect" parent="Pause/HP"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 103.0
+offset_right = 151.0
 grow_vertical = 2
 color = Color(1, 1, 0, 1)
+script = ExtResource("12_uc1yr")
 
 [node name="Control" type="Control" parent="Pause/HP"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 36.0
+offset_right = 82.0
+offset_bottom = 93.0
 
 [node name="Label" type="Label" parent="Pause/HP/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.125
-anchor_right = 1.80833
-anchor_bottom = 0.76
-offset_left = -8.59998
-offset_right = 25.4
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = -50.0
+offset_right = 24.0
+offset_bottom = 31.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
@@ -400,35 +448,33 @@ script = ExtResource("14_45i8c")
 
 [node name="Slash" type="Label" parent="Pause/HP/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.38333
-anchor_top = 0.06
-anchor_right = 1.82083
-anchor_bottom = 1.24
-offset_left = 15.0
-offset_top = -11.74
-offset_right = 36.0
-offset_bottom = 22.04
-grow_horizontal = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MLabel" type="Label" parent="Pause/HP/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.63333
-anchor_top = 0.44
-anchor_right = 2.48333
-anchor_bottom = 1.2
-offset_left = 29.0
-offset_top = -1.76
-offset_right = 63.0
-offset_bottom = 11.2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -36.0
+offset_right = 77.0
+offset_bottom = -5.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
@@ -455,19 +501,19 @@ visible = false
 [node name="yeah" type="Sprite2D" parent="SOUL"]
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(480, 365)
-texture = ExtResource("18_yfhov")
+texture = ExtResource("17_gvg6g")
 
 [node name="uhh" type="Sprite2D" parent="SOUL/yeah"]
 show_behind_parent = true
-texture = ExtResource("19_1hxqp")
+texture = ExtResource("18_sx1ea")
 
 [node name="DT" type="Sprite2D" parent="SOUL/yeah"]
-texture = ExtResource("20_fmb63")
+texture = ExtResource("19_q8hlx")
 
 [node name="Shadow" type="Sprite2D" parent="SOUL/yeah"]
 modulate = Color(1, 1, 1, 0.5)
 position = Vector2(2, 2.5)
-texture = ExtResource("21_u1b51")
+texture = ExtResource("20_ad8xh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yldwc")

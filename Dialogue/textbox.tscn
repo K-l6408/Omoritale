@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_cmy7h"]
 [ext_resource type="Script" path="res://Dialogue/offset.gd" id="4_lng71"]
 [ext_resource type="Script" path="res://Dialogue/ResponseTemplate.gd" id="5_xvjlm"]
-[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/DefaultSoul.png" id="6_l5yo8"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="6_l5yo8"]
 [ext_resource type="AudioStream" uid="uid://cv1sbmewh1md6" path="res://Assets/Audio/Soundbytes/txt.wav" id="7_7adef"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_cvi33"]

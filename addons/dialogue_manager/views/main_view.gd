@@ -51,6 +51,7 @@ enum TranslationSource {
 @onready var insert_button: MenuButton = %InsertButton
 @onready var translations_button: MenuButton = %TranslationsButton
 @onready var settings_button: Button = %SettingsButton
+@onready var support_button: Button = %SupportButton
 @onready var docs_button: Button = %DocsButton
 @onready var version_label: Label = %VersionLabel
 @onready var update_button: Button = %UpdateButton
@@ -365,6 +366,9 @@ func apply_theme() -> void:
 
 		settings_button.icon = get_theme_icon("Tools", "EditorIcons")
 		settings_button.tooltip_text = DialogueConstants.translate("settings")
+
+		support_button.icon = get_theme_icon("Heart", "EditorIcons")
+		support_button.tooltip_text = DialogueConstants.translate("show_support")
 
 		docs_button.icon = get_theme_icon("Help", "EditorIcons")
 		docs_button.text = DialogueConstants.translate("docs")
@@ -716,6 +720,7 @@ func _on_editor_settings_changed() -> void:
 	var editor_settings: EditorSettings = editor_plugin.get_editor_interface().get_editor_settings()
 	code_edit.minimap_draw = editor_settings.get_setting("text_editor/appearance/minimap/show_minimap")
 	code_edit.minimap_width = editor_settings.get_setting("text_editor/appearance/minimap/minimap_width")
+	code_edit.scroll_smooth = editor_settings.get_setting("text_editor/behavior/navigation/smooth_scrolling")
 
 
 func _on_open_menu_id_pressed(id: int) -> void:
@@ -921,6 +926,10 @@ func _on_settings_dialog_confirmed() -> void:
 	parse()
 	code_edit.wrap_mode = TextEdit.LINE_WRAPPING_BOUNDARY if DialogueSettings.get_setting("wrap_lines", false) else TextEdit.LINE_WRAPPING_NONE
 	code_edit.grab_focus()
+
+
+func _on_support_button_pressed() -> void:
+	OS.shell_open("https://patreon.com/nathanhoad")
 
 
 func _on_docs_button_pressed() -> void:

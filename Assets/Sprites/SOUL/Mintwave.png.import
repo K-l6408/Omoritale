@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dugh3uiisvgrl"
-path="res://.godot/imported/DETERMINATION.png-84365fafbadff27b4928dc105cc98ff1.ctex"
+uid="uid://b7x5bx5xml8et"
+path="res://.godot/imported/Mintwave.png-88603b57775cd30017ff7d2f417cd49b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/DETERMINATION.png"
-dest_files=["res://.godot/imported/DETERMINATION.png-84365fafbadff27b4928dc105cc98ff1.ctex"]
+source_file="res://Assets/Sprites/SOUL/Mintwave.png"
+dest_files=["res://.godot/imported/Mintwave.png-88603b57775cd30017ff7d2f417cd49b.ctex"]
 
 [params]
 

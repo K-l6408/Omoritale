@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n1lom4pfo5n2"
-path="res://.godot/imported/lario.png-48bd1b38bd60bea45f62c89f9e2aaba9.ctex"
+uid="uid://di2syttsegkhq"
+path="res://.godot/imported/_selectHELPb.png-afa2ab97eda98fef32e769fb77644073.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/lario.png"
-dest_files=["res://.godot/imported/lario.png-48bd1b38bd60bea45f62c89f9e2aaba9.ctex"]
+source_file="res://Assets/UI/_selectHELPb.png"
+dest_files=["res://.godot/imported/_selectHELPb.png-afa2ab97eda98fef32e769fb77644073.ctex"]
 
 [params]
 

@@ -20,7 +20,7 @@ script = ExtResource("1_tug8d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture_repeat = 2
+texture_repeat = 1
 material = SubResource("ShaderMaterial_p00nd")
 position = Vector2(259, 274)
 scale = Vector2(2, 2)

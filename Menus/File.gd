@@ -1,3 +1,4 @@
+@tool
 extends TextureButton
 
 @export var filenum = 1
@@ -12,14 +13,16 @@ func _process(_delta):
 		for i in 4:
 			get_child(i+1).hide()
 		return
-	var d = f.get_var(true)
-	$N.text  = d[1]
-	var xp   = d[2]
-	var area = d[3]
-	var t    = int(d[4])
-	$T.text  = "%03d:%02d" % [(t-t%60)/60, t%60]
-	$L.text  = "LV %d" % Globals.LVfromXP(xp)
-	$P.text  = Globals.areas[area]
+	var vc = f.get_16()
+	if vc == 0x0800:
+		var d = f.get_var(true)
+		$N.text  = d[1]
+		var xp   = d[2]
+		var t    = int(d[3])
+		var area = d[4]
+		$T.text  = "%03d:%02d" % [(t-t%60)/60, t%60]
+		$L.text  = "LV %d" % GLOBALS.LVfromXP(xp)
+		$P.text  = area
 
 func _on_pressed():
 	Globals.SaveSlot = filenum

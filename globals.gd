@@ -3,11 +3,19 @@ extends Node
 class_name GLOBALS #for constants, in ðe editor
 
 enum Weapon {
-	Stick, MkrPhone, __, Ruler, Sword, PntGun, IceSk8, Knife, RedKnife
+	Stick, MkrPhone, PntGun, Ruler, Sword, Rvolvr, IceSk8, Knife, RedKnife
 }
 enum Armor {
 	Bandage, RlrSk8, PropHat, ChfHat, GstClk, FlwCrn, TrnCrn
 }
+const WeaponNames = [
+	"Stick", "LoudMike", "PaintGun", "Ruler", "RstySword", "Revolver", "IceSkates",
+	"DullKnife", "RedKnife"
+]
+const ArmorNames = [
+	"Bandage", "RollrSk8s", "PropllrHat", "Chef Hat", "GhostCloak",
+	"FlowrCrown", "ThornCrown"
+]
 const Colors = {
 	"Red": Color("f00"),
 	"Orange": Color("f90"),
@@ -23,14 +31,6 @@ const Colors = {
 	"DarkMint": Color("096"),
 	"LightTeal": Color("8bf")
 }
-const areas = [
-	"[???]",
-	"Pinwheel Forest",
-	"Otherworld Colony",
-	"Lakeside Isles",
-	"Snowglobe Peaks",
-	"Faraway City"
-]
 
 # (WARNING) 
 # 
@@ -46,27 +46,36 @@ var debugAttack = 0
 var debugAnimation = "default"
 var Secrets = 0
 var Found = []
-var EXP = 0 # 143143143143143143
+var EXP = 0 # 999999
 var LV: int:
 	get:
 		return GLOBALS.LVfromXP(EXP)
+var HP = GLOBALS.MHPfromLV(LV)
 var PlayerStats := Stats.new():
 	get:
 		PlayerStats.MHP = GLOBALS.MHPfromLV(LV)
 		PlayerStats.MJP = GLOBALS.MJPfromLV(LV)
-		PlayerStats.HP = PlayerStats.MHP
+		PlayerStats.HP = HP
 		PlayerStats.JP = 0
 		PlayerStats.ATK = LV * 1.5
-		PlayerStats.DEF = 2.0 - 1.0 / LV
+		PlayerStats.DEF = (LV + 6.0) / 7.0
 		PlayerStats.MAG = LV * .75
 		return PlayerStats
 var TIME = 0
-var AREA = 0
+var AREA = "[???]"
+var PLOT = 0
+var ROUTE = 0
+var PlayerPosition := Vector2(0, 0)
 var WEPN : Weapon = Weapon.Stick
 var ARMR : Armor = Armor.Bandage
+var INVENTORY : PackedInt32Array = []
 var Enemies : Array[Enemy] = []
 var musynctime = 0.0
 var skiptext := true
+var lastsaverelevantdata = {
+	"TIME" : TIME,
+	"LV" : 0
+}
 
 func _ready():
 	var args = OS.get_cmdline_args()
@@ -80,8 +89,12 @@ func _process(delta):
 
 func Fsave(file:int):
 	var filename = "user://SaveFile%d.omo1" % file if FileOVERRIDE == "" else FileOVERRIDE
+	sv(filename)
+
+func sv(filename):
 	var f = FileAccess.open(filename, FileAccess.WRITE)
-	f.store_var([KeyboardLayout, PlayerName, EXP, AREA, TIME], true)
+	f.store_16(0x0800)
+	f.store_var([KeyboardLayout, PlayerName, EXP, TIME, AREA, PLOT, ROUTE], true)
 
 func Fload(file:int):
 	var filename = "user://SaveFile%d.omo1" % file if FileOVERRIDE == "" else FileOVERRIDE
@@ -91,12 +104,21 @@ func ld(filename):
 	var f = FileAccess.open(filename, FileAccess.READ)
 	if f == null:
 		return true
-	var d = f.get_var(true)
-	KeyboardLayout = d[0]
-	PlayerName     = d[1]
-	EXP  = d[2]
-	AREA = d[3]
-	TIME = d[4]
+	match f.get_16(): # Version control
+		0x0800:
+			var d = f.get_var(true)
+			KeyboardLayout = d[0]
+			PlayerName     = d[1]
+			EXP            = d[2]
+			TIME           = d[3]
+			AREA           = d[4]
+			PLOT           = d[5]
+			ROUTE          = d[6]
+			lastsaverelevantdata = {
+				"TIME": TIME,
+				"LV": LV
+			}
+	sv(filename)
 	return false
 
 static func LVfromXP(XP:int):
@@ -139,6 +161,29 @@ static func LVfromXP(XP:int):
 	if XP < 1444443:
 		return 19
 	return 20
+
+static func minEXPfromLV(lv:int):
+	match lv:
+		1: return 0
+		2: return 10
+		3: return 20
+		4: return 40
+		5: return 80
+		6: return 160
+		7: return 300
+		8: return 600
+		9: return 1200
+		10: return 2400
+		11: return 4800
+		12: return 10000
+		13: return 20000
+		14: return 40000
+		15: return 80000
+		16: return 120000
+		17: return 240000
+		18: return 480000
+		19: return 999999
+		20: return 1444443
 
 static func MHPfromLV(lv:int):
 	if lv < 20:

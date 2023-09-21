@@ -26,6 +26,7 @@ position = Vector2(492, 346)
 position = Vector2(492, 372)
 rotation = -1.5708
 Size = Vector2i(150, 200)
+"Strengþ" = 0.6
 
 [node name="Soul" parent="." instance=ExtResource("3_571l5")]
 position = Vector2(491, 284)
