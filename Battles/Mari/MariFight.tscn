@@ -73,23 +73,23 @@ script = ExtResource("1_g51ic")
 PlayerStats = SubResource("Resource_sgxjl")
 
 [node name="EHbox" type="Area2D" parent="." index="3"]
-position = Vector2(488, 188)
+position = Vector2(480, 188)
 script = ExtResource("2_nlsls")
 
 [node name="Shape" type="CollisionShape2D" parent="EHbox" index="0"]
 shape = SubResource("RectangleShape2D_r25c8")
 
-[node name="Mari" type="Sprite2D" parent="." index="4"]
-position = Vector2(487, 186)
+[node name="Mari" type="Sprite2D" parent="EHbox" index="1"]
+position = Vector2(-1, -2)
 scale = Vector2(2, 2)
 texture = ExtResource("1_k7wqo")
 
-[node name="Face" type="AnimatedSprite2D" parent="Mari" index="0"]
+[node name="Face" type="AnimatedSprite2D" parent="EHbox/Mari" index="0"]
 position = Vector2(0.5, -52)
 sprite_frames = SubResource("SpriteFrames_v8s32")
 animation = &":("
 
-[node name="Hair" type="Sprite2D" parent="Mari" index="1"]
+[node name="Hair" type="Sprite2D" parent="EHbox/Mari" index="1"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_s8da0")
 position = Vector2(0, -16)

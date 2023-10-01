@@ -19,19 +19,19 @@ Blue = true
 Purple = false
 Value = 72
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h13yh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_u8xc8"]
 viewport_path = NodePath("1/V")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7va7t"]
 size = Vector2(4, 6)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_25q8g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5q5o2"]
 viewport_path = NodePath("2/V")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_avifs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_fmq5y"]
 viewport_path = NodePath("3/V")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wqiiy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ppxbn"]
 viewport_path = NodePath("4/V")
 
 [node name="Node2D" type="Node2D"]
@@ -57,7 +57,7 @@ atkType = 11
 self_modulate = Color(0.380392, 0.121569, 0.690196, 1)
 clip_children = 2
 rotation = -3.14159
-texture = SubResource("ViewportTexture_h13yh")
+texture = SubResource("ViewportTexture_u8xc8")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -103,7 +103,7 @@ atkType = 11
 self_modulate = Color(0.43539, 0.69, 0.1242, 1)
 clip_children = 2
 rotation = -3.14159
-texture = SubResource("ViewportTexture_25q8g")
+texture = SubResource("ViewportTexture_5q5o2")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -149,7 +149,7 @@ atkType = 11
 self_modulate = Color(0.69, 0.1242, 0.15249, 1)
 clip_children = 2
 rotation = -3.14159
-texture = SubResource("ViewportTexture_avifs")
+texture = SubResource("ViewportTexture_fmq5y")
 centered = false
 offset = Vector2(-10, 0)
 
@@ -195,7 +195,7 @@ atkType = 11
 self_modulate = Color(0.1242, 0.69, 0.66171, 1)
 clip_children = 2
 rotation = -3.14159
-texture = SubResource("ViewportTexture_wqiiy")
+texture = SubResource("ViewportTexture_ppxbn")
 centered = false
 offset = Vector2(-10, 0)
 

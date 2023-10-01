@@ -11,7 +11,8 @@ var C  := Color.WHITE
 var TC := Color.WHITE
 var EffectNum : int
 var Fightscn = preload("res://Menus/UI/FIGHT.tscn")
-var Actscn = preload("res://Menus/UI/ACT.tscn")
+var Actscn   = preload("res://Menus/UI/ACT.tscn")
+var Skillscn = preload("res://Menus/UI/SKILL.tscn")
 
 func _ready():
 	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
@@ -83,8 +84,11 @@ func Fight():
 	F.position = Vector2(0, 0)
 	F.set_deferred("size", Vector2(960, 720))
 	add_child(F)
-	await F.done
-	emit_signal("YourTurn")
+	F.connect("nvm", func():
+		playerTurn(F.get_node("Rect").DC)
+		F.queue_free()
+	)
+	F.connect("done", func(): emit_signal("YourTurn"))
 
 func Act():
 	$Buttons/ACT.release_focus()
@@ -105,6 +109,26 @@ func Act():
 			TC = Globals.Colors["DarkGreen"]
 		emit_signal("YourTurn")
 	)
+
+func Skill():
+	$Buttons/SKILL.release_focus()
+	$TextBox.hide()
+	var S = Skillscn.instantiate()
+	add_child(S)
+#	S.connect("nvm", func():
+#		playerTurn(S.get_node("ACT/Rect").color)
+#		S.queue_free()
+#	)
+#	S.connect("act", func(enm,act):
+#		await S.done
+#		emit_signal("Ask", enm, act)
+#		C  = S.get_node("ACT/Rect").color
+#		TC = S.get_node("ACT/Rect").color
+#		if $TextBox.visible:
+#			await $TextBox.finished
+#			TC = Globals.Colors["DarkGreen"]
+#		emit_signal("YourTurn")
+#	)
 
 signal YourTurn()
 signal Ask(enm, act)

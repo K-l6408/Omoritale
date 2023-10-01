@@ -45,22 +45,24 @@ func the_ouchies(intensity, which = 0):
 	var LB = $Label.duplicate()
 	$Damage.add_child(LB)
 	LB.show()
+	LB.position.x = Globals.Enemies[which].Position - 60
 	LB.text = "%d" % max(ceil(intensity * playerStats.ATK * 15 / Globals.Enemies[0].Stat.DEF), 0)
 	var TW = create_tween()
-	TW.tween_property(LB, "position", Vector2(400, 100), .3).set_trans(Tween.TRANS_CUBIC)
-	TW.tween_property(LB, "position", Vector2(400, 170), .7).set_trans(Tween.TRANS_CUBIC)
+	TW.tween_property(LB, "position:y", 100, .3).set_trans(Tween.TRANS_CUBIC)
+	TW.tween_property(LB, "position:y", 170, .7).set_trans(Tween.TRANS_CUBIC)
 	await TW.finished
 	LB.queue_free()
 	if Globals.Enemies[which].Stat.HP <= 0:
 		emit_signal("enemydeath", which)
 
 func gothit(what):
-	if what is int:
+	if what is int or what is float:
 		playerStats.HP -= what
 	elif what is String:
 		for i in Globals.Enemies:
 			if i.Name == what:
 				playerStats.HP -= i.Stat.ATK / playerStats.DEF
+				break
 
 func Act(_enm, _act):
 	act(_enm, _act)

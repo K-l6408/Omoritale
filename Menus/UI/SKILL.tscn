@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://baqoyhj4xbu7m"]
+
+[ext_resource type="Script" path="res://Menus/UI/MultiRectV.gd" id="1_0jtsm"]
+[ext_resource type="Script" path="res://Menus/UI/SKILL.gd" id="1_t3oc1"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="3_fvkfb"]
+[ext_resource type="Script" path="res://Menus/UI/SkillButton.gd" id="3_il4ob"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_t3oc1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 333.0
+offset_right = 930.0
+offset_bottom = 543.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_0jtsm")
+DC = Color(0.2, 0.6, 1, 1)
+E = PackedVector2Array(0, 150, 170, 210)
+
+[node name="Desc" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 170.0
+offset_right = 900.0
+offset_bottom = 210.0
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "Description"
+
+[node name="Template" type="Button" parent="ColorRect"]
+visible = false
+layout_mode = 2
+offset_right = 143.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "   Example"
+flat = true
+alignment = 0
+script = ExtResource("3_il4ob")
+
+[node name="Soul" type="Sprite2D" parent="ColorRect/Template"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("3_fvkfb")
+centered = false
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+columns = 3
+
+[connection signal="go" from="ColorRect/Template" to="." method="button_press"]

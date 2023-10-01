@@ -84,6 +84,7 @@ var current_file_path: String = "":
 			files_list.hide()
 			title_list.hide()
 			code_edit.hide()
+			errors_panel.hide()
 		else:
 			test_button.disabled = false
 			search_button.disabled = false
@@ -428,7 +429,8 @@ func build_open_menu() -> void:
 		menu.set_item_disabled(2, true)
 	else:
 		for path in recent_files:
-			menu.add_icon_item(get_theme_icon("File", "EditorIcons"), path)
+			if FileAccess.file_exists(path):
+				menu.add_icon_item(get_theme_icon("File", "EditorIcons"), path)
 
 	menu.add_separator()
 	menu.add_item(DialogueConstants.translate("open.clear_recent_files"), OPEN_CLEAR)
@@ -558,7 +560,7 @@ func export_translations_to_csv(path: String) -> void:
 	file = FileAccess.open(path, FileAccess.WRITE)
 
 	if not file.file_exists(path):
-		file.store_csv_line(["keys", "en"])
+		file.store_csv_line(["keys", DialogueSettings.get_setting("default_csv_locale", "en")])
 
 	# Write our translations to file
 	var known_keys: PackedStringArray = []
@@ -595,7 +597,9 @@ func export_translations_to_csv(path: String) -> void:
 	editor_plugin.get_editor_interface().get_file_system_dock().call_deferred("navigate_to_path", path)
 
 	# Add it to the project l10n settings if it's not already there
-	var translation_path: String = path.replace(".csv", ".en.translation")
+	var locale: String = DialogueSettings.get_setting("default_csv_locale", "en")
+	var language_code: RegExMatch = RegEx.create_from_string("^[a-z]{2,3}").search(locale)
+	var translation_path: String = path.replace(".csv", ".%s.translation" % language_code.get_string())
 	call_deferred("add_path_to_project_translations", translation_path)
 
 
@@ -623,7 +627,7 @@ func export_character_names_to_csv(path: String) -> void:
 	file = FileAccess.open(path, FileAccess.WRITE)
 
 	if not file.file_exists(path):
-		file.store_csv_line(["keys", "en"])
+		file.store_csv_line(["keys", DialogueSettings.get_setting("default_csv_locale", "en")])
 
 	# Write our translations to file
 	var known_keys: PackedStringArray = []
@@ -711,6 +715,15 @@ func import_translations_from_csv(path: String) -> void:
 	code_edit.set_cursor(cursor)
 
 	parser.free()
+
+
+func show_search_form(is_enabled: bool) -> void:
+	if code_edit.last_selected_text:
+		search_and_replace.input.text = code_edit.last_selected_text
+
+	search_and_replace.visible = is_enabled
+	search_button.set_pressed_no_signal(is_enabled)
+	search_and_replace.focus_line_edit()
 
 
 ### Signals
@@ -847,6 +860,7 @@ func _on_code_edit_text_changed() -> void:
 
 	var buffer = open_buffers[current_file_path]
 	buffer.text = code_edit.text
+
 	files_list.mark_file_as_unsaved(current_file_path, buffer.text != buffer.pristine_text)
 	save_all_button.disabled = open_buffers.values().filter(func(d): return d.text != d.pristine_text).size() == 0
 
@@ -883,15 +897,11 @@ func _on_errors_panel_error_pressed(line_number: int, column_number: int) -> voi
 
 
 func _on_search_button_toggled(button_pressed: bool) -> void:
-	if code_edit.last_selected_text:
-		search_and_replace.input.text = code_edit.last_selected_text
-
-	search_and_replace.visible = button_pressed
+	show_search_form(button_pressed)
 
 
 func _on_search_and_replace_open_requested() -> void:
-	search_button.set_pressed_no_signal(true)
-	search_and_replace.visible = true
+	show_search_form(true)
 
 
 func _on_search_and_replace_close_requested() -> void:

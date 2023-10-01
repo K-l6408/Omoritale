@@ -44,8 +44,6 @@ var KeyboardLayout = ""
 var PlayerName = ""
 var debugAttack = 0
 var debugAnimation = "default"
-var Secrets = 0
-var Found = []
 var EXP = 0 # 999999
 var LV: int:
 	get:
@@ -57,14 +55,13 @@ var PlayerStats := Stats.new():
 		PlayerStats.MJP = GLOBALS.MJPfromLV(LV)
 		PlayerStats.HP = HP
 		PlayerStats.JP = 0
-		PlayerStats.ATK = LV * 1.5
+		PlayerStats.ATK =  LV * 1.5
 		PlayerStats.DEF = (LV + 6.0) / 7.0
-		PlayerStats.MAG = LV * .75
+		PlayerStats.MAG =  LV * .75
 		return PlayerStats
 var TIME = 0
 var AREA = "[???]"
 var PLOT = 0
-var ROUTE = 0
 var PlayerPosition := Vector2(0, 0)
 var WEPN : Weapon = Weapon.Stick
 var ARMR : Armor = Armor.Bandage
@@ -94,7 +91,7 @@ func Fsave(file:int):
 func sv(filename):
 	var f = FileAccess.open(filename, FileAccess.WRITE)
 	f.store_16(0x0800)
-	f.store_var([KeyboardLayout, PlayerName, EXP, TIME, AREA, PLOT, ROUTE], true)
+	f.store_var([KeyboardLayout, PlayerName, EXP, TIME, AREA, PLOT], true)
 
 func Fload(file:int):
 	var filename = "user://SaveFile%d.omo1" % file if FileOVERRIDE == "" else FileOVERRIDE
@@ -113,7 +110,6 @@ func ld(filename):
 			TIME           = d[3]
 			AREA           = d[4]
 			PLOT           = d[5]
-			ROUTE          = d[6]
 			lastsaverelevantdata = {
 				"TIME": TIME,
 				"LV": LV

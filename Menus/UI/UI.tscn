@@ -177,10 +177,9 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
-text = "26.00"
+text = "26"
 horizontal_alignment = 2
 script = ExtResource("13_1r1n7")
-rounded = null
 
 [node name="Slash" type="Label" parent="HP/Control"]
 layout_mode = 1
@@ -339,3 +338,4 @@ is_ui = true
 
 [connection signal="pressed" from="Buttons/FIGHT" to="." method="Fight"]
 [connection signal="pressed" from="Buttons/ACT" to="." method="Act"]
+[connection signal="pressed" from="Buttons/SKILL" to="." method="Skill"]

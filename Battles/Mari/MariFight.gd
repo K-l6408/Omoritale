@@ -10,7 +10,7 @@ func _on_start():
 	S.MAG = 7
 	M.Name = "Mari"
 	M.Check = "uh"
-	M.Position = 456
+	M.Position = $EHbox.position.x - 32
 	M.Scale = 0.8
 	M.Stat = S
 	M.ACTs = [

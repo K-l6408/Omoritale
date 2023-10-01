@@ -40,6 +40,8 @@ func makewpn(count, textr):
 	Going = true
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		emit_signal("nvm")
 	for E in %Enemies.get_child_count():
 		if %Enemies.get_child(E).scale.x < Globals.Enemies[E].Scale:
 			%Enemies.get_child(E).scale.x += Globals.Enemies[E].Scale * delta
@@ -103,4 +105,5 @@ func closest(my_number, my_array:Array):
 			closest_delta = temp_delta
 	return closest_num
 
+signal nvm()
 signal done()

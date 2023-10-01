@@ -126,7 +126,10 @@ func _physics_process(delta):
 		if State.Orange:
 			v = pvel
 		handle_input()
-		if not State.Teal or not tping:
+		if State.Teal and tping:
+			velocity = Vector2.ZERO
+			move_and_slide()
+		else:
 			if State.Red:
 				velocity = velocity.rotated(global_rotation)
 				vel = vel.rotated(global_rotation)
