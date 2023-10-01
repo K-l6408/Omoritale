@@ -11,15 +11,15 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x30s"]
 bg_color = Color(1, 1, 0, 1)
 
-[sub_resource type="Resource" id="Resource_b70lu"]
+[sub_resource type="Resource" id="Resource_33jrg"]
 resource_local_to_scene = true
 script = ExtResource("2_4o6j6")
-HP = 26
-MHP = 26
-EHP = Array[int]([])
-JP = 0
-MJP = 20
-EJP = Array[int]([])
+HP = 26.0
+MHP = 26.0
+EHP = Array[float]([])
+JP = 0.0
+MJP = 20.0
+EJP = Array[float]([])
 ATK = 1.0
 DEF = 1.0
 MAG = 1.0
@@ -60,7 +60,8 @@ show_percentage = false
 
 [node name="UI" parent="." instance=ExtResource("1_65q1f")]
 z_index = 2
-PlayerStats = SubResource("Resource_b70lu")
+PlayerStats = SubResource("Resource_33jrg")
 
 [connection signal="Ask" from="UI" to="." method="Act"]
+[connection signal="Unskilledpoint" from="UI" to="." method="Skill"]
 [connection signal="YourTurn" from="UI" to="." method="attack"]

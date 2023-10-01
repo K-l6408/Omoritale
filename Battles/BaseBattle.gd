@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Battle
 
-var playerStats = Globals.PlayerStats.duplicate()
+var playerStats : Stats = Globals.PlayerStats.duplicate()
 var attackNum = 0
 var attacks = []
 
@@ -67,6 +67,13 @@ func gothit(what):
 func Act(_enm, _act):
 	act(_enm, _act)
 	$UI.emit_signal("What")
+
+func Skill(qhat, cost):
+	match qhat:
+		0:
+			playerStats.JP -= cost
+			if playerStats.HP < playerStats.MHP:
+				playerStats.HP = min(playerStats.HP + playerStats.MAG * 4, playerStats.MHP)
 
 func act(_enm, _act):
 	pass

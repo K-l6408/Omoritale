@@ -76,6 +76,7 @@ func _process(delta):
 	$Effect.text += "[/center]"
 	$LV.text = "LV " + str(LevelOfViolence)
 	$TextBox/Balloon/Rect.modulate = lerp(C, TC, T)
+	if has_node("SKILL"): $SKILL.JP = PlayerStats.JP
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
@@ -114,22 +115,22 @@ func Skill():
 	$Buttons/SKILL.release_focus()
 	$TextBox.hide()
 	var S = Skillscn.instantiate()
-	add_child(S)
-#	S.connect("nvm", func():
-#		playerTurn(S.get_node("ACT/Rect").color)
-#		S.queue_free()
-#	)
-#	S.connect("act", func(enm,act):
-#		await S.done
-#		emit_signal("Ask", enm, act)
-#		C  = S.get_node("ACT/Rect").color
-#		TC = S.get_node("ACT/Rect").color
-#		if $TextBox.visible:
-#			await $TextBox.finished
-#			TC = Globals.Colors["DarkGreen"]
-#		emit_signal("YourTurn")
-#	)
+	add_child(S, true)
+	S.connect("nvm", func():
+		playerTurn(S.get_node("ColorRect").DC)
+		S.queue_free()
+	)
+	S.connect("skill", func(qhat, cost):
+		emit_signal("Unskilledpoint", qhat, cost)
+		C  = S.get_node("ColorRect").DC
+		TC = S.get_node("ColorRect").DC
+		if $TextBox.visible:
+			await $TextBox.finished
+			TC = Globals.Colors["DarkGreen"]
+		emit_signal("YourTurn")
+	)
 
 signal YourTurn()
 signal Ask(enm, act)
+signal Unskilledpoint(qhat, cost)
 signal What()

@@ -1,14 +1,18 @@
 extends Control
 
-const SKILL_NAMES = [
+var SKILL_NAMES = [
 	"Heal"
 ]
-const SKILL_DESCS = [
-	"[color=lightgreen]Heals[/color] some HP. Cost: [color=cyan]2 JP[/color]."
+var SKILL_DESCS = [
+	"[color=lightgreen]Heals[/color] some HP. Cost: [color=cyan]%.1f JP[/color]." % (Globals.PlayerStats.MAG * 2)
+]
+var SKILL_COSTS = [
+	Globals.PlayerStats.MAG * 2
 ]
 @onready var GRID = $ColorRect/GridContainer
-var available : PackedByteArray = [0, 0, 0, 0, 0, 0]
+var available : PackedByteArray = [0]
 var time = 0
+var JP = 0
 
 func _ready():
 	$ColorRect/Desc.hide()
@@ -24,6 +28,8 @@ func _process(delta):
 			loadskills()
 			GRID.get_child(0).grab_focus()
 	else:
+		for i in $ColorRect/GridContainer.get_children():
+			i.disabled = (SKILL_COSTS[i.wha] > JP)
 		var FO = get_viewport().gui_get_focus_owner()
 		if FO in GRID.get_children():
 			$ColorRect/Desc.text = SKILL_DESCS[FO.wha]
@@ -44,7 +50,8 @@ func loadskills():
 			GRID.get_child(i%3).focus_neighbor_top    = LB.get_path()
 
 func button_press(whar):
-	emit_signal("skill", whar)
+	emit_signal("skill", whar, SKILL_COSTS[whar])
+	queue_free()
 
 signal nvm()
-signal skill(qhat)
+signal skill(qhat, cost)

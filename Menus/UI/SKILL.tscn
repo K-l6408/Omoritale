@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="3_fvkfb"]
 [ext_resource type="Script" path="res://Menus/UI/SkillButton.gd" id="3_il4ob"]
 
-[node name="Control" type="Control"]
+[node name="SKILL" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

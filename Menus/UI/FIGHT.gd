@@ -5,6 +5,7 @@ var T = [
 	preload("res://Assets/Sprites/Weapons/Stick.png")
 ]
 var Going = false
+var GoBack = false
 
 func _ready():
 	for E in Globals.Enemies.size():
@@ -40,8 +41,24 @@ func makewpn(count, textr):
 	Going = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		emit_signal("nvm")
+	if Input.is_action_just_pressed("ui_cancel") and not Going:
+		GoBack = true
+	if GoBack:
+		G -= delta
+		if G > .5:
+			$Rect.DC = lerp(Color(0,.5,0), Color(1,.2,.2), G)
+			$Rect.size.y = 820 * (G * G - G) + 210
+			$Rect.position.y = 315 - 820 * (G * G - G)
+		else:
+			$Rect.hide()
+			$Rect2.show()
+			$Rect2.DC = lerp(Color(0,.5,0), Color(1,.2,.2), G)
+			$Rect2.size.y = 820 * (G * G - G) + 210
+			$Rect2.position.y = 315 - 820 * (G * G - G)
+		if G <= 0:
+			emit_signal("nvm")
+			queue_free()
+		return
 	for E in %Enemies.get_child_count():
 		if %Enemies.get_child(E).scale.x < Globals.Enemies[E].Scale:
 			%Enemies.get_child(E).scale.x += Globals.Enemies[E].Scale * delta

@@ -44,7 +44,7 @@ var KeyboardLayout = ""
 var PlayerName = ""
 var debugAttack = 0
 var debugAnimation = "default"
-var EXP = 0 # 999999
+var EXP = 10 # 999999
 var LV: int:
 	get:
 		return GLOBALS.LVfromXP(EXP)
