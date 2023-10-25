@@ -7,4 +7,4 @@ func setang(ang):
 	Rot = ang
 
 func _process(delta):
-	global_rotation = lerp_angle(global_rotation, Rot, delta*7)
+	global_rotation = lerp_angle(global_rotation, Rot, delta*15)

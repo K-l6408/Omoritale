@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkd4xn8goeiig"]
 
-[ext_resource type="PackedScene" uid="uid://41vr7h3bcr8" path="res://Bullet Boards/BulletBox.tscn" id="1_7dwq1"]
+[ext_resource type="PackedScene" uid="uid://blggsirp82i7k" path="res://Bullet Boards/BulletPongon.tscn" id="1_r0lox"]
 [ext_resource type="PackedScene" uid="uid://bg5qgt3481ojs" path="res://Battles/Mari/Wind.tscn" id="2_dxitl"]
 [ext_resource type="PackedScene" uid="uid://dq2l41xp266c7" path="res://SOUL/Soul.tscn" id="3_571l5"]
 [ext_resource type="Script" path="res://SOUL/Soul State.gd" id="4_yrjha"]
@@ -11,23 +11,25 @@ Red = false
 Orange = false
 Yellow = false
 Green = false
-Mint = true
+Mint = false
 Teal = false
-Blue = false
+Blue = true
 Purple = false
-Value = 16
+Value = 64
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Box" parent="." instance=ExtResource("1_7dwq1")]
-position = Vector2(492, 346)
+[node name="Pongon" parent="." instance=ExtResource("1_r0lox")]
+position = Vector2(492, 361)
+StartingPolygon = PackedVector2Array(-100, 90, 100, 90, 100, -200, -300, -200, -300, -100, -200, -100, -200, 90)
+TargetPolygon = PackedVector2Array(-100, 90, 100, 90, 100, -200, -300, -200, -300, -100, -200, -100, -200, 90)
 
 [node name="Wind" parent="." instance=ExtResource("2_dxitl")]
 position = Vector2(492, 372)
-rotation = -1.5708
+rotation = -4.71238
 Size = Vector2i(150, 200)
-"Strengþ" = 0.6
+"Strengþ" = 5.0
 
 [node name="Soul" parent="." instance=ExtResource("3_571l5")]
-position = Vector2(491, 284)
+position = Vector2(242, 212)
 State = SubResource("Resource_innpu")

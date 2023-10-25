@@ -5,8 +5,8 @@ var j = 1
 var leaf = preload("res://Battles/Mari/Leaf.tscn")
 
 func _ready():
-	$Box.ChangeSize(Vector2(900, 400), 1)
-	$Box2.ChangeSize(Vector2(500, 100), 1)
+	$Box.ChangeSize(Vector2(900, 250), 1)
+	$Box2.ChangeSize(Vector2(500, 50), 1)
 	go()
 
 func go():
@@ -41,8 +41,8 @@ func _process(delta):
 	time += delta * j
 	$Box/Black/Warn.modulate.a -= delta * 2
 	$Box/Black/Warn2.modulate.a -= delta * 2
-	$Box/Black/Wind.Size.y =  lerp(0, 120, min(time, 1))
-	$Box/Black/Wind2.Size.y = lerp(0, 120, min(time, 1))
+	$Box/Black/Wind.Size.y =  lerp(0, 100, min(time, 1))
+	$Box/Black/Wind2.Size.y = lerp(0, 100, min(time, 1))
 	for L in $Box/Black/Leaves.get_children():
 		L.position.y += delta * 1000
 		if L.position.y > 600: L.queue_free()

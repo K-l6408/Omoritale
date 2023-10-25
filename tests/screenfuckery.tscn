@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7h3smfasyxf"]
+
+[ext_resource type="Script" path="res://tests/screenfuckery.gd" id="1_blaxk"]
+[ext_resource type="PackedScene" uid="uid://c5ubsilw2ag7g" path="res://OverworldPlayer.tscn" id="2_mwdrq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_blaxk")
+
+[node name="Snuuy" parent="." instance=ExtResource("2_mwdrq")]

@@ -160,7 +160,7 @@ position = Vector2(0, 7.62939e-06)
 rotation = -1.57079
 points = PackedVector2Array(-6, -16, 3, -16, 0, 0)
 width = 4.0
-default_color = Color(0.69, 0.15249, 0.1242, 1)
+default_color = Color(0.690196, 0.152941, 0.12549, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shields/3"]
 position = Vector2(-16, 0)

@@ -52,27 +52,27 @@ position = Vector2(800, 0)
 
 [node name="Warn" type="Sprite2D" parent="Box/Black" index="2"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(100, 200)
+position = Vector2(100, 125)
 scale = Vector2(2, 2)
 texture = ExtResource("2_c6gf1")
 region_enabled = true
-region_rect = Rect2(-45, -90, 100, 200)
+region_rect = Rect2(-45, -47, 100, 125)
 
 [node name="Warn2" type="Sprite2D" parent="Box/Black" index="3"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(800, 200)
+position = Vector2(800, 125)
 scale = Vector2(2, 2)
 texture = ExtResource("2_c6gf1")
 region_enabled = true
-region_rect = Rect2(-45, -90, 100, 200)
+region_rect = Rect2(-45, -47, 100, 125)
 
 [node name="Wind" parent="Box/Black" index="4" instance=ExtResource("2_ab4ta")]
-position = Vector2(450, 75)
+position = Vector2(450, 50)
 Size = Vector2i(500, 0)
 "Strengþ" = 2.0
 
 [node name="Wind2" parent="Box/Black" index="5" instance=ExtResource("2_ab4ta")]
-position = Vector2(450, 325)
+position = Vector2(450, 200)
 rotation = -3.14159
 Size = Vector2i(500, 0)
 "Strengþ" = 2.0

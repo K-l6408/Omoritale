@@ -9,13 +9,13 @@ func _process(delta):
 	position += vel
 
 func start(pos, ang, obj):
-	var sc = scale.x
+	var sc = scale.y
 	global_position = pos
 	rotation = ang
 	var tw = create_tween()
 	if tw:
-		scale.x = 0
-		tw.tween_property(self, "scale:x", sc, 0.6)
+		scale.y = 0
+		tw.tween_property(self, "scale:y", sc, 0.6)
 	Obj = obj
 
 func Collision(area):

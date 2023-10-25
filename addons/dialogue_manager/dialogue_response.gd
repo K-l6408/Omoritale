@@ -2,7 +2,7 @@
 class_name DialogueResponse extends RefCounted
 
 
-const _DialogueConstants = preload("res://addons/dialogue_manager/constants.gd")
+const _DialogueConstants = preload("./constants.gd")
 
 
 ## The ID of this response
@@ -38,7 +38,7 @@ func _init(data: Dictionary = {}) -> void:
 		is_allowed = data.is_allowed
 		text = data.text
 		text_replacements = data.text_replacements
-		tags = data.tags
+		tags = data.get("tags", [])
 		translation_key = data.translation_key
 
 

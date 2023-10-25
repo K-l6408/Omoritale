@@ -5,7 +5,8 @@ class_name Soul
 
 @export var State : SoulState : set = setState
 @export_group("Settings")
-@export var inverted_controls = false
+@export var inverted_controls := false
+@export var mouse_controls := false
 @export var controls := true
 @export var rotation_settings : rSettings
 @export_group("Settings/Visual")
@@ -91,6 +92,8 @@ func setState(value:SoulState):
 	State = value
 
 func _process(_delta):
+	if Input.is_action_just_pressed("why"): mouse_controls = !mouse_controls
+	if is_queued_for_deletion(): mouse_controls = false
 	$Shields.position = global_position
 	$Shields.scale    = scale
 	$Line2D.visible   = State.Green
@@ -415,7 +418,13 @@ func slam(rot8ion, speed = 200):
 
 func handle_input():
 	if controls:
-		vel = Input.get_vector("left", "right", "up", "down").normalized() * global_scale * 100
+		if mouse_controls:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			vel = Input.get_last_mouse_velocity()
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			vel = Input.get_vector("left", "right", "up", "down")
+		vel = vel.normalized() * global_scale * 100
 	else:
 		vel = Vector2(0, 0)
 	if inverted_controls:

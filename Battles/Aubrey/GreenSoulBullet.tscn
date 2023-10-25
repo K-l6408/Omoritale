@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://yi2t22ryb1yv"]
+
+[ext_resource type="Script" path="res://Battles/Aubrey/GreenSoulBullet.gd" id="1_bswe7"]
+[ext_resource type="Texture2D" uid="uid://c1cywg5cmr1k3" path="res://Assets/Sprites/Goofy ahh concept art/arrowtest.png" id="1_vvdx6"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_boui6"]
+a = Vector2(-10, 0)
+b = Vector2(10, 0)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_bswe7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_boui6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vvdx6")

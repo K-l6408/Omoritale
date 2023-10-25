@@ -21,4 +21,7 @@ func _physics_process(delta):
 					k = true
 					break
 			if k: continue
-			i.position += Vector2(-120, 0).rotated(rotation) * scale * delta * Strengþ
+			if i.State.Blue:
+				i.fall += (Vector2(-120, 0).rotated(rotation) * scale * delta * Strengþ)
+			else:
+				i.position += Vector2(-120, 0).rotated(rotation) * scale * delta * Strengþ
