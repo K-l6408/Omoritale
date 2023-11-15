@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://lfs4rjkd1rts"]
+[gd_scene load_steps=15 format=3 uid="uid://lfs4rjkd1rts"]
 
 [ext_resource type="Script" path="res://Menus/UI/UI.gd" id="1_1ojpt"]
-[ext_resource type="Script" path="res://Battles/Effect.gd" id="2_25chf"]
 [ext_resource type="Script" path="res://Battles/Stats.gd" id="2_jml8w"]
 [ext_resource type="Texture2D" uid="uid://u7hk3qpn7hv0" path="res://Assets/UI/FIGHT.png" id="3_yw78y"]
 [ext_resource type="Texture2D" uid="uid://bmts2m553jvqy" path="res://Assets/UI/Selected.png" id="4_udd23"]
@@ -15,13 +14,6 @@
 [ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_588nh"]
 [ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="15_k5nru"]
 
-[sub_resource type="Resource" id="Resource_s4boo"]
-script = ExtResource("2_25chf")
-EHP = 2.0
-EJP = 0.0
-color = Color(1, 0, 1, 1)
-name = "kr"
-
 [sub_resource type="Resource" id="Resource_vdysp"]
 resource_local_to_scene = true
 script = ExtResource("2_jml8w")
@@ -32,7 +24,7 @@ MJP = 20.0
 ATK = 1.0
 DEF = 1.0
 MAG = 1.0
-EFF = Array[Resource]([SubResource("Resource_s4boo")])
+EFF = Array[Resource("res://Battles/Effect.gd")]([])
 
 [node name="UI" type="Control"]
 texture_filter = 1
@@ -40,6 +32,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ojpt")
@@ -93,145 +87,6 @@ focus_neighbor_right = NodePath("../FIGHT")
 button_mask = 0
 texture_normal = ExtResource("8_7vg82")
 texture_focused = ExtResource("4_udd23")
-
-[node name="Name" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 30.0
-offset_top = 553.0
-offset_right = 145.0
-offset_bottom = 612.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
-text = "SUNNY"
-script = ExtResource("10_54b67")
-
-[node name="LV" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 180.0
-offset_top = 553.0
-offset_right = 272.0
-offset_bottom = 612.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
-text = "LV 1"
-
-[node name="Effect" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 157.0
-offset_top = 206.0
-offset_right = 243.0
-offset_bottom = 230.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("11_ma1x1")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center][/center]"
-fit_content = true
-scroll_active = false
-
-[node name="HP" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 369.0
-offset_top = 554.0
-offset_right = 400.2
-offset_bottom = 604.0
-color = Color(1, 0, 0, 1)
-
-[node name="Bar" type="ColorRect" parent="HP"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 31.2
-grow_vertical = 2
-color = Color(1, 1, 0, 1)
-
-[node name="Control" type="Control" parent="HP"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.8
-offset_top = 3.0
-offset_right = 20.8
-offset_bottom = 3.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="HP/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.125
-anchor_right = 1.80833
-anchor_bottom = 0.76
-offset_left = -8.59998
-offset_right = 25.4
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 25
-text = "26"
-horizontal_alignment = 2
-script = ExtResource("13_1r1n7")
-
-[node name="Slash" type="Label" parent="HP/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.38333
-anchor_top = 0.06
-anchor_right = 1.82083
-anchor_bottom = 1.24
-offset_left = 16.4
-offset_top = -3.0
-offset_right = 37.4
-offset_bottom = -3.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
-text = "/"
-
-[node name="MLabel" type="Label" parent="HP/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.63333
-anchor_top = 0.44
-anchor_right = 2.48333
-anchor_bottom = 1.2
-offset_left = 28.0
-offset_right = 151.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 25
-text = "26"
-script = ExtResource("14_588nh")
-
-[node name="Label" type="Label" parent="HP"]
-layout_mode = 0
-offset_left = -48.0
-offset_top = 14.0
-offset_right = -4.0
-offset_bottom = 41.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("11_ma1x1")
-theme_override_font_sizes/font_size = 20
-text = "HP"
 
 [node name="JP" type="ColorRect" parent="."]
 layout_direction = 2
@@ -337,6 +192,145 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("11_ma1x1")
 theme_override_font_sizes/font_size = 20
 text = "JP"
+
+[node name="HP" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 554.0
+offset_right = 400.2
+offset_bottom = 604.0
+color = Color(1, 0, 0, 1)
+
+[node name="Bar" type="ColorRect" parent="HP"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 31.353
+grow_vertical = 2
+color = Color(1, 1, 0, 1)
+
+[node name="Control" type="Control" parent="HP"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.8
+offset_top = 3.0
+offset_right = 20.8
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.125
+anchor_right = 1.80833
+anchor_bottom = 0.76
+offset_left = -8.59998
+offset_right = 25.4
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "26.13"
+horizontal_alignment = 2
+script = ExtResource("13_1r1n7")
+
+[node name="Slash" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.38333
+anchor_top = 0.06
+anchor_right = 1.82083
+anchor_bottom = 1.24
+offset_left = 16.4
+offset_top = -3.0
+offset_right = 37.4
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "/"
+
+[node name="MLabel" type="Label" parent="HP/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.63333
+anchor_top = 0.44
+anchor_right = 2.48333
+anchor_bottom = 1.2
+offset_left = 28.0
+offset_right = 151.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "26"
+script = ExtResource("14_588nh")
+
+[node name="Label" type="Label" parent="HP"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 14.0
+offset_right = -4.0
+offset_bottom = 41.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_ma1x1")
+theme_override_font_sizes/font_size = 20
+text = "HP"
+
+[node name="LV" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 180.0
+offset_top = 553.0
+offset_right = 338.0
+offset_bottom = 612.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "LV 1"
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 30.0
+offset_top = 553.0
+offset_right = 145.0
+offset_bottom = 612.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "SUNNY"
+script = ExtResource("10_54b67")
+
+[node name="Effect" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 157.0
+offset_top = 206.0
+offset_right = 243.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_ma1x1")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center][/center]"
+fit_content = true
+scroll_active = false
 
 [node name="TextBox" parent="." instance=ExtResource("15_k5nru")]
 is_ui = true

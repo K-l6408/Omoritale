@@ -181,13 +181,13 @@ static func minEXPfromLV(lv:int):
 		19: return 999999
 		20: return 1444443
 
-static func MHPfromLV(lv:int):
+static func MHPfromLV(lv):
 	if lv < 20:
 		return lv * 6 + 20
 	else:
 		return lv * 9 - 37
 
-static func MJPfromLV(lv:int):
+static func MJPfromLV(lv):
 	if lv < 20:
 		return lv * 4 + 16
 	else:

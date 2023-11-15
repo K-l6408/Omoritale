@@ -1,7 +1,7 @@
 @tool
 extends Control
 @export var PlayerStats     : Stats 
-@export var LevelOfViolence := 1
+@export var LevelOfViolence : float = 1
 @export var DialogueSource := "res://Dialogue/"
 @export var DialogueText   := ""
 var T = 1
@@ -71,7 +71,12 @@ func _process(delta):
 			$JP/Bar.get_child(e).position.x = j
 			j += $JP/Bar.get_child(e).size.x
 	$Effect.text += "[/center]"
-	$LV.text = "LV " + str(LevelOfViolence)
+	if LevelOfViolence - floor(LevelOfViolence) < 0.01:
+		$LV.text = "LV " + "%d" % LevelOfViolence
+	elif (LevelOfViolence * 10) - floor(LevelOfViolence * 10) < 0.1:
+		$LV.text = "LV " + "%.1f" % LevelOfViolence
+	else:
+		$LV.text = "LV " + "%.2f" % LevelOfViolence
 	$TextBox/Balloon/Rect.modulate = lerp(C, TC, T)
 	if has_node("SKILL"): $SKILL.JP = PlayerStats.JP
 
