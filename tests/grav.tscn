@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_jsxfq"]
 script = ExtResource("3_46ljk")
-Red = true
+Red = false
 Orange = false
 Yellow = false
 Green = false
@@ -15,7 +15,7 @@ Mint = false
 Teal = false
 Blue = true
 Purple = false
-Value = 65
+Value = 64
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,7 +35,7 @@ polygon = PackedVector2Array(-150, -150, -150, 150, -50, 150, -50, 50, 50, 50, 5
 [node name="GravityArea" parent="Pongon/Polygon2D" index="0" instance=ExtResource("2_syy23")]
 position = Vector2(0, 0)
 scale = Vector2(1.5, 1.5)
-Type = 3
+Type = 2
 
 [node name="Line2D" parent="Pongon" index="2"]
 points = PackedVector2Array(-150, -150, -150, 150, -50, 150, -50, 50, 50, 50, 50, 150, 150, 150, 150, -150, 50, -150, 50, -50, -50, -50, -50, -150, -150, -150)

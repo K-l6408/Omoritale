@@ -8,6 +8,7 @@ class_name Soul
 @export var inverted_controls := false
 @export var mouse_controls := false
 @export var controls := true
+@export var moving := true
 @export var rotation_settings : rSettings
 @export_group("Settings/Visual")
 @export var show_DT := true
@@ -318,7 +319,7 @@ func _physics_process(delta):
 			$TP.collision_mask = 1
 			$TP.move_and_slide()
 		else:
-			move_and_slide()
+			if moving: move_and_slide()
 		if handle_rot:
 			handle_rotation(delta)
 		var collision = get_last_slide_collision()

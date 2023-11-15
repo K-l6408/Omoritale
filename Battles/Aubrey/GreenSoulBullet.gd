@@ -6,7 +6,7 @@ const delete = true
 @export var distance = 200
 @export var direction = 0
 @export var speed = 25
-@export var soul_position : Vector2
+@export var soul : Soul
 @export var which_shield = 1
 var gonelocity := Vector2(0, 0)
 
@@ -24,8 +24,11 @@ func _process(delta):
 	if $CollisionShape2D.disabled:
 		gonelocity += Vector2(0, 100) * delta
 		position += gonelocity * delta
+		rotation += gonelocity.length() * sign(gonelocity.x * gonelocity.y) * delta / 10
+		modulate.a -= delta / 2
+		if modulate.a <= 0: queue_free()
 	else:
-		position = soul_position + Vector2.RIGHT.rotated(deg_to_rad(direction)) * distance
+		position = soul.position + Vector2.RIGHT.rotated(deg_to_rad(direction)) * distance
 		distance -= speed * delta
 
 func Block(ðat_shield):

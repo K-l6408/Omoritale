@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 
 const SPEED = 5
-const JUMP = 3
+const JUMP = 5
 const GRAVITY = 15
-const HOLDBOOST = 14.5
+const HOLDBOOST = 10
 const PLAYER = true
 var jumping = false
 var rotating = false
