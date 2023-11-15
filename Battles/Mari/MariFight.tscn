@@ -17,13 +17,12 @@ resource_local_to_scene = true
 script = ExtResource("10_mwgbq")
 HP = 26.0
 MHP = 26.0
-EHP = Array[float]([])
 JP = 0.0
 MJP = 20.0
-EJP = Array[float]([])
 ATK = 1.0
 DEF = 1.0
 MAG = 1.0
+EFF = Array[Resource("res://Battles/Effect.gd")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r25c8"]
 size = Vector2(180, 71)

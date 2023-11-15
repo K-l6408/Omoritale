@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://lfs4rjkd1rts"]
+[gd_scene load_steps=16 format=3 uid="uid://lfs4rjkd1rts"]
 
 [ext_resource type="Script" path="res://Menus/UI/UI.gd" id="1_1ojpt"]
 [ext_resource type="Script" path="res://Battles/Stats.gd" id="2_jml8w"]
 [ext_resource type="Texture2D" uid="uid://u7hk3qpn7hv0" path="res://Assets/UI/FIGHT.png" id="3_yw78y"]
 [ext_resource type="Texture2D" uid="uid://bmts2m553jvqy" path="res://Assets/UI/Selected.png" id="4_udd23"]
+[ext_resource type="Script" path="res://Menus/UI/MenuButton.gd" id="5_35xiv"]
 [ext_resource type="Texture2D" uid="uid://bekq5e5128bej" path="res://Assets/UI/ACT.png" id="5_i2ygb"]
 [ext_resource type="Texture2D" uid="uid://bv0lxweg05t5i" path="res://Assets/UI/SKILL.png" id="6_pq61q"]
 [ext_resource type="Texture2D" uid="uid://b1cv3c33hks8u" path="res://Assets/UI/ITEM.png" id="7_we6we"]
@@ -55,6 +56,8 @@ focus_neighbor_right = NodePath("../ACT")
 button_mask = 0
 texture_normal = ExtResource("3_yw78y")
 texture_focused = ExtResource("4_udd23")
+script = ExtResource("5_35xiv")
+texture = ExtResource("3_yw78y")
 
 [node name="ACT" type="TextureButton" parent="Buttons"]
 layout_mode = 2
@@ -63,6 +66,8 @@ focus_neighbor_right = NodePath("../SKILL")
 button_mask = 0
 texture_normal = ExtResource("5_i2ygb")
 texture_focused = ExtResource("4_udd23")
+script = ExtResource("5_35xiv")
+texture = ExtResource("5_i2ygb")
 
 [node name="SKILL" type="TextureButton" parent="Buttons"]
 layout_mode = 2
@@ -71,6 +76,8 @@ focus_neighbor_right = NodePath("../ITEM")
 button_mask = 0
 texture_normal = ExtResource("6_pq61q")
 texture_focused = ExtResource("4_udd23")
+script = ExtResource("5_35xiv")
+texture = ExtResource("6_pq61q")
 
 [node name="ITEM" type="TextureButton" parent="Buttons"]
 layout_mode = 2
@@ -79,6 +86,8 @@ focus_neighbor_right = NodePath("../MERCY")
 button_mask = 0
 texture_normal = ExtResource("7_we6we")
 texture_focused = ExtResource("4_udd23")
+script = ExtResource("5_35xiv")
+texture = ExtResource("7_we6we")
 
 [node name="MERCY" type="TextureButton" parent="Buttons"]
 layout_mode = 2
@@ -87,6 +96,8 @@ focus_neighbor_right = NodePath("../FIGHT")
 button_mask = 0
 texture_normal = ExtResource("8_7vg82")
 texture_focused = ExtResource("4_udd23")
+script = ExtResource("5_35xiv")
+texture = ExtResource("8_7vg82")
 
 [node name="JP" type="ColorRect" parent="."]
 layout_direction = 2
@@ -205,7 +216,7 @@ color = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 31.353
+offset_right = 31.2
 grow_vertical = 2
 color = Color(1, 1, 0, 1)
 
@@ -235,7 +246,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 25
-text = "26.13"
+text = "26"
 horizontal_alignment = 2
 script = ExtResource("13_1r1n7")
 
@@ -335,6 +346,10 @@ scroll_active = false
 [node name="TextBox" parent="." instance=ExtResource("15_k5nru")]
 is_ui = true
 
-[connection signal="pressed" from="Buttons/FIGHT" to="." method="Fight"]
-[connection signal="pressed" from="Buttons/ACT" to="." method="Act"]
-[connection signal="pressed" from="Buttons/SKILL" to="." method="Skill"]
+[connection signal="pressed_regular" from="Buttons/FIGHT" to="." method="Fight"]
+[connection signal="pressed_pain" from="Buttons/ACT" to="." method="Pain"]
+[connection signal="pressed_regular" from="Buttons/ACT" to="." method="Act"]
+[connection signal="pressed_pain" from="Buttons/SKILL" to="." method="Pain"]
+[connection signal="pressed_regular" from="Buttons/SKILL" to="." method="Skill"]
+[connection signal="pressed_pain" from="Buttons/ITEM" to="." method="Pain"]
+[connection signal="pressed_pain" from="Buttons/MERCY" to="." method="Pain"]

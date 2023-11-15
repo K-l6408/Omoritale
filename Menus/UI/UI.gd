@@ -4,6 +4,7 @@ extends Control
 @export var LevelOfViolence : float = 1
 @export var DialogueSource := "res://Dialogue/"
 @export var DialogueText   := ""
+@export var MenuAttack     := 0
 var T = 1
 var C  := Color.WHITE
 var TC := Color.WHITE
@@ -48,6 +49,11 @@ func dialogue():
 
 func _process(delta):
 	T += delta
+	if MenuAttack > 0:
+		for i in $Buttons.get_child_count():
+			$Buttons.get_child(i).pain = int((int(i*MenuAttack) - int(T*2)) % 5 / float(MenuAttack % 4 if MenuAttack % 4 else 4)) == 0
+	else:
+		for i in $Buttons.get_children(): i.pain = false
 	if Engine.is_editor_hint():
 		PlayerStats. HP = float(GLOBALS.MHPfromLV(LevelOfViolence))
 		PlayerStats.MHP = float(GLOBALS.MHPfromLV(LevelOfViolence))
@@ -79,6 +85,11 @@ func _process(delta):
 		$LV.text = "LV " + "%.2f" % LevelOfViolence
 	$TextBox/Balloon/Rect.modulate = lerp(C, TC, T)
 	if has_node("SKILL"): $SKILL.JP = PlayerStats.JP
+
+func Pain():
+	if get_parent() is Battle:
+		get_parent().playerStats.HP /= 2
+	else: PlayerStats.HP /= 2
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
