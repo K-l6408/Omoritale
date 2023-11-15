@@ -1,8 +1,6 @@
 @tool
 extends Control
 @export var PlayerStats     : Stats 
-@export var EffectColors    : PackedColorArray = []
-@export var StatusEffects   : PackedStringArray = []
 @export var LevelOfViolence := 1
 @export var DialogueSource := "res://Dialogue/"
 @export var DialogueText   := ""
@@ -15,17 +13,16 @@ var Actscn   = preload("res://Menus/UI/ACT.tscn")
 var Skillscn = preload("res://Menus/UI/SKILL.tscn")
 
 func _ready():
-	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
 	$TextBox/Balloon.position = position + Vector2(30, 333)
-	for c in EffectNum:
+	for c in PlayerStats.EFF.size():
 		var e = ColorRect.new()
-		e.color = EffectColors[c]
+		e.color = PlayerStats.EFF[c].color
 		e.anchors_preset = PRESET_RIGHT_WIDE
 		e.size.y = 50
 		$HP/Bar.add_child(e)
-	for c in EffectNum:
+	for c in PlayerStats.EFF.size():
 		var e = ColorRect.new()
-		e.color = EffectColors[c]
+		e.color = PlayerStats.EFF[c].color
 		e.anchors_preset = PRESET_RIGHT_WIDE
 		e.size.y = 50
 		$JP/Bar.add_child(e)
@@ -52,10 +49,9 @@ func dialogue():
 func _process(delta):
 	T += delta
 	if Engine.is_editor_hint():
-		PlayerStats. HP = GLOBALS.MHPfromLV(LevelOfViolence)
-		PlayerStats.MHP = GLOBALS.MHPfromLV(LevelOfViolence)
-		PlayerStats.MJP = GLOBALS.MJPfromLV(LevelOfViolence)
-	EffectNum = min(PlayerStats.EHP.size(),PlayerStats.EJP.size())
+		PlayerStats. HP = float(GLOBALS.MHPfromLV(LevelOfViolence))
+		PlayerStats.MHP = float(GLOBALS.MHPfromLV(LevelOfViolence))
+		PlayerStats.MJP = float(GLOBALS.MJPfromLV(LevelOfViolence))
 	$HP           .size.x = lerpf($HP           .size.x, PlayerStats.MHP * 1.2, delta * 5)   
 	$HP/Bar       .size.x = lerpf($HP/Bar       .size.x, PlayerStats. HP * 1.2, delta * 2)
 	$JP           .size.x = lerpf($JP           .size.x, PlayerStats.MJP * 1.2, delta * 5)
@@ -65,14 +61,15 @@ func _process(delta):
 	$Effect.text = "[center]"
 	var h = 0
 	var j = 0
-	for e in EffectNum:
-		$Effect.text += "[color=#" + EffectColors[e].to_html(false) + "]" + StatusEffects[e] + "[/color]\n"
-		$HP/Bar.get_child(e).size.x = lerpf($HP/Bar.get_child(e).size.x, PlayerStats.EHP[e] * 1.2, delta * 2)
-		$JP/Bar.get_child(e).size.x = lerpf($JP/Bar.get_child(e).size.x, PlayerStats.EJP[e] * 1.2, delta * 2)
-		h += $HP/Bar.get_child(e).size.x
-		$HP/Bar.get_child(e).position.x = $HP/Bar.size.x - h
-		$JP/Bar.get_child(e).position.x = j
-		j += $JP/Bar.get_child(e).size.x
+	if not Engine.is_editor_hint():
+		for e in PlayerStats.EFF.size():
+			$Effect.text += "[color=#" + PlayerStats.EFF[e].color.to_html(false) + "]" + PlayerStats.EFF[e].name + "[/color]\n"
+			$HP/Bar.get_child(e).size.x = lerpf($HP/Bar.get_child(e).size.x, PlayerStats.EFF[e].EHP * 1.2, delta * 2)
+			$JP/Bar.get_child(e).size.x = lerpf($JP/Bar.get_child(e).size.x, PlayerStats.EFF[e].EJP * 1.2, delta * 2)
+			h += $HP/Bar.get_child(e).size.x
+			$HP/Bar.get_child(e).position.x = $HP/Bar.size.x - h
+			$JP/Bar.get_child(e).position.x = j
+			j += $JP/Bar.get_child(e).size.x
 	$Effect.text += "[/center]"
 	$LV.text = "LV " + str(LevelOfViolence)
 	$TextBox/Balloon/Rect.modulate = lerp(C, TC, T)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://lfs4rjkd1rts"]
+[gd_scene load_steps=17 format=3 uid="uid://lfs4rjkd1rts"]
 
 [ext_resource type="Script" path="res://Menus/UI/UI.gd" id="1_1ojpt"]
+[ext_resource type="Script" path="res://Battles/Effect.gd" id="2_25chf"]
 [ext_resource type="Script" path="res://Battles/Stats.gd" id="2_jml8w"]
 [ext_resource type="Texture2D" uid="uid://u7hk3qpn7hv0" path="res://Assets/UI/FIGHT.png" id="3_yw78y"]
 [ext_resource type="Texture2D" uid="uid://bmts2m553jvqy" path="res://Assets/UI/Selected.png" id="4_udd23"]
@@ -14,18 +15,24 @@
 [ext_resource type="Script" path="res://Menus/UI/Label B.gd" id="14_588nh"]
 [ext_resource type="PackedScene" uid="uid://6bho2f61e5x1" path="res://Dialogue/textbox.tscn" id="15_k5nru"]
 
+[sub_resource type="Resource" id="Resource_s4boo"]
+script = ExtResource("2_25chf")
+EHP = 2.0
+EJP = 0.0
+color = Color(1, 0, 1, 1)
+name = "kr"
+
 [sub_resource type="Resource" id="Resource_vdysp"]
 resource_local_to_scene = true
 script = ExtResource("2_jml8w")
 HP = 26.0
 MHP = 26.0
-EHP = Array[float]([])
 JP = 0.0
 MJP = 20.0
-EJP = Array[float]([])
 ATK = 1.0
 DEF = 1.0
 MAG = 1.0
+EFF = Array[Resource]([SubResource("Resource_s4boo")])
 
 [node name="UI" type="Control"]
 texture_filter = 1
@@ -37,8 +44,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ojpt")
 PlayerStats = SubResource("Resource_vdysp")
-EffectColors = PackedColorArray()
-StatusEffects = PackedStringArray()
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
