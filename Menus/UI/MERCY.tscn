@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://buu2g6aevpo0m"]
+
+[ext_resource type="Script" path="res://Menus/UI/MultiRect.gd" id="1_aipbt"]
+[ext_resource type="Script" path="res://Menus/UI/MERCY.gd" id="1_rj0tc"]
+[ext_resource type="FontFile" uid="uid://cmwtnrtpsd3ls" path="res://Assets/Fonts/Kschwal Monospace.ttf" id="3_5wvfi"]
+[ext_resource type="Script" path="res://Dialogue/ResponseTemplate.gd" id="4_pv52k"]
+[ext_resource type="Texture2D" uid="uid://cunfisx44j3ao" path="res://Assets/Sprites/SOUL/DefaultSoul.png" id="5_cftnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08m8l"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a5j8"]
+content_margin_left = 40.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rj0tc")
+
+[node name="Rect" type="ColorRect" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = 333.0
+offset_right = 930.0
+offset_bottom = 533.0
+color = Color(0, 0, 0, 0)
+script = ExtResource("1_aipbt")
+DC = Color(0.866667, 1, 0.2, 1)
+E = PackedVector2Array(0, 900)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spare" type="RichTextLabel" parent="Rect/VBoxContainer"]
+texture_filter = 2
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_5wvfi")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_08m8l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5a5j8")
+bbcode_enabled = true
+text = "Spare"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("4_pv52k")
+
+[node name="Soul" type="Sprite2D" parent="Rect/VBoxContainer/Spare"]
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_cftnj")
+
+[node name="Defend" type="RichTextLabel" parent="Rect/VBoxContainer"]
+texture_filter = 2
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_5wvfi")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_08m8l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5a5j8")
+bbcode_enabled = true
+text = "Defend"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("4_pv52k")
+
+[node name="Soul" type="Sprite2D" parent="Rect/VBoxContainer/Defend"]
+visible = false
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_cftnj")
+
+[node name="Flee" type="RichTextLabel" parent="Rect/VBoxContainer"]
+texture_filter = 2
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_5wvfi")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_08m8l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5a5j8")
+bbcode_enabled = true
+text = "Flee"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("4_pv52k")
+
+[node name="Soul" type="Sprite2D" parent="Rect/VBoxContainer/Flee"]
+visible = false
+texture_filter = 1
+position = Vector2(18, 21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_cftnj")

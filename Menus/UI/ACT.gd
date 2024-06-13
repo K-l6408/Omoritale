@@ -9,7 +9,7 @@ func _ready():
 		P.show()
 		P.text = j.Name
 		P.connect("focus_entered", show_acts.bind(j))
-		P.connect("gui_input", _enemy_select)
+		P.connect("gui_input", _event)
 		P.set_focus_mode(Control.FOCUS_ALL)
 		$PPL/Rect/VBoxContainer.add_child(P)
 	if $PPL/Rect/VBoxContainer.get_child_count() == 0:
@@ -39,7 +39,7 @@ func _process(delta):
 		emit_signal("done")
 		queue_free()
 
-func _enemy_select(event:InputEvent):
+func _event(event:InputEvent):
 	if (event.is_action("ui_accept") or event.is_action("ui_right")) and event.is_pressed():
 		if $ACT/Rect/ScrollContainer/VBoxContainer.get_child_count() == 0:
 			emit_signal("nvm")

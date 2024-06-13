@@ -25,8 +25,8 @@ func _physics_process(delta):
 	$CollisionPolygon2D.polygon = Polygon
 	$Polygon2D.polygon = Polygon
 	$Line2D.points = pongon
-	collision_layer = CollisionLayer
-	collision_mask  = CollisionLayer
+	collision_layer = 1 << (CollisionLayer - 1)
+	collision_mask  = 1 << (CollisionLayer - 1)
 	if Engine.is_editor_hint():
 		$Line2D.default_color = Color.MAGENTA
 	else:

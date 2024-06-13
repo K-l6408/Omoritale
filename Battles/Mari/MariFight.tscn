@@ -79,6 +79,7 @@ script = ExtResource("2_nlsls")
 shape = SubResource("RectangleShape2D_r25c8")
 
 [node name="Mari" type="Sprite2D" parent="EHbox" index="1"]
+visible = false
 position = Vector2(-1, -2)
 scale = Vector2(2, 2)
 texture = ExtResource("1_k7wqo")
@@ -95,5 +96,3 @@ position = Vector2(0, -16)
 texture = ExtResource("6_exnmf")
 region_enabled = true
 region_rect = Rect2(-10, 0, 102, 87)
-
-[connection signal="hurt" from="EHbox" to="." method="the_ouchies" binds= [0]]

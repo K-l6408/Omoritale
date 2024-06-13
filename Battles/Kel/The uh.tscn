@@ -12,10 +12,10 @@ Orange = true
 Yellow = false
 Green = false
 Mint = false
-Teal = true
+Teal = false
 Blue = false
 Purple = false
-Value = 34
+Value = 2
 
 [node name="Pongon" instance=ExtResource("1_65i5n")]
 script = ExtResource("2_jvcha")

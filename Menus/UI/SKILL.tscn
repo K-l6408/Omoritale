@@ -21,14 +21,14 @@ offset_bottom = 543.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_0jtsm")
 DC = Color(0.2, 0.6, 1, 1)
-E = PackedVector2Array(0, 150, 170, 210)
+E = PackedVector2Array(0, 140, 160, 200)
 
 [node name="Desc" type="RichTextLabel" parent="ColorRect"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 170.0
+offset_top = 160.0
 offset_right = 900.0
-offset_bottom = 210.0
+offset_bottom = 200.0
 theme_override_font_sizes/normal_font_size = 29
 bbcode_enabled = true
 text = "Description"
@@ -59,7 +59,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_left = 2.0
 offset_top = 1.0
-offset_bottom = 150.0
+offset_bottom = 140.0
 grow_horizontal = 2
 columns = 3
 

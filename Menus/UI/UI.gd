@@ -10,8 +10,9 @@ var C  := Color.WHITE
 var TC := Color.WHITE
 var EffectNum : int
 var Fightscn = preload("res://Menus/UI/FIGHT.tscn")
-var Actscn   = preload("res://Menus/UI/ACT.tscn")
+var Actiŋscn = preload("res://Menus/UI/ACT.tscn")
 var Skillscn = preload("res://Menus/UI/SKILL.tscn")
+var Mercyscn = preload("res://Menus/UI/MERCY.tscn")
 
 func _ready():
 	$TextBox/Balloon.position = position + Vector2(30, 333)
@@ -40,6 +41,9 @@ func playerTurn(defclr := GLOBALS.Colors["Green"]):
 	await $TextBox.finished
 	$TextBox.show()
 	$TextBox/Balloon/Margin/VBox.hide()
+	for i in $Buttons.get_children(): i.disabled = false
+	await get_tree().process_frame
+	await get_tree().process_frame
 	$Buttons/FIGHT.grab_focus()
 
 func dialogue():
@@ -58,10 +62,10 @@ func _process(delta):
 		PlayerStats. HP = float(GLOBALS.MHPfromLV(LevelOfViolence))
 		PlayerStats.MHP = float(GLOBALS.MHPfromLV(LevelOfViolence))
 		PlayerStats.MJP = float(GLOBALS.MJPfromLV(LevelOfViolence))
-	$HP           .size.x = lerpf($HP           .size.x, PlayerStats.MHP * 1.2, delta * 5)   
-	$HP/Bar       .size.x = lerpf($HP/Bar       .size.x, PlayerStats. HP * 1.2, delta * 2)
-	$JP           .size.x = lerpf($JP           .size.x, PlayerStats.MJP * 1.2, delta * 5)
-	$JP/Bar       .size.x = lerpf($JP/Bar       .size.x, PlayerStats. JP * 1.2, delta * 2)
+	$HP           .size.x = lerpf($HP           .size.x, PlayerStats.MHP * 1.2, delta * 7)   
+	$HP/Bar       .size.x = lerpf($HP/Bar       .size.x, PlayerStats. HP * 1.2, delta * 4)
+	$JP           .size.x = lerpf($JP           .size.x, PlayerStats.MJP * 1.2, delta * 7)
+	$JP/Bar       .size.x = lerpf($JP/Bar       .size.x, PlayerStats. JP * 1.2, delta * 4)
 	$JP           .position.x = 906 - $JP.size.x
 	$JP/Bar       .position.x = $JP.size.x - $JP/Bar.size.x
 	$Effect.text = "[center]"
@@ -93,6 +97,7 @@ func Pain():
 
 func Fight():
 	$Buttons/FIGHT.release_focus()
+	for i in $Buttons.get_children(): i.disabled = true
 	$TextBox.hide()
 	var F = Fightscn.instantiate()
 	F.position = Vector2(0, 0)
@@ -106,8 +111,9 @@ func Fight():
 
 func Act():
 	$Buttons/ACT.release_focus()
+	for i in $Buttons.get_children(): i.disabled = true
 	$TextBox.hide()
-	var A = Actscn.instantiate()
+	var A = Actiŋscn.instantiate()
 	add_child(A)
 	A.connect("nvm", func():
 		playerTurn(A.get_node("ACT/Rect").color)
@@ -126,6 +132,7 @@ func Act():
 
 func Skill():
 	$Buttons/SKILL.release_focus()
+	for i in $Buttons.get_children(): i.disabled = true
 	$TextBox.hide()
 	var S = Skillscn.instantiate()
 	add_child(S, true)
@@ -143,7 +150,32 @@ func Skill():
 		emit_signal("YourTurn")
 	)
 
+#func Item():
+#	$Buttons/ITEM.release_focus()
+#	for i in $Buttons.get_children(): i.disabled = true
+
+func Mercy():
+	$Buttons/MERCY.release_focus()
+	for i in $Buttons.get_children(): i.disabled = true
+	$TextBox.hide()
+	var M = Mercyscn.instantiate()
+	add_child(M, true)
+	M.connect("nvm", func():
+		playerTurn(M.get_node("Rect").DC)
+		M.queue_free()
+	)
+	M.connect("send", func(j):
+		emit_signal("Spear", j)
+		C  = M.get_node("Rect").DC
+		TC = M.get_node("Rect").DC
+		if $TextBox.visible:
+			await $TextBox.finished
+			TC = Globals.Colors["DarkGreen"]
+		emit_signal("YourTurn")
+	)
+
 signal YourTurn()
 signal Ask(enm, act)
 signal Unskilledpoint(qhat, cost)
+signal Spear(huh)
 signal What()

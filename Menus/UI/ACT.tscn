@@ -58,7 +58,7 @@ texture = ExtResource("4_wt2mj")
 offset_left = 30.0
 offset_top = 333.0
 offset_right = 480.0
-offset_bottom = 543.0
+offset_bottom = 533.0
 color = Color(0, 0, 0, 1)
 
 [node name="Rect" type="ColorRect" parent="PPL"]
@@ -91,7 +91,7 @@ grow_vertical = 2
 offset_left = 480.0
 offset_top = 333.0
 offset_right = 930.0
-offset_bottom = 543.0
+offset_bottom = 533.0
 color = Color(0, 0, 0, 1)
 
 [node name="Rect" type="ColorRect" parent="ACT"]

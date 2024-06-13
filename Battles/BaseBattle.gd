@@ -5,6 +5,17 @@ class_name Battle
 var playerStats : Stats = Globals.PlayerStats.duplicate()
 var attackNum = 0
 var attacks = []
+var oðereffects :int= 0
+####### Effect List #######
+# 0x 00 00 00 01 : defend #
+# 0x 00 00 00 02 : coffee #
+# 0x 00 00 00 04 : [null] #
+# 0x 00 00 00 08 : [null] #
+# 0x 00 00 00 10 : [null] #
+# 0x 00 00 00 20 : [null] #
+# 0x 00 00 00 40 : [null] #
+# 0x 00 00 00 80 : [null] #
+###########################
 
 func _ready():
 	$UI.PlayerStats = playerStats
@@ -17,19 +28,23 @@ func _on_start():
 	pass
 
 func _process(delta):
-	playerStats.JP += delta / 5
+	playerStats.JP += delta / 20
 	if playerStats.JP > playerStats.MJP: playerStats.JP = playerStats.MJP
 
 func choose_attack() -> int:
 	return 0
 
 func attack():
+	if oðereffects & 0x2: Engine.time_scale /= 2
 	attackNum += 1
 	var A = attacks[choose_attack()].instantiate()
 	add_child(A)
 	A.connect("hit", gothit)
 	await A.tree_exiting
 	$UI.DialogueText = get_dialogue_title()
+	if oðereffects & 0x2:
+		Engine.time_scale *= 2
+	oðereffects = 0
 	$UI.playerTurn()
 
 func get_dialogue_title() -> String:
@@ -57,12 +72,17 @@ func the_ouchies(intensity, which = 0):
 
 func gothit(what):
 	if what is int or what is float:
-		playerStats.HP -= what
+		if oðereffects & 0x1 != 0:
+			playerStats.HP -= what * 0.75
+		else:
+			playerStats.HP -= what
 	elif what is String:
 		for i in Globals.Enemies:
 			if i.Name == what:
-				playerStats.HP -= i.Stat.ATK / playerStats.DEF
-				break
+				if oðereffects & 0x1 != 0:
+					playerStats.HP -= i.Stat.ATK / playerStats.DEF * 0.75
+				else:
+					playerStats.HP -= i.Stat.ATK / playerStats.DEF
 
 func Act(_enm, _act):
 	act(_enm, _act)
@@ -74,6 +94,19 @@ func Skill(qhat, cost):
 			playerStats.JP -= cost
 			if playerStats.HP < playerStats.MHP:
 				playerStats.HP = min(playerStats.HP + playerStats.MAG * 4, playerStats.MHP)
+
+func Mercy(huh):
+	match huh:
+		0: # spare
+			spared()
+		1: # defend
+			oðereffects |= 0x1
+			playerStats.JP += playerStats.MAG * 2
+		_: # flee
+			pass
+
+func spared():
+	pass
 
 func act(_enm, _act):
 	pass

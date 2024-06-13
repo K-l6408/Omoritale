@@ -346,6 +346,7 @@ scroll_active = false
 [node name="TextBox" parent="." instance=ExtResource("15_k5nru")]
 is_ui = true
 
+[connection signal="pressed_pain" from="Buttons/FIGHT" to="." method="Pain"]
 [connection signal="pressed_regular" from="Buttons/FIGHT" to="." method="Fight"]
 [connection signal="pressed_pain" from="Buttons/ACT" to="." method="Pain"]
 [connection signal="pressed_regular" from="Buttons/ACT" to="." method="Act"]
@@ -353,3 +354,4 @@ is_ui = true
 [connection signal="pressed_regular" from="Buttons/SKILL" to="." method="Skill"]
 [connection signal="pressed_pain" from="Buttons/ITEM" to="." method="Pain"]
 [connection signal="pressed_pain" from="Buttons/MERCY" to="." method="Pain"]
+[connection signal="pressed_regular" from="Buttons/MERCY" to="." method="Mercy"]

@@ -146,7 +146,7 @@ func _physics_process(delta):
 					jumps = int(is_on_floor())
 					j = -pvel.rotated(-global_rotation).y
 					var pj = -v.rotated(-global_rotation).y
-					if j < -10 and pj > -10:
+					if j < -50 and pj > -50:
 						fallspd = 200
 					j = 100
 				else:

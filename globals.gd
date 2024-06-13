@@ -69,6 +69,7 @@ var INVENTORY : PackedInt32Array = []
 var Enemies : Array[Enemy] = []
 var musynctime = 0.0
 var skiptext := true
+var canflee := true
 var lastsaverelevantdata = {
 	"TIME" : TIME,
 	"LV" : 0

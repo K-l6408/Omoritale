@@ -8,14 +8,14 @@
 [sub_resource type="Resource" id="Resource_dw6kg"]
 script = ExtResource("2_l16vf")
 Red = false
-Orange = true
+Orange = false
 Yellow = false
 Green = false
 Mint = false
-Teal = false
+Teal = true
 Blue = false
 Purple = false
-Value = 2
+Value = 32
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nxm4b"]
 polygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
@@ -60,12 +60,12 @@ polygon = PackedVector2Array(-71, -35, -117, -33, -151, 13, -114, 44, -73, 44, -
 
 [node name="Pongon2" parent="Pongon/Polygon2D" index="0" instance=ExtResource("4_0j6xu")]
 position = Vector2(0, 0)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 StartingPolygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
 TargetPolygon = PackedVector2Array(-71, -34, -37, -13, -32, 16, -147, 96, 14, 100, 108, 85, 77, -106, 43, -74, -25, -53)
 BGColor = Color(0.160784, 0.160784, 0.160784, 0)
-CollisionLayer = 2
+CollisionLayer = 3
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Pongon/Polygon2D/Pongon2"]
 occluder = SubResource("OccluderPolygon2D_nxm4b")
